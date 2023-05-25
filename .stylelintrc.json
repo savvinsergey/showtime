@@ -1,0 +1,39 @@
+{
+  "ignoreFiles": ["**/*"],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-selector-bem-pattern",
+    "stylelint-scss",
+    "stylelint-use-nesting"
+  ],
+  "extends": [
+    "stylelint-config-idiomatic-order",
+    "stylelint-prettier/recommended",
+    "stylelint-config-prettier"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.css"],
+      "extends": ["stylelint-config-standard"],
+      "rules": {}
+    },
+    {
+      "files": ["**/*.scss"],
+      "extends": ["stylelint-config-standard-scss"],
+      "rules": {
+        "csstools/use-nesting": "always",
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true,
+        "plugin/selector-bem-pattern": {
+          "componentName": "[A-Z]+",
+          "componentSelectors": {
+            "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+            "combined": "^\\.combined-{componentName}-[a-z]+$"
+          },
+          "utilitySelectors": "^\\.util-[a-z]+$"
+        }
+      }
+    }
+  ],
+  "rules": {}
+}
