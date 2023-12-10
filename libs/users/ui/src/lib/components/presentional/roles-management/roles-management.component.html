@@ -1,0 +1,41 @@
+<uik-modal (closed)="closed.emit()">
+  <ng-container title>Roles</ng-container>
+  <ng-container content>
+    <ng-container *ngIf="!inProgress?.loading; else loaderTmp">
+      <uik-checkbox-group required [formControl]="rolesControl" [list]="allRoles"> </uik-checkbox-group>
+    </ng-container>
+  </ng-container>
+  <ng-container buttons>
+    <button
+      type="button"
+      class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+      (click)="closed.emit()"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      class="flex py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900"
+      [ngClass]="{ 'cursor-not-allowed opacity-60': rolesControl.invalid }"
+      [disabled]="rolesControl.invalid"
+      (click)="assigned.emit(rolesControl.value)"
+    >
+      <ng-container *ngIf="inProgress?.assigning">
+        <ng-container *ngTemplateOutlet="buttonLoaderTmp"></ng-container>
+      </ng-container>
+      Assign
+    </button>
+  </ng-container>
+</uik-modal>
+
+<ng-template #loaderTmp>
+  <div class="h-[96px] flex items-center justify-center">
+    <i class="w-10 h-10" inlineSVG="assets/svg/loader.svg"></i>
+  </div>
+</ng-template>
+
+<ng-template #buttonLoaderTmp>
+  <div class="w-4 h-4 mt-0.5 mr-2">
+    <i inlineSVG="assets/svg/loader.svg"></i>
+  </div>
+</ng-template>

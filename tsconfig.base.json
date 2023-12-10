@@ -10,18 +10,34 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "strict": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@auth/utils": ["libs/auth/utils/src/index.ts"],
+      "@showtime/auth/abstract": ["libs/auth/abstract/src/index.ts"],
+      "@showtime/auth/domain": ["libs/auth/domain/src/index.ts"],
+      "@showtime/auth/domain/commands": ["libs/auth/domain/src/lib/cqrs/commands/index.ts"],
+      "@showtime/auth/domain/queries": ["libs/auth/domain/src/lib/cqrs/queries/index.ts"],
+      "@showtime/auth/ui": ["libs/auth/ui/src/index.ts"],
+      "@showtime/auth/utils": ["libs/auth/utils/src/index.ts"],
+      "@showtime/initializer": ["libs/initializer/src/index.ts"],
+      "@showtime/layout/abstract": ["libs/layout/abstract/src/index.ts"],
+      "@showtime/layout/ui": ["libs/layout/ui/src/index.ts"],
+      "@showtime/shared/const": ["libs/shared/constants/index.ts"],
+      "@showtime/shared/enums": ["libs/shared/enums/index.ts"],
+      "@showtime/shared/interfaces": ["libs/shared/interfaces/index.ts"],
+      "@showtime/shared/utils": ["libs/shared/utils/index.ts"],
+      "@showtime/shared/validators": ["libs/shared/validators/index.ts"],
+      "@showtime/ui-kit": ["libs/ui-kit/src/index.ts"],
+      "@showtime/users/abstract": ["libs/users/abstract/src/index.ts"],
+      "@showtime/users/domain": ["libs/users/domain/src/index.ts"],
+      "@showtime/users/domain/commands": ["libs/users/domain/src/lib/cqrs/commands/index.ts"],
+      "@showtime/users/domain/queries": ["libs/users/domain/src/lib/cqrs/queries/index.ts"],
+      "@showtime/users/ui": ["libs/users/ui/src/index.ts"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

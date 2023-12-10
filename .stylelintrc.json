@@ -1,16 +1,7 @@
 {
   "ignoreFiles": ["**/*"],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-selector-bem-pattern",
-    "stylelint-scss",
-    "stylelint-use-nesting"
-  ],
-  "extends": [
-    "stylelint-config-idiomatic-order",
-    "stylelint-prettier/recommended",
-    "stylelint-config-prettier"
-  ],
+  "plugins": ["stylelint-order", "stylelint-selector-bem-pattern", "stylelint-scss", "stylelint-use-nesting"],
+  "extends": ["stylelint-config-idiomatic-order", "stylelint-prettier/recommended", "stylelint-config-prettier"],
   "overrides": [
     {
       "files": ["**/*.css"],

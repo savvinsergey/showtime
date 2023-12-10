@@ -1,0 +1,29 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <th
+    scope="row"
+    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex-row flex gap-4 items-center"
+  >
+    <ng-container *ngIf="user?.picture; else defaultUserPhotoTmpl">
+      <img class="w-8 h-8 rounded-full" alt="User photo" [src]="user.picture" />
+    </ng-container>
+    {{ user.name }}
+  </th>
+  <td class="px-6 py-4">
+    {{ user.email }}
+  </td>
+  <td class="px-6 py-4">
+    {{ user.last_login | date : 'MMM d, y, h:mm:ss' }}
+  </td>
+  <td>
+    <div class="inline-flex items-center p-0.5">
+      <i [inlineSVG]="'assets/svg/' + (!user.blocked ? 'lock' : 'lock-open') + '.svg'" class="w-4 h-4"></i>
+    </div>
+  </td>
+  <td>
+    <st-user-management-menu_c [user]="user"> </st-user-management-menu_c>
+  </td>
+</tr>
+
+<ng-template #defaultUserPhotoTmpl>
+  <i class="w-8 h-8" inlineSVG="assets/svg/user-circle.svg"></i>
+</ng-template>

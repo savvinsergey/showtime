@@ -8,24 +8,23 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/showtime",
         "index": "apps/showtime/src/index.html",
         "main": "apps/showtime/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/showtime/tsconfig.app.json",
         "assets": [
           "apps/showtime/src/favicon.ico",
-          "apps/showtime/src/assets"
+          "apps/showtime/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/assets/src",
+            "output": "./assets"
+          }
         ],
-        "styles": [
-          "apps/showtime/src/styles.scss"
-        ],
+        "styles": ["apps/showtime/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/showtime/webpack.config.js"
@@ -86,8 +85,13 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200,
-        "publicHost": "http://localhost:4200"
+        "port": 443,
+        "host": "showtime.loc",
+        "publicHost": "https://showtime.loc",
+        "ssl": true,
+        "sslKey": "apps/showtime/src/ssl/ca.key",
+        "sslCert": "apps/showtime/src/ssl/ca.crt",
+        "disableHostCheck": true
       }
     },
     "extract-i18n": {
@@ -99,21 +103,14 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/showtime/**/*.ts",
-          "apps/showtime/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/showtime/**/*.ts", "apps/showtime/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/showtime/jest.config.ts",
         "passWithNoTests": true
@@ -133,14 +130,9 @@
     },
     "stylelint": {
       "executor": "nx-stylelint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/showtime/**/*.css",
-          "apps/showtime/**/*.scss"
-        ]
+        "lintFilePatterns": ["apps/showtime/**/*.css", "apps/showtime/**/*.scss"]
       }
     },
     "version": {

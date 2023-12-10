@@ -1,0 +1,50 @@
+<uik-dropdown [id]="'dropdown-' + id">
+  <ng-container button>
+    <button
+      [id]="'dropdown-' + id + '-button'"
+      #userDropdown
+      [attr.data-dropdown-toggle]="'dropdown-' + id"
+      class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+      type="button"
+    >
+      <ng-container *ngIf="!(config.inProgress$ | async); else userLoaderTmp">
+        <i inlineSVG="assets/svg/dots-horizontal.svg" class="w-4 h-4 mr-2"></i>
+      </ng-container>
+    </button>
+  </ng-container>
+  <ng-container dropdown-list>
+    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" [attr.aria-labelledby]="'dropdown-' + id + '-button'">
+      <li>
+        <button
+          class="flex items-start py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          (click)="clicked.emit(userManagementClickEnum.ROLE_MANAGEMENT); userDropdown.click()"
+        >
+          <i inlineSVG="assets/svg/user-settings.svg" class="w-4 h-4 mr-2"></i>
+          Roles
+        </button>
+      </li>
+      <li>
+        <button
+          class="flex items-start py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          (click)="clicked.emit(userManagementClickEnum.BLOCK_USER); userDropdown.click()"
+        >
+          <i [inlineSVG]="'assets/svg/' + (!user.blocked ? 'lock' : 'lock-open') + '.svg'" class="w-4 h-4 mr-2"></i>
+          {{ !user.blocked ? 'Block' : 'Unblock' }}
+        </button>
+      </li>
+    </ul>
+    <div class="py-1">
+      <button
+        class="flex items-start w-full text-orange-600 py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+        (click)="clicked.emit(userManagementClickEnum.DELETE_USER); userDropdown.click()"
+      >
+        <i inlineSVG="assets/svg/trash-bin.svg" class="w-4 h-4 mr-2"></i>
+        <span>Delete</span>
+      </button>
+    </div>
+  </ng-container>
+</uik-dropdown>
+
+<ng-template #userLoaderTmp>
+  <i class="w-4 h-4 mt-0.5 mr-2" inlineSVG="assets/svg/loader.svg"></i>
+</ng-template>

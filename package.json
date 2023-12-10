@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "start:st": "nx serve showtime",
+    "start:st": "sudo nx serve showtime",
     "cmt": "cz",
     "lint": "nx lint --fix --uncommitted",
     "build": "nx run-many --target=build --all --parallel",
@@ -23,7 +23,13 @@
     "@angular/platform-browser": "~16.0.0",
     "@angular/platform-browser-dynamic": "~16.0.0",
     "@angular/router": "~16.0.0",
+    "@auth0/auth0-angular": "^2.2.1",
     "@nx/angular": "16.1.4",
+    "class-transformer": "^0.5.1",
+    "flowbite": "^1.8.1",
+    "flowbite-angular": "^0.0.1",
+    "ng-inline-svg-2": "^15.0.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
