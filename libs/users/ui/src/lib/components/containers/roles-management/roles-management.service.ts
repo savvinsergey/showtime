@@ -5,6 +5,7 @@ import { combineLatest, map, Observable } from 'rxjs';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { IRolesManagementConfig } from '../../../interfaces/roles-management-config';
 import { checkStatuses } from '../../../../../../../shared/operators/check-statuses.operator';
+import { IEventHandler } from '../../../../../../../shared/interfaces/event-handler.interface';
 
 @Injectable()
 export class RolesManagementService {
@@ -17,18 +18,21 @@ export class RolesManagementService {
     this.usersFacade.state['userRoles'].status$!,
   ]);
 
+  private readonly updateRolesStatus$ = this.usersFacade.handlers['updateRoles'].status$;
+
   // -------------------- //
 
   private readonly inProgress$ = combineLatest({
     loading: this.rolesStatuses$.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
-    assigning: this.usersFacade.handlers['updateRoles'].status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
+    assigning: this.updateRolesStatus$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
   });
 
   public readonly config$: Observable<IRolesManagementConfig> = combineLatest({
     inProgress: this.inProgress$,
   });
 
-  public readonly close$ = this.usersFacade.handlers['updateRoles'].status$!.pipe(
+  public readonly close$: Observable<IEventHandler> = this.updateRolesStatus$!.pipe(
     checkStatuses(EAsyncStatusesCqrs.SUCCESS),
+    map(value => ({ value })),
   );
 }

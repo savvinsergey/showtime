@@ -10,6 +10,11 @@ import { SearchFieldComponent } from '../../../../../../../shared/components/sea
 import { USER_SEARCH_TYPE } from '../../../constants/search-types.const';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IAllUsersPayload } from '../../../../../../domain/src/lib/interfaces/users-all-payload.interface';
+import { FiltersService } from '../../../../../../../shared/services/filters.service';
+import { QUERY_PARAMS_USERS_PAGE } from '../../../constants/filters-users-page.const';
+import { UsersPageParamsConverterService } from './users-page.params-converter';
+import { QUERY_PARAMS_LIST } from '../../../../../../../shared/constants/query-params-list-token.const';
+import { BaseParamsConverter } from '../../../../../../../shared/utils/base-params-converter/base-params-converter';
 
 @Component({
   selector: 'st-users-page',
@@ -24,7 +29,18 @@ import { IAllUsersPayload } from '../../../../../../domain/src/lib/interfaces/us
     EventHandlerPipe,
     SearchFieldComponent,
   ],
-  providers: [UsersPageService],
+  providers: [
+    UsersPageService,
+    FiltersService,
+    {
+      provide: QUERY_PARAMS_LIST,
+      useValue: QUERY_PARAMS_USERS_PAGE,
+    },
+    {
+      provide: BaseParamsConverter,
+      useClass: UsersPageParamsConverterService,
+    },
+  ],
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,24 +48,22 @@ import { IAllUsersPayload } from '../../../../../../domain/src/lib/interfaces/us
 export class UsersPage {
   private readonly usersFacade = inject(UsersFacade);
   private readonly usersPageService = inject(UsersPageService);
+  private readonly filtersService = inject(FiltersService);
 
   // -------------------- //
 
   public readonly allUsers$ = this.usersFacade.state['allUsers'].value$;
   public readonly inProgress$ = this.usersPageService.inProgress$;
   public readonly refresh$ = this.usersPageService.refresh$;
+  public readonly filters$ = this.filtersService.filters$;
 
   public readonly searchTypes = USER_SEARCH_TYPE;
-  public search = null;
-  public searchPayload: IAllUsersPayload | undefined;
 
-  public onRefresh = (): void => {
-    this.usersFacade.refresh(this.searchPayload);
+  public onRefresh = (payload: IAllUsersPayload): void => {
+    this.usersFacade.refresh(payload);
   };
 
-  // TODO: Implement filters functional. It still works wrong
   public onSearch(search: any) {
-    this.searchPayload = search ? ({ q: `${search.type}:"${search.searchString}"` } as IAllUsersPayload) : undefined;
-    this.usersFacade.refresh(this.searchPayload);
+    this.filtersService.filter = search;
   }
 }

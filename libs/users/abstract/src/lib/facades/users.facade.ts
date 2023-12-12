@@ -86,8 +86,9 @@ export class UsersFacade {
 
   public updateRoles(id: string, checkedRoles: IRole[]) {
     const roles = checkedRoles.map(role => role.id);
+    const payload = { id, roles };
 
-    this.commands.updateRoles.execute({ id, roles });
+    this.commands.updateRoles.execute(payload);
     return this.handlers['updateRoles'].status$;
   }
 }

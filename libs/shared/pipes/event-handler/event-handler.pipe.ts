@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { IEventHandler } from '../../interfaces/event-handler.interface';
 
 @Pipe({
   name: 'eventHandler',
@@ -6,15 +7,21 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class EventHandlerPipe implements PipeTransform {
-  transform(value: any, method: () => void): any {
+  transform(event: IEventHandler | null, method: (context?: any) => void): any {
+    if (!event) {
+      return event;
+    }
+
+    const { value, context } = event;
+
     if (!value) {
-      return value;
+      return event;
     }
 
     if (method instanceof Function) {
-      return method();
+      return method(context);
     }
 
-    return value;
+    return event;
   }
 }

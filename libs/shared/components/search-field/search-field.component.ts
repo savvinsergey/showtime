@@ -49,7 +49,8 @@ export class SearchFieldComponent extends BaseControl<TExternalValue> implements
 
   public override writeValue(value: TExternalValue) {
     if (!value?.type && this.types?.length) {
-      this.form.get('type')!.setValue(this.types[0], { onlySelf: true, emitEvent: false });
+      const options = { onlySelf: true, emitEvent: false };
+      this.form.get('type')!.setValue(this.types[0], options);
     }
 
     super.writeValue(value);
