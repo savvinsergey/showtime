@@ -1,7 +1,5 @@
 import 'reflect-metadata';
-import { first, isObservable, Observable, Subject, takeUntil, tap } from 'rxjs';
-import { ApplicationRef, inject } from '@angular/core';
-import { ConfirmModalService } from '../services/confirm-modals.service';
+import { isObservable, Subject, takeUntil, tap } from 'rxjs';
 import { AppComponent } from '../../../apps/showtime/src/app/app.component';
 import { EAlertTypes } from '../enums/alert-types.enum';
 import { AlertsService } from '../services/alerts.service';

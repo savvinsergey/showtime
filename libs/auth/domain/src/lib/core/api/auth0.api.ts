@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { filter, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
-import { plainToInstance } from 'class-transformer';
 import { UserModel } from '../models/user.model';
 
 @Injectable({

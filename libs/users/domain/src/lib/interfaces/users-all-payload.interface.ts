@@ -1,3 +1,4 @@
 export interface IAllUsersPayload {
-  q: string;
+  q?: string;
+  sort?: string;
 }

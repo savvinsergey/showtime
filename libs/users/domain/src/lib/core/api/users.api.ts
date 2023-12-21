@@ -28,16 +28,16 @@ export class UsersApi {
       fromObject: payload as any | {},
     });
 
-    return this.httpService.get<User[]>(`${this.reqUrl}/users`, { params });
+    return this.httpService.get<User[]>(`${this.reqUrl}/users`, { params }).pipe(delay(1000));
   }
 
   public delete(id: string): Observable<any> {
-    return of({ success: true }).pipe(delay(1000));
+    return of({ success: true }).pipe(delay(2000));
     // return this.httpService.delete<void>(`${this.reqUrl}/users/${id}`);
   }
 
   public update({ id, body }: { id: string; body: Partial<UserModel> }): Observable<any> {
-    return of({ success: true }).pipe(delay(1000));
+    return of({ success: true }).pipe(delay(2000));
     // this.httpService.patch<void>(`${this.reqUrl}/users/${id}`, body);
   }
 

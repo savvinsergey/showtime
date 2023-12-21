@@ -2,32 +2,30 @@
   *ngIf="{
     allUsers: allUsers$ | async,
     inProgress: inProgress$ | async,
-    filters: filters$ | async
+    filters: filters$ | async,
+
+    refresh: refresh$ | event : onRefresh
   } as async"
 >
-  <ng-container
-    *ngIf="{
-    refresh: refresh$ | async | eventHandler : onRefresh
-  } as events"
-  >
-    <ng-container *ngIf="!async.inProgress?.loading; else loaderTmp">
-      <div class="overflow-x-auto min-w-full self-start">
-        <st-search-field
-          placeholder="Search for name or email"
-          [types]="searchTypes"
-          [ngModel]="async.filters?.['search']"
-          (ngModelChange)="onSearch($event)"
-        >
-        </st-search-field>
-        <br />
-        <st-users-table [users]="async.allUsers"></st-users-table>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="!async.inProgress?.loading; else loaderTmp">
+    <st-search-field
+      placeholder="Search for name or email"
+      [types]="searchTypes"
+      [ngModel]="async.filters?.['search']"
+      (ngModelChange)="onSearch($event)"
+    >
+    </st-search-field>
+    <br />
+    <st-users-table
+      [users]="async.allUsers"
+      [sort]="async.filters?.['sort']"
+      (sorted)="onSort($event)"
+    ></st-users-table>
   </ng-container>
 </ng-container>
 
 <ng-template #loaderTmp>
   <div class="min-h-full flex items-center justify-center">
-    <i class="w-10 h-10" inlineSVG="assets/svg/loader.svg"></i>
+    <i class="w-10 h-10 loader-blue" inlineSVG="assets/svg/loader.svg"></i>
   </div>
 </ng-template>

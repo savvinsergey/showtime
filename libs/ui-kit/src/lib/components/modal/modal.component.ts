@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Modal, ModalInterface, ModalOptions } from 'flowbite';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ReactiveFormsModule } from '@angular/forms';
-import { asapScheduler, asyncScheduler, Subject, timer } from 'rxjs';
+import { asapScheduler } from 'rxjs';
 
 @Component({
   selector: 'uik-modal',

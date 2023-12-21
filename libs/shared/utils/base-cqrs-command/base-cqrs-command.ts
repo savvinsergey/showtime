@@ -3,7 +3,6 @@ import { BehaviorSubject, catchError, concatMap, delay, Observable, ReplaySubjec
 import 'reflect-metadata';
 import { Command } from '../../interfaces';
 import { EAsyncStatusesCqrs } from '../../enums';
-import { PropertyToMeta } from '../../decorators/property-to-meta.decorator';
 
 export abstract class BaseCqrsCommand<M> implements Command<M> {
   private readonly requestSource = new ReplaySubject<M | undefined>(1);

@@ -11,7 +11,7 @@ export const Confirm = (message: string): MethodDecorator => {
     descriptor.value = function (...args: any[]) {
       const confirmModalService = AppComponent.appInjector.get(ConfirmModalService);
       if (!confirmModalService) {
-        return console.log('ConfirmationModalService was not found');
+        return console.error('ConfirmationModalService was not found');
       }
 
       confirmModalService.open(args, message, () => {

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 
 import { UsersFacade } from '@showtime/users/abstract';
-import { combineLatest, map, Observable, of, startWith } from 'rxjs';
+import { combineLatest, map, Observable, of, startWith, tap } from 'rxjs';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { UserModel } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
 
@@ -15,7 +15,7 @@ export class UserManagementMenuService {
     return of(user).pipe(
       map((user: UserModel) => ({
         inProgress$: combineLatest([this.deletingWithContext$(user), this.blockingWithContext$(user)]).pipe(
-          map(([deleting, blocking]) => deleting || blocking),
+          map(([deleting, blocking]) => !!deleting || !!blocking),
           startWith(false),
         ),
       })),
@@ -47,6 +47,6 @@ export class UserManagementMenuService {
   };
 
   private readonly blockingWithContext$ = (user: UserModel) => {
-    return this.blocking$.pipe(map(({ active, context }) => active && context?.['user_id'] === user['user_id']));
+    return this.blocking$.pipe(map(({ active, context }) => active && context?.['id'] === user['user_id']));
   };
 }

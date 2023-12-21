@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 
 import { UsersFacade } from '@showtime/users/abstract';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, distinctUntilChanged, filter, map, Observable, tap } from 'rxjs';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { checkStatuses } from '../../../../../../../shared/operators/check-statuses.operator';
 import { FiltersService } from '../../../../../../../shared/services/filters.service';
@@ -19,14 +19,13 @@ export class UsersPageService {
     loading: this.usersFacade.state['allUsers'].status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
   });
 
-  public readonly refresh$: Observable<IEventHandler<IAllUsersPayload>> = combineLatest([
+  public readonly refresh$: Observable<IAllUsersPayload> = combineLatest([
     this.usersFacade.handlers['delete'].status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
     this.usersFacade.handlers['update'].status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
     this.filtersService.filters$,
   ]).pipe(
-    map(([deleting, blocking, filters]) => ({
-      value: !!deleting || !!blocking || !!filters,
-      context: this.filtersService.convertToPayload<IAllUsersPayload>(filters),
-    })),
+    distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+    filter(([deleting, blocking, filters]) => !!deleting || !!blocking || !!filters),
+    map(([deleting, blocking, filters]) => this.filtersService.convertToPayload<IAllUsersPayload>(filters)),
   );
 }

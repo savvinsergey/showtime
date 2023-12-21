@@ -4,6 +4,7 @@ import { User } from '@auth0/auth0-angular';
 export interface UserModel extends User {
   roles: IUserRole[];
   blocked: boolean;
+  logins_count: number;
   last_login: Date;
   user_id: string;
 }

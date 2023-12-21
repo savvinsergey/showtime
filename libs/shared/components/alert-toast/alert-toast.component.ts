@@ -4,6 +4,8 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, V
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { Dismiss, DismissInterface } from 'flowbite';
 import { EAlertTypes } from '../../enums/alert-types.enum';
+import { asapScheduler } from 'rxjs';
+import { ALERT_DEFAULT_DURATION } from '../../constants/alert-default-duration.const';
 
 @Component({
   selector: 'st-alert-toast',
@@ -24,18 +26,22 @@ export class AlertToastComponent implements AfterViewInit {
   ngAfterViewInit() {
     const alertElement = this.alertEl?.nativeElement;
     const options = {
-      duration: 300,
+      duration: ALERT_DEFAULT_DURATION,
       timing: 'ease-in',
     };
 
     this.alert = new Dismiss(alertElement, null, options);
 
-    setTimeout(() => {
-      this.alert.hide();
+    asapScheduler.schedule(() => {
+      this.close();
     }, 3000);
   }
 
   public onClose() {
+    this.close();
+  }
+
+  public close() {
     this.alert.hide();
   }
 }

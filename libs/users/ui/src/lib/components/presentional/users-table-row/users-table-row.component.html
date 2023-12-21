@@ -12,6 +12,9 @@
     {{ user.email }}
   </td>
   <td class="px-6 py-4">
+    {{ user.logins_count }}
+  </td>
+  <td class="px-6 py-4">
     {{ user.last_login | date : 'MMM d, y, h:mm:ss' }}
   </td>
   <td>

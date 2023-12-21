@@ -5,16 +5,20 @@ import { Injectable } from '@angular/core';
 export class UsersPageParamsConverterService implements BaseParamsConverter {
   public fromDataToParams(data: Record<string, any>): Record<string, any> {
     const search = {
-      search: data['searchString'] ? `${data['type']}:"${data['searchString']}"` : null,
+      search: data['search'] ? `${data['search']['type']}:"${data['search']['searchString']}"` : null,
+    };
+    const sort = {
+      sort: data['sort'] ? `${data['sort']['field']}:${data['sort']['direction']}` : null,
     };
 
     return {
       ...search,
+      ...sort,
     };
   }
 
   public fromParamsToData(params: Record<string, any>): Record<string, any> {
-    const { search } = params;
+    const { search, sort } = params;
 
     const searchParam = search
       ? {
@@ -24,17 +28,28 @@ export class UsersPageParamsConverterService implements BaseParamsConverter {
           },
         }
       : {};
+    const sortParam = sort
+      ? {
+          sort: {
+            field: sort.split(':')[0],
+            direction: Number(sort.split(':')[1]),
+          },
+        }
+      : {};
 
     return {
       ...searchParam,
+      ...sortParam,
     };
   }
 
   public fromDataToPayload(data: Record<string, any>): Record<string, any> {
     const q = data['search'] ? { q: `${data['search']['type']}:*${data['search']['searchString']}*` } : {};
+    const sort = data['sort'] ? { sort: `${data['sort']['field']}:${data['sort']['direction']}` } : {};
 
     return {
       ...q,
+      ...sort,
     };
   }
 }

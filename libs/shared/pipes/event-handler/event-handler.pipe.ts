@@ -1,27 +1,38 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { IEventHandler } from '../../interfaces/event-handler.interface';
+import { ChangeDetectorRef, inject, Injector, OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Pipe({
-  name: 'eventHandler',
-  pure: true,
+  name: 'event',
+  pure: false,
   standalone: true,
 })
-export class EventHandlerPipe implements PipeTransform {
-  transform(event: IEventHandler | null, method: (context?: any) => void): any {
-    if (!event) {
-      return event;
-    }
+export class EventHandlerPipe implements PipeTransform, OnDestroy {
+  private readonly cdr = inject(ChangeDetectorRef);
 
-    const { value, context } = event;
+  // ------------------ //
 
-    if (!value) {
-      return event;
-    }
+  private asyncPipe: AsyncPipe;
 
-    if (method instanceof Function) {
-      return method(context);
-    }
+  constructor() {
+    this.asyncPipe = new AsyncPipe(this.cdr);
+  }
 
-    return event;
+  ngOnDestroy() {
+    this.asyncPipe.ngOnDestroy();
+  }
+
+  transform<T>(event$: Observable<T>, method: (context?: any) => void): T | null {
+    return this.asyncPipe.transform<T | null>(
+      event$.pipe(
+        tap((context: any) => {
+          if (method instanceof Function) {
+            method(context);
+          } else {
+            console.error('Event handler is not a function');
+          }
+        }),
+      ),
+    );
   }
 }

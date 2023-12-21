@@ -1,0 +1,1 @@
+export const ALERT_DEFAULT_DURATION = 300;

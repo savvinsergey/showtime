@@ -1,18 +1,18 @@
 <ng-container *ngIf="users?.length; else empty">
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="px-6 py-3">Name</th>
-        <th scope="col" class="px-6 py-3">Email</th>
-        <th scope="col" class="px-6 py-3">Last login</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <st-users-table-row *ngFor="let user of users" [user]="user"></st-users-table-row>
-    </tbody>
-  </table>
+  <uik-table [sort]="sort" (sorted)="sorted.emit($event)">
+    <ng-template headerItem [sortValue]="usersTableSortEnum.NAME"> Name </ng-template>
+    <ng-template headerItem> Email </ng-template>
+    <ng-template headerItem [sortValue]="usersTableSortEnum.LOGINS_COUNT"> Logins count </ng-template>
+    <ng-template headerItem [sortValue]="usersTableSortEnum.LAST_LOGIN"> Last login </ng-template>
+    <ng-template headerItem></ng-template>
+    <ng-template headerItem></ng-template>
+
+    <!----------------------->
+
+    <ng-container body>
+      <st-users-table-row *ngFor="let user of users" [user]="user"> </st-users-table-row>
+    </ng-container>
+  </uik-table>
 </ng-container>
 
 <ng-template #empty>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
 import { UsersPageService } from './users-page.service';
@@ -8,13 +8,14 @@ import { EventHandlerPipe } from '../../../../../../../shared/pipes/event-handle
 import { UsersTableComponent } from '../../presentional/users-table/users-table.component';
 import { SearchFieldComponent } from '../../../../../../../shared/components/search-field/search-field.component';
 import { USER_SEARCH_TYPE } from '../../../constants/search-types.const';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IAllUsersPayload } from '../../../../../../domain/src/lib/interfaces/users-all-payload.interface';
 import { FiltersService } from '../../../../../../../shared/services/filters.service';
 import { QUERY_PARAMS_USERS_PAGE } from '../../../constants/filters-users-page.const';
 import { UsersPageParamsConverterService } from './users-page.params-converter';
 import { QUERY_PARAMS_LIST } from '../../../../../../../shared/constants/query-params-list-token.const';
 import { BaseParamsConverter } from '../../../../../../../shared/utils/base-params-converter/base-params-converter';
+import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
 
 @Component({
   selector: 'st-users-page',
@@ -54,16 +55,20 @@ export class UsersPage {
 
   public readonly allUsers$ = this.usersFacade.state['allUsers'].value$;
   public readonly inProgress$ = this.usersPageService.inProgress$;
-  public readonly refresh$ = this.usersPageService.refresh$;
   public readonly filters$ = this.filtersService.filters$;
+  public readonly refresh$ = this.usersPageService.refresh$;
 
   public readonly searchTypes = USER_SEARCH_TYPE;
 
-  public onRefresh = (payload: IAllUsersPayload): void => {
+  public onRefresh = (payload: IAllUsersPayload | undefined): void => {
     this.usersFacade.refresh(payload);
   };
 
-  public onSearch(search: any) {
-    this.filtersService.filter = search;
+  public onSearch(search: any): void {
+    this.filtersService.filter = { search };
+  }
+
+  public onSort(sort: ITableSortValue | null): void {
+    this.filtersService.filter = { sort };
   }
 }

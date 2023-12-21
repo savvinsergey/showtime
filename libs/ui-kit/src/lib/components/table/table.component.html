@@ -1,0 +1,42 @@
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="pl-6 py-3" *ngFor="let item of headerItems">
+        <ng-container *ngIf="!item.sortValue; else sortInHeaderWithContext">
+          <ng-container *ngTemplateOutlet="item.templateRef"></ng-container>
+        </ng-container>
+        <ng-template #sortInHeaderWithContext>
+          <ng-container
+            *ngTemplateOutlet="
+              sortInHeaderTmpl;
+              context: {
+                $implicit: item.sortValue,
+                template: item.templateRef
+              }
+            "
+          ></ng-container>
+        </ng-template>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-content select="[body]"></ng-content>
+  </tbody>
+</table>
+
+<div class="absolute -right-2 -top-2" *ngIf="sort?.field">
+  <button (click)="onSort(null)">
+    <i class="w-6 h-6 text-gray-400" inlineSVG="assets/svg/close-circle.svg"></i>
+  </button>
+</div>
+
+<ng-template #sortInHeaderTmpl let-sortValue let-template="template">
+  <a class="flex cursor-pointer" (click)="onSort(sortValue, sort?.direction)">
+    <ng-container *ngTemplateOutlet="template"></ng-container>
+    <i
+      class="self-center ml-1.5"
+      [inlineSVG]="sort?.direction | sortDirectionIcon"
+      *ngIf="sort?.field === sortValue"
+    ></i>
+  </a>
+</ng-template>
