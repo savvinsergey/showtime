@@ -54,10 +54,10 @@ export class UserManagementMenuContainer {
     this.clickHandlerMap[clickType]?.call<this, [UserModel], any>(this, user);
   }
 
-  @Confirm('This user will be blocked. Are you sure?')
+  @Confirm('This user will be (un)blocked. Are you sure?')
   @Alert({
-    success: 'User was blocked successfully',
-    error: 'User was not blocked. Something went wrong',
+    success: 'User was (un)blocked successfully',
+    error: 'User was not (un)blocked. Something went wrong',
   })
   private blockUser(user: UserModel) {
     return this.usersFacade.block(user);

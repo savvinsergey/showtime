@@ -9,18 +9,15 @@
 >
   <ng-container *ngIf="!async.inProgress?.loading; else loaderTmp">
     <st-search-field
-      placeholder="Search for name or email"
+      placeholder="Search by nickname or email"
       [types]="searchTypes"
       [ngModel]="async.filters?.['search']"
       (ngModelChange)="onSearch($event)"
     >
     </st-search-field>
     <br />
-    <st-users-table
-      [users]="async.allUsers"
-      [sort]="async.filters?.['sort']"
-      (sorted)="onSort($event)"
-    ></st-users-table>
+    <st-users-table [users]="async.allUsers" [sort]="async.filters?.['sort']" (sorted)="onSort($event)">
+    </st-users-table>
   </ng-container>
 </ng-container>
 

@@ -17,6 +17,10 @@ export class Auth0Api {
   }
 
   public logout(): Observable<void> {
-    return this.auth0Service.logout();
+    return this.auth0Service.logout({
+      logoutParams: {
+        federate: true,
+      },
+    });
   }
 }

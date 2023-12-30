@@ -78,9 +78,9 @@ export class BaseCqrsQuery<C, M> implements Query<C, M> {
 
               return throwError(err);
             }),
+            tap(() => (this.status = EAsyncStatusesCqrs.SUCCESS)),
           ),
         ),
-        tap(() => (this.status = EAsyncStatusesCqrs.SUCCESS)),
         delay(0),
         tap(() => (this.status = EAsyncStatusesCqrs.NONE)),
         shareReplay(1),

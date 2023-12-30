@@ -1,15 +1,21 @@
 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-  <th
+  <td
     scope="row"
     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex-row flex gap-4 items-center"
   >
     <ng-container *ngIf="user?.picture; else defaultUserPhotoTmpl">
       <img class="w-8 h-8 rounded-full" alt="User photo" [src]="user.picture" />
     </ng-container>
-    {{ user.name }}
-  </th>
+    <div class="flex flex-col">
+      {{ user.user_metadata?.nickname || user.nickname }}
+      <small class="text-sm font-normal text-gray-500">{{ user.email }}</small>
+    </div>
+  </td>
   <td class="px-6 py-4">
-    {{ user.email }}
+    {{ user.user_metadata?.country || '---' }}
+  </td>
+  <td class="px-6 py-4">
+    {{ user.user_metadata?.language | languageName }}
   </td>
   <td class="px-6 py-4">
     {{ user.logins_count }}
@@ -17,9 +23,14 @@
   <td class="px-6 py-4">
     {{ user.last_login | date : 'MMM d, y, h:mm:ss' }}
   </td>
+  <td class="px-6 py-4">
+    {{ user.created_at | date : 'MMM d, y, h:mm:ss' }}
+  </td>
   <td>
     <div class="inline-flex items-center p-0.5">
-      <i [inlineSVG]="'assets/svg/' + (!user.blocked ? 'lock' : 'lock-open') + '.svg'" class="w-4 h-4"></i>
+      <ng-container *ngIf="user.blocked; else lockOpenIconTmpl">
+        <i class="w-4 h-4" [inlineSVG]="'assets/svg/lock.svg'"></i>
+      </ng-container>
     </div>
   </td>
   <td>
@@ -29,4 +40,8 @@
 
 <ng-template #defaultUserPhotoTmpl>
   <i class="w-8 h-8" inlineSVG="assets/svg/user-circle.svg"></i>
+</ng-template>
+
+<ng-template #lockOpenIconTmpl>
+  <i class="w-5 h-4" [inlineSVG]="'assets/svg/lock-open.svg'"></i>
 </ng-template>

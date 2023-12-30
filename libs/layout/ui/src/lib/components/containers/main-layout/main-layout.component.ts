@@ -14,5 +14,7 @@ export class MainLayoutComponent {
   public readonly moduleConfig: ILayoutUiModuleConfig = inject(LAYOUT_UI_CONFIG_TOKEN);
   public readonly layoutFacade = inject(LayoutFacade);
 
+  // -------------------- //
+
   public readonly user$ = this.layoutFacade.state['user'].value$;
 }

@@ -20,7 +20,16 @@
     </tr>
   </thead>
   <tbody>
-    <ng-content select="[body]"></ng-content>
+    <ng-container *ngFor="let item of data">
+      <ng-container
+        *ngTemplateOutlet="
+          row.templateRef;
+          context: {
+            $implicit: item
+          }
+        "
+      ></ng-container>
+    </ng-container>
   </tbody>
 </table>
 
@@ -38,5 +47,6 @@
       [inlineSVG]="sort?.direction | sortDirectionIcon"
       *ngIf="sort?.field === sortValue"
     ></i>
+    <i *ngIf="!sort" inlineSVG="assets/svg/sort.svg" class="w-4 h-4 self-center ml-1.5 mt-0.5"></i>
   </a>
 </ng-template>

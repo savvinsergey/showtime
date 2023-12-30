@@ -5,7 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({})
 export abstract class BaseControl<T, V = T, R = T> implements OnInit, ControlValueAccessor {
-  private readonly destroyRef = inject(DestroyRef);
+  protected readonly destroyRef = inject(DestroyRef);
 
   // ------------------ //
 
@@ -27,7 +27,7 @@ export abstract class BaseControl<T, V = T, R = T> implements OnInit, ControlVal
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((value: V) => {
-        const convertedValue = this.convertValue?.(value) || value;
+        const convertedValue = this.convertValue?.(value);
         this.onChange(convertedValue);
       });
   }

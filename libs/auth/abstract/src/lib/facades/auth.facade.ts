@@ -8,6 +8,7 @@ import { injectQuery } from '@showtime/shared/utils';
 import { IFacadeState } from '../../../../../shared/interfaces/facade-state.interface';
 import { IFacadeHandler } from '../../../../../shared/interfaces/facade-handler.interface';
 import { UserModel } from '../../../../domain/src/lib/core/models/user.model';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class AuthFacade {

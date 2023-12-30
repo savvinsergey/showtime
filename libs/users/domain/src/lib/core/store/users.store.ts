@@ -14,7 +14,6 @@ export class UsersStore extends BaseStore<IUsersStoreState, EUsersStoreActions> 
       [EUsersStoreKeys.TOKEN]: '',
       [EUsersStoreKeys.ALL_ROLES]: [],
       [EUsersStoreKeys.ALL_USERS]: [],
-      [EUsersStoreKeys.SELECTED_USER]: null,
     });
   }
 }

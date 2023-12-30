@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class UsersPageParamsConverterService implements BaseParamsConverter {
   public fromDataToParams(data: Record<string, any>): Record<string, any> {
     const search = {
-      search: data['search'] ? `${data['search']['type']}:"${data['search']['searchString']}"` : null,
+      search: data['search']['searchString'] ? `${data['search']['type']}:"${data['search']['searchString']}"` : null,
     };
     const sort = {
       sort: data['sort'] ? `${data['sort']['field']}:${data['sort']['direction']}` : null,
@@ -44,7 +44,7 @@ export class UsersPageParamsConverterService implements BaseParamsConverter {
   }
 
   public fromDataToPayload(data: Record<string, any>): Record<string, any> {
-    const q = data['search'] ? { q: `${data['search']['type']}:*${data['search']['searchString']}*` } : {};
+    const q = data['search'] ? { q: `${data['search']['type']}:"${data['search']['searchString']}"` } : {};
     const sort = data['sort'] ? { sort: `${data['sort']['field']}:${data['sort']['direction']}` } : {};
 
     return {

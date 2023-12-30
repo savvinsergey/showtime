@@ -24,8 +24,13 @@
             "output": "./assets"
           }
         ],
-        "styles": ["apps/showtime/src/styles.scss"],
-        "scripts": [],
+        "styles": [
+          "apps/showtime/src/styles.scss",
+          "node_modules/flowbite-datepicker/dist/css/datepicker.css"
+        ],
+        "scripts": [
+          "node_modules/flowbite-datepicker/dist/js/datepicker.min.js"
+        ],
         "customWebpackConfig": {
           "path": "apps/showtime/webpack.config.js"
         },

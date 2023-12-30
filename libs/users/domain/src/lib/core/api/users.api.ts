@@ -32,13 +32,11 @@ export class UsersApi {
   }
 
   public delete(id: string): Observable<any> {
-    return of({ success: true }).pipe(delay(2000));
-    // return this.httpService.delete<void>(`${this.reqUrl}/users/${id}`);
+    return this.httpService.delete<void>(`${this.reqUrl}/users/${id}`);
   }
 
   public update({ id, body }: { id: string; body: Partial<UserModel> }): Observable<any> {
-    return of({ success: true }).pipe(delay(2000));
-    // this.httpService.patch<void>(`${this.reqUrl}/users/${id}`, body);
+    return this.httpService.patch<void>(`${this.reqUrl}/users/${id}`, body);
   }
 
   // ----- USER ROLES ----- //

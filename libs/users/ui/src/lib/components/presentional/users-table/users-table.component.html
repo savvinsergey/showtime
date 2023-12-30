@@ -1,17 +1,19 @@
 <ng-container *ngIf="users?.length; else empty">
-  <uik-table [sort]="sort" (sorted)="sorted.emit($event)">
-    <ng-template headerItem [sortValue]="usersTableSortEnum.NAME"> Name </ng-template>
-    <ng-template headerItem> Email </ng-template>
-    <ng-template headerItem [sortValue]="usersTableSortEnum.LOGINS_COUNT"> Logins count </ng-template>
-    <ng-template headerItem [sortValue]="usersTableSortEnum.LAST_LOGIN"> Last login </ng-template>
-    <ng-template headerItem></ng-template>
-    <ng-template headerItem></ng-template>
+  <uik-table [data]="users" [sort]="sort" (sorted)="sorted.emit($event)">
+    <ng-template tableHeaderItem>Nickname</ng-template>
+    <ng-template tableHeaderItem>Country</ng-template>
+    <ng-template tableHeaderItem>Language</ng-template>
+    <ng-template tableHeaderItem [sortValue]="usersTableSortEnum.LOGINS_COUNT"> Logins count </ng-template>
+    <ng-template tableHeaderItem [sortValue]="usersTableSortEnum.LAST_LOGIN"> Last login </ng-template>
+    <ng-template tableHeaderItem [sortValue]="usersTableSortEnum.CREATED_AT"> Created at </ng-template>
+    <ng-template tableHeaderItem></ng-template>
+    <ng-template tableHeaderItem></ng-template>
 
     <!----------------------->
 
-    <ng-container body>
-      <st-users-table-row *ngFor="let user of users" [user]="user"> </st-users-table-row>
-    </ng-container>
+    <ng-template tableRow let-data>
+      <st-users-table-row [user]="data"></st-users-table-row>
+    </ng-template>
   </uik-table>
 </ng-container>
 

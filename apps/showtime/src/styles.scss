@@ -6,12 +6,18 @@
 
 .loader-blue {
   svg {
-    @apply fill-blue-600;
+    @apply fill-blue-500;
   }
 }
 
 .loader-red {
   svg {
-    @apply fill-red-700;
+    @apply fill-red-500;
+  }
+}
+
+.icon-red {
+  svg {
+    @apply text-red-500;
   }
 }

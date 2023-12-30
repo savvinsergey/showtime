@@ -12,12 +12,14 @@ import { filter, first } from 'rxjs';
 import { IRole } from '../../../../ui/src/lib/interfaces/role';
 import { IUserRole } from '../../../../domain/src/lib/interfaces/user-roles.interface';
 import { IAllUsersPayload } from '../../../../domain/src/lib/interfaces/users-all-payload.interface';
+import { UserQuery } from '@showtime/auth/domain/queries';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersFacade {
   private readonly queries: Record<string, any> = {
+    user: injectQuery<void, UserModel>(UserQuery)(false),
     allUsers: injectQuery<IAllUsersPayload, User[]>(AllUsersQuery)(true),
     allRoles: injectQuery<void, string[]>(GetRolesAllQuery)(true),
     userRoles: injectQuery<string, IUserRole[]>(GetRolesByUserQuery)(false),
@@ -48,6 +50,9 @@ export class UsersFacade {
       ...this.queries['allUsers'].metadata,
       value$: this.queries['allUsers'].value$,
     },
+    user: {
+      value$: this.queries['user'].value$,
+    },
   };
 
   public readonly handlers: Record<string, IFacadeHandler> = {
@@ -74,6 +79,13 @@ export class UsersFacade {
   public delete(id: string) {
     this.commands.delete.execute(id);
     return this.handlers['delete'].status$;
+  }
+
+  public update(id: string, body: Partial<UserModel>) {
+    const payload = { id, body: { user_metadata: body } };
+
+    this.commands.update.execute(payload);
+    return this.handlers['update'].status$;
   }
 
   public block({ user_id: id, blocked }: UserModel) {

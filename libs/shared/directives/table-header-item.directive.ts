@@ -3,7 +3,7 @@ import { ITableSortValue } from '../interfaces/table-sort-value.interface';
 import { EUsersTableSort } from '../../users/ui/src/lib/enums/users-table-sort.enum';
 
 @Directive({
-  selector: '[headerItem]',
+  selector: '[tableHeaderItem]',
   standalone: true,
 })
 export class TableHeaderItemDirectiveDirective {
@@ -11,5 +11,5 @@ export class TableHeaderItemDirectiveDirective {
 
   // ----------------- //
 
-  @Input({ required: false }) sortValue!: EUsersTableSort;
+  @Input() sortValue!: EUsersTableSort;
 }

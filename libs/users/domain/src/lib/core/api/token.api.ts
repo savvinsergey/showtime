@@ -12,14 +12,14 @@ export class TokenUsersApi {
   private readonly environment = inject(ENVIRONMENT);
 
   public getToken(): Observable<string> {
-    const { url, clientId, clientSecret } = this.environment.auth0Api;
+    const { url, clientId: client_id, clientSecret: client_secret } = this.environment.auth0Api;
     const reqUrl = `${url}/oauth/token`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
     const body = {
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id,
+      client_secret,
       audience: `${url}/api/v2/`,
       grant_type: 'client_credentials',
     };

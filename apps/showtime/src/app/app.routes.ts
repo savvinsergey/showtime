@@ -19,6 +19,11 @@ export const appRoutes: Route[] = [
           roles: [EUserRoles.ADMIN],
         },
       },
+      {
+        path: 'user',
+        loadComponent: () => import('libs/users/ui/src/lib/components/pages/user/user.page').then(mod => mod.UserPage),
+        canActivate: [AuthGuard],
+      },
     ],
   },
   {

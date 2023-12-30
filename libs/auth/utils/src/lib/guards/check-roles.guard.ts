@@ -1,11 +1,14 @@
 import 'reflect-metadata';
-import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthFacade } from '@showtime/auth/abstract';
 import { checkRoles } from '../operators/check-roles.operator';
+import { tap } from 'rxjs';
 
 export const CheckRolesGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const authFacade = inject(AuthFacade);
+  const router = inject(Router);
+
   const allowedRoles = route.data?.['roles'] as Array<string>;
 
   if (!allowedRoles) {
@@ -13,5 +16,12 @@ export const CheckRolesGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
     return false;
   }
 
-  return authFacade.state['user'].value$.pipe(checkRoles(allowedRoles));
+  return authFacade.state['user'].value$.pipe(
+    checkRoles(allowedRoles),
+    tap(isAllowed => {
+      if (!isAllowed) {
+        router.navigate(['/']);
+      }
+    }),
+  );
 };

@@ -14,9 +14,6 @@ export const UsersReducer = (state: IUsersStoreState, action: IAction<any, EUser
     case EUsersStoreActions.SET_ALL_USERS: {
       return { ...state, [EUsersStoreKeys.ALL_USERS]: action.payload };
     }
-    case EUsersStoreActions.SET_SELECTED_USER: {
-      return { ...state, [EUsersStoreKeys.SELECTED_USER]: action.payload };
-    }
     default:
       return state;
   }

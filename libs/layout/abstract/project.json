@@ -1,5 +1,5 @@
 {
-  "name": "auth-abstract",
+  "name": "layout-abstract",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/auth/abstract/src",
   "prefix": "showtime",

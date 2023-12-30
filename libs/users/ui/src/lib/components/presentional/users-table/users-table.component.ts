@@ -10,6 +10,7 @@ import { SortDirectionIconPipe } from '../../../../../../../shared/pipes/sort-di
 import { USERS_TABLE_DEFAULT_SORT } from '../../../constants/users-table-default-sort.const';
 import { TableComponent } from '../../../../../../../ui-kit/src/lib/components/table/table.component';
 import { TableHeaderItemDirectiveDirective } from '../../../../../../../shared/directives/table-header-item.directive';
+import { TableRowDirective } from '../../../../../../../shared/directives/table-row.directive';
 
 @Component({
   selector: 'st-users-table',
@@ -22,6 +23,7 @@ import { TableHeaderItemDirectiveDirective } from '../../../../../../../shared/d
     SortDirectionIconPipe,
     TableComponent,
     TableHeaderItemDirectiveDirective,
+    TableRowDirective,
   ],
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss'],

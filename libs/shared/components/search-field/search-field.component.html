@@ -1,23 +1,23 @@
 <form class="flex items-center" [formGroup]="form">
   <div class="flex w-full">
-    <ng-container *ngIf="types?.length">
-      <select
-        class="bg-gray-50 text-sm rounded-s-lg border border-gray-300 border-s-gray-300 border-s-1 block p-2.5"
-        formControlName="type"
-      >
-        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-      </select>
-    </ng-container>
+    <select
+      class="bg-gray-50 text-gray-500 text-sm rounded-l-lg border border-gray-300 border-l-gray-300 border-l-1 block p-2.5"
+      formControlName="type"
+    >
+      <option *ngFor="let type of types" [value]="type.value">
+        {{ type.label }}
+      </option>
+    </select>
     <div class="relative w-full">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
         <i inlineSVG="assets/svg/search.svg"></i>
       </div>
       <input
         type="search"
-        class="w-full ps-10 p-2.5 text-gray-900 text-sm bg-gray-50 border border-gray-300"
+        class="w-full pl-8 p-3 text-gray-900 text-sm bg-gray-50 border border-gray-300"
         formControlName="searchString"
         [placeholder]="placeholder"
-        [ngClass]="types?.length ? 'rounded-e-lg border-s-gray-50 border-s-2' : 'rounded-lg'"
+        [ngClass]="types.length ? 'rounded-r-lg border-s-gray-50 border-s-1' : 'rounded-lg'"
       />
     </div>
   </div>

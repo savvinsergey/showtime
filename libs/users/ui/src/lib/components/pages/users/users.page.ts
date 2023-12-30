@@ -51,14 +51,14 @@ export class UsersPage {
   private readonly usersPageService = inject(UsersPageService);
   private readonly filtersService = inject(FiltersService);
 
+  public readonly searchTypes = inject(USER_SEARCH_TYPE);
+
   // -------------------- //
 
   public readonly allUsers$ = this.usersFacade.state['allUsers'].value$;
   public readonly inProgress$ = this.usersPageService.inProgress$;
   public readonly filters$ = this.filtersService.filters$;
   public readonly refresh$ = this.usersPageService.refresh$;
-
-  public readonly searchTypes = USER_SEARCH_TYPE;
 
   public onRefresh = (payload: IAllUsersPayload | undefined): void => {
     this.usersFacade.refresh(payload);

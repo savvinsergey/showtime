@@ -1,7 +1,7 @@
 <ng-container
   *ngIf="{
-      menuConfig: menuConfig$(user) | async
-    } as async"
+    menuConfig: menuConfig$(user) | async
+  } as async"
 >
   <st-user-management-menu [user]="user" [config]="async.menuConfig" (clicked)="onClick($event, user)">
   </st-user-management-menu>
