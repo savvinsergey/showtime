@@ -12,8 +12,6 @@ export class AlertsService {
 
   // ---------------- //
 
-  private componentRef: ComponentRef<any> | undefined;
-
   public open(type: EAlertTypes, text: string): void {
     const rootViewContainerRef = this.appRef.components[0].injector.get(ViewContainerRef);
 
@@ -22,26 +20,21 @@ export class AlertsService {
 
     node.appendChild(textNode);
 
-    this.componentRef = rootViewContainerRef.createComponent(AlertToastComponent, {
+    const componentRef = rootViewContainerRef.createComponent(AlertToastComponent, {
       projectableNodes: [[node]],
     });
 
-    this.componentRef.setInput('type', type);
+    componentRef.setInput('type', type);
 
-    const instance = this.componentRef?.instance;
+    const instance = componentRef?.instance;
     if (instance.close instanceof Function) {
       const originalClose = instance.close.bind(instance);
       instance.close = () => {
         originalClose();
         asapScheduler.schedule(() => {
-          this.destroy();
+          componentRef?.destroy();
         }, ALERT_DEFAULT_DURATION);
       };
     }
-  }
-
-  public destroy(): void {
-    this.componentRef?.destroy();
-    this.componentRef = undefined;
   }
 }

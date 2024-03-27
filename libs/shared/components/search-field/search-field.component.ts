@@ -4,11 +4,7 @@ import { FormGroup, FormsModule, NG_VALUE_ACCESSOR, NonNullableFormBuilder, Reac
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { BaseControl } from '../../utils/base-control/base-control';
 import { ISearchType } from '../../interfaces/search-type';
-
-type TSearchValue = Record<string, any> & {
-  type?: string | undefined;
-  searchString: string;
-};
+import { TSearchValue } from '../../types/search-value.type';
 
 @Component({
   selector: 'st-search-field',

@@ -22,10 +22,10 @@ export class EventHandlerPipe implements PipeTransform, OnDestroy {
     this.asyncPipe.ngOnDestroy();
   }
 
-  transform<T>(event$: Observable<T>, method: (context?: any) => void): T | null {
+  transform<T>(event$: Observable<T>, method: (context?: T) => void): T | null {
     return this.asyncPipe.transform<T | null>(
       event$.pipe(
-        tap((context: any) => {
+        tap((context: T) => {
           if (method instanceof Function) {
             method(context);
           } else {

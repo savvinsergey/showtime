@@ -3,21 +3,22 @@ import { BehaviorSubject, catchError, concatMap, delay, Observable, ReplaySubjec
 import 'reflect-metadata';
 import { Command } from '../../interfaces';
 import { EAsyncStatusesCqrs } from '../../enums';
+import { IFacadeHandler } from '../../interfaces/facade-handler.interface';
 
-export abstract class BaseCqrsCommand<M> implements Command<M> {
+export abstract class BaseCqrsCommand<M, R> implements Command<M> {
   private readonly requestSource = new ReplaySubject<M | undefined>(1);
   private readonly statusSource = new BehaviorSubject<EAsyncStatusesCqrs>(EAsyncStatusesCqrs.NONE);
-  private readonly contextSource = new BehaviorSubject<any>(null);
+  private readonly contextSource = new BehaviorSubject<M>(null as M);
 
   private set status(value: EAsyncStatusesCqrs) {
     this.statusSource.next(value);
   }
 
-  private set context(value: any) {
+  private set context(value: M) {
     this.contextSource.next(value);
   }
 
-  public get metadata() {
+  public get metadata(): IFacadeHandler<M> {
     return {
       status$: this.statusSource.asObservable(),
       context$: this.contextSource.asObservable(),
@@ -25,10 +26,13 @@ export abstract class BaseCqrsCommand<M> implements Command<M> {
   }
 
   constructor() {
+    const isModel = (model: M | undefined): model is M => !!model;
     this.requestSource
       .pipe(
         tap((model: M | undefined) => {
-          this.context = model;
+          if (isModel(model)) {
+            this.context = model;
+          }
           this.status = EAsyncStatusesCqrs.PENDING;
         }),
         concatMap((model?: M | undefined) =>
@@ -55,5 +59,5 @@ export abstract class BaseCqrsCommand<M> implements Command<M> {
     this.requestSource.next(model);
   }
 
-  protected abstract command(model?: M): Observable<any>;
+  protected abstract command(model?: M): Observable<R>;
 }

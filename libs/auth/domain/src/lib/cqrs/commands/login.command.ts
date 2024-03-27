@@ -4,7 +4,7 @@ import { BaseCqrsCommand } from '@showtime/shared/utils';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class LoginCommand extends BaseCqrsCommand<null> {
+export class LoginCommand extends BaseCqrsCommand<null, void> {
   private auth0Api = inject(Auth0Api);
 
   public command(): Observable<void> {

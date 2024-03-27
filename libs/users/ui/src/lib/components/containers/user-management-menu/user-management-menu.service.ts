@@ -4,6 +4,7 @@ import { UsersFacade } from '@showtime/users/abstract';
 import { combineLatest, map, Observable, of, startWith, tap } from 'rxjs';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { UserModel } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
+import { IUserManagementMenuConfig } from '../../../interfaces/user-management-menu-config';
 
 @Injectable()
 export class UserManagementMenuService {
@@ -11,7 +12,7 @@ export class UserManagementMenuService {
 
   // -------------------- //
 
-  public readonly menuConfig$ = (user: UserModel): Observable<any> => {
+  public readonly menuConfig$ = (user: UserModel): Observable<IUserManagementMenuConfig> => {
     return of(user).pipe(
       map((user: UserModel) => ({
         inProgress$: combineLatest([this.deletingWithContext$(user), this.blockingWithContext$(user)]).pipe(
@@ -23,8 +24,8 @@ export class UserManagementMenuService {
   };
 
   private readonly deleting$ = combineLatest([
-    this.usersFacade.handlers['delete'].status$,
-    this.usersFacade.handlers['delete'].context$!,
+    this.usersFacade.handlers.delete.status$,
+    this.usersFacade.handlers.delete.context$!,
   ]).pipe(
     map(([status, context]) => ({
       active: status === EAsyncStatusesCqrs.PENDING,
@@ -33,8 +34,8 @@ export class UserManagementMenuService {
   );
 
   private readonly blocking$ = combineLatest([
-    this.usersFacade.handlers['update'].status$,
-    this.usersFacade.handlers['update'].context$!,
+    this.usersFacade.handlers.update.status$,
+    this.usersFacade.handlers.update.context$!,
   ]).pipe(
     map(([status, context]) => ({
       active: status === EAsyncStatusesCqrs.PENDING,

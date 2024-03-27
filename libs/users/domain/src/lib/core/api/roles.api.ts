@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ENVIRONMENT } from '@showtime/shared/const';
+import { IRole } from '../../../../../ui/src/lib/interfaces/role';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class RolesUsersApi {
     this.reqUrl = `${url}/api/v2`;
   }
 
-  public getAll(): Observable<string[]> {
-    return this.httpService.get<string[]>(`${this.reqUrl}/roles`);
+  public getAll(): Observable<IRole[]> {
+    return this.httpService.get<IRole[]>(`${this.reqUrl}/roles`);
   }
 }

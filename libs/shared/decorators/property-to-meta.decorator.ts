@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 export const PropertyToMeta = (metadataKey: string): PropertyDecorator => {
-  return (target: any, propertyKey) => {
+  return function (target: Object, propertyKey) {
     const metadata = Reflect.getMetadata(metadataKey, target) || {};
 
     Reflect.defineProperty(target, propertyKey, {

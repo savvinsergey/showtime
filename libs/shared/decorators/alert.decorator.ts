@@ -6,10 +6,10 @@ import { AlertsService } from '../services/alerts.service';
 import { EAsyncStatusesCqrs } from '../enums';
 
 export const Alert = (message: { success?: string; error?: string }): MethodDecorator => {
-  return function (target: any, key: string | symbol, descriptor: TypedPropertyDescriptor<any>) {
+  return function (target: Object, key: string | symbol, descriptor: PropertyDescriptor) {
     const original = descriptor.value;
 
-    descriptor.value = function (...args: any[]) {
+    descriptor.value = function (...args: unknown[]) {
       const alertsService = AppComponent.appInjector.get(AlertsService);
       const destroyRefSource = new Subject<void>();
 

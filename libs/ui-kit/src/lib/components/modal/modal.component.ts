@@ -19,7 +19,7 @@ export class ModalComponent implements AfterViewInit {
 
   private modal!: ModalInterface;
 
-  public context: any = null;
+  public context: unknown = null;
 
   ngAfterViewInit() {
     const modalElement = this.modalEl.nativeElement;
@@ -36,7 +36,7 @@ export class ModalComponent implements AfterViewInit {
     this.close();
   }
 
-  public open(context?: any) {
+  public open<TContextValue = undefined>(context?: TContextValue) {
     this.context = context;
     this.modal?.show();
   }

@@ -11,8 +11,8 @@ export class DropdownUserService {
   // ----------- //
 
   public readonly dropdownUserConfig$ = combineLatest([
-    this.authFacade.state['isAuth'].value$,
-    this.authFacade.handlers['login'].status$,
+    this.authFacade.state.isAuth$!,
+    this.authFacade.handlers.login.status$,
   ]).pipe(
     map(
       ([isAuthenticated, loginStatus]) =>

@@ -1,5 +1,7 @@
 import { ApplicationRef, ComponentRef, inject, Injectable, OnDestroy, Type, ViewContainerRef } from '@angular/core';
 import { asapScheduler, first, Subject, timeout, timer } from 'rxjs';
+import { IModalData } from '../interfaces/modal-data.interface';
+import { IModal } from '../interfaces/modal.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +11,7 @@ export class ModalsService implements OnDestroy {
 
   // ---------------- //
 
-  private componentRef: ComponentRef<any> | undefined;
-  private destroyedSource = new Subject<void>();
+  private readonly destroyedSource = new Subject<void>();
 
   public readonly destroyed$ = this.destroyedSource.asObservable();
 
@@ -18,15 +19,15 @@ export class ModalsService implements OnDestroy {
     this.destroyedSource.complete();
   }
 
-  public open<M, C>(component: Type<M>, context: C, data?: Record<string, any>): M {
+  public open<M extends IModal<C>, C>(component: Type<M>, context: C, data?: IModalData): M {
     const rootViewContainerRef = this.appRef.components[0].injector.get(ViewContainerRef);
 
-    this.componentRef = rootViewContainerRef.createComponent<M>(component);
+    const componentRef = rootViewContainerRef.createComponent<M>(component);
     if (data) {
-      this.componentRef.setInput('data', data);
+      componentRef.setInput('data', data);
     }
 
-    const instance = this.componentRef?.instance;
+    const instance = componentRef?.instance;
     if (instance.open instanceof Function) {
       timer(0).subscribe(() => instance.open(context));
     } else {
@@ -38,7 +39,7 @@ export class ModalsService implements OnDestroy {
       instance.close = () => {
         originalClose();
         asapScheduler.schedule(() => {
-          this.destroy();
+          this.destroy<M>(componentRef);
         });
       };
     } else {
@@ -48,10 +49,8 @@ export class ModalsService implements OnDestroy {
     return instance;
   }
 
-  private destroy(): void {
+  private destroy<M>(componentRef: ComponentRef<M>): void {
     this.destroyedSource.next();
-
-    this.componentRef?.destroy();
-    this.componentRef = undefined;
+    componentRef?.destroy();
   }
 }

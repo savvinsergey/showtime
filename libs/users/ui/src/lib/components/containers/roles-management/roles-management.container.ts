@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
 import { RolesManagementService } from './roles-management.service';
@@ -37,8 +37,8 @@ export class RolesManagementContainer implements IModal<string> {
   @ViewChild(RolesManagementComponent)
   public rolesManagementModal!: RolesManagementComponent;
 
-  public readonly allRoles$ = this.usersFacade.allRoles$;
-  public readonly userRoles$ = this.usersFacade.userRoles$;
+  public readonly allRoles$ = this.usersFacade.state.allRoles$;
+  public readonly userRoles$ = this.usersFacade.state.userRoles$;
   public readonly config$ = this.rolesManagementService.config$;
   public readonly close$ = this.rolesManagementService.close$;
 

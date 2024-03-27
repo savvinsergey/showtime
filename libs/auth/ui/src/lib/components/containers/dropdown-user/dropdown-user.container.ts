@@ -19,5 +19,5 @@ export class DropdownUserContainer {
   public readonly authFacade = inject(AuthFacade);
   public readonly dropdownUserService = inject(DropdownUserService);
 
-  public readonly user$ = this.authFacade.state['user'].value$;
+  public readonly user$ = this.authFacade.state.user$;
 }

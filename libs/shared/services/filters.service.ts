@@ -9,7 +9,7 @@ import { BaseParamsConverter } from '../utils/base-params-converter/base-params-
 import { QUERY_PARAMS_LIST } from '../constants/query-params-list-token.const';
 
 @Injectable()
-export class FiltersService {
+export class FiltersService<TValue> {
   private readonly converter = inject(BaseParamsConverter, { host: true });
   private readonly queryParamsList = inject(QUERY_PARAMS_LIST, { host: true });
   private readonly queryParamsService = inject(QueryParamsService);
@@ -18,12 +18,12 @@ export class FiltersService {
   // ---------------------- //
 
   private queryParams: Params = {};
-  private readonly filtersSource = new BehaviorSubject<Record<string, any>>({});
+  private readonly filtersSource = new BehaviorSubject<TValue>({} as TValue);
 
   public readonly filters$ = this.filtersSource.asObservable().pipe(skip(1));
 
-  public set filter(value: Record<string, any>) {
-    const queryParams: Record<string, any> = { ...this.queryParams };
+  public set filter(value: TValue) {
+    const queryParams = { ...this.queryParams };
     const params = this.converter?.fromDataToParams(value) || value;
 
     Object.keys(params).forEach(key => {
@@ -42,13 +42,13 @@ export class FiltersService {
     this.initialize(this.queryParamsList);
   }
 
-  public convertToPayload<T>(filter: Record<string, any>): T {
+  public convertToPayload<TPayload>(filter: TValue): TPayload | TValue {
     if (!this.converter) {
       console.error('Please specify converter to use this method');
-      return filter as T;
+      return filter;
     }
 
-    return this.converter?.fromDataToPayload(filter) as T;
+    return this.converter?.fromDataToPayload(filter) as TPayload;
   }
 
   private initialize(queryParamsList: string[] | null) {

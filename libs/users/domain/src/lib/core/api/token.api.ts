@@ -11,6 +11,8 @@ export class TokenUsersApi {
   private readonly httpService = inject(HttpClient);
   private readonly environment = inject(ENVIRONMENT);
 
+  // ------------------- //
+
   public getToken(): Observable<string> {
     const { url, clientId: client_id, clientSecret: client_secret } = this.environment.auth0Api;
     const reqUrl = `${url}/oauth/token`;

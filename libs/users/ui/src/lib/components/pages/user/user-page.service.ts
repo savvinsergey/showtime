@@ -15,12 +15,12 @@ export class UserPageService {
   // -------------------- //
 
   private readonly inProgress$ = combineLatest({
-    saving: this.usersFacade.handlers['update'].status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
+    saving: this.usersFacade.handlers.update.status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
   });
 
-  private readonly isAuth0Provider$ = this.usersFacade.state['user'].value$.pipe(
+  private readonly isAuth0Provider$ = this.usersFacade.state.user$!.pipe(
     first(Boolean),
-    map(user => user.sub.split('|')[0] === 'auth0'),
+    map(user => user.sub!.split('|')[0] === 'auth0'),
   );
 
   // -------------------- //

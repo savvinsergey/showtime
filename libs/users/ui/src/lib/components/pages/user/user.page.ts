@@ -4,12 +4,9 @@ import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
 import { UserPageService } from './user-page.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { EventHandlerPipe } from '../../../../../../../shared/pipes/event-handler/event-handler.pipe';
-import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { defaultIfEmpty, Observable, startWith, tap } from 'rxjs';
-import { UserModel, UserModelMetadata } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { UserEditFormComponent } from '../../presentional/user-edit-form/user-edit-form.component';
-import { IUserEditFormConfig } from '../../../interfaces/user-edit-form-config';
 import { IUserEditFormValue } from '../../../interfaces/user-edit-form-value';
 import { Alert } from '../../../../../../../shared/decorators/alert.decorator';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
@@ -36,7 +33,9 @@ export class UserPage {
 
   // -------------------- //
 
-  public readonly user$ = this.usersFacade.state['user'].value$;
+  private readonly state = this.usersFacade.state;
+
+  public readonly user$ = this.state.user$;
   public readonly config$ = this.userPageService.config$;
 
   @Alert({

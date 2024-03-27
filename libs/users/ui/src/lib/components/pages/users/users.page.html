@@ -1,6 +1,6 @@
 <ng-container
   *ngIf="{
-    allUsers: allUsers$ | async,
+    allUsers: (allUsers$ | async) || [],
     inProgress: inProgress$ | async,
     filters: filters$ | async,
 

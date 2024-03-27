@@ -1,8 +1,7 @@
-import { Observable } from 'rxjs';
-import { EAsyncStatusesCqrs } from '../enums';
+import { IModalData } from './modal-data.interface';
 
 export interface IModal<C> {
   open: (context: C) => void;
   close: () => void;
-  data?: Record<string, any>;
+  data?: IModalData;
 }

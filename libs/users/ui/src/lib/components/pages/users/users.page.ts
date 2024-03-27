@@ -16,6 +16,8 @@ import { UsersPageParamsConverterService } from './users-page.params-converter';
 import { QUERY_PARAMS_LIST } from '../../../../../../../shared/constants/query-params-list-token.const';
 import { BaseParamsConverter } from '../../../../../../../shared/utils/base-params-converter/base-params-converter';
 import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
+import { TSearchValue } from '../../../../../../../shared/types/search-value.type';
+import { IUserPageData } from '../../../interfaces/user-page-params-converter';
 
 @Component({
   selector: 'st-users-page',
@@ -32,8 +34,12 @@ import { ITableSortValue } from '../../../../../../../shared/interfaces/table-so
   ],
   providers: [
     UsersPageService,
-    FiltersService,
     {
+      provide: FiltersService,
+      useFactory: () => new FiltersService<IUserPageData>(),
+    },
+    {
+      // For using FilterService you have to specify QUERY_PARAMS_LIST and BaseParamsConverter
       provide: QUERY_PARAMS_LIST,
       useValue: QUERY_PARAMS_USERS_PAGE,
     },
@@ -55,16 +61,18 @@ export class UsersPage {
 
   // -------------------- //
 
-  public readonly allUsers$ = this.usersFacade.state['allUsers'].value$;
+  private readonly state = this.usersFacade.state;
+
+  public readonly allUsers$ = this.state.allUsers$;
   public readonly inProgress$ = this.usersPageService.inProgress$;
-  public readonly filters$ = this.filtersService.filters$;
   public readonly refresh$ = this.usersPageService.refresh$;
+  public readonly filters$ = this.filtersService.filters$;
 
   public onRefresh = (payload: IAllUsersPayload | undefined): void => {
     this.usersFacade.refresh(payload);
   };
 
-  public onSearch(search: any): void {
+  public onSearch(search: TSearchValue): void {
     this.filtersService.filter = { search };
   }
 

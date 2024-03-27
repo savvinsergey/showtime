@@ -8,15 +8,17 @@ export const usersAuthTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<un
   const usersFacade = inject(UsersFacade);
   const environment = inject(ENVIRONMENT);
 
+  // ---------------- //
+
   if (
     req.url.indexOf(environment.auth0Api.url) === -1 ||
     req.url.indexOf('oauth/token') !== -1 ||
-    !usersFacade.state['usersToken']?.value$
+    !usersFacade.state.usersToken$
   ) {
     return next(req);
   }
 
-  return usersFacade.state['usersToken'].value$.pipe(
+  return usersFacade.state.usersToken$.pipe(
     first(Boolean),
     switchMap((token: string) => {
       const headers = new HttpHeaders({

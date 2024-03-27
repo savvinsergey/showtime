@@ -11,7 +11,7 @@
 
     <!----------------------->
 
-    <ng-template tableRow let-data>
+    <ng-template [tableRow]="users[0]" let-data>
       <st-users-table-row [user]="data"></st-users-table-row>
     </ng-template>
   </uik-table>

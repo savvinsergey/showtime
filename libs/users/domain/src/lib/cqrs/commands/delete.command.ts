@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UsersApi } from '../../core/api/users.api';
 
 @Injectable()
-export class DeleteCommand extends BaseCqrsCommand<string> {
+export class DeleteCommand extends BaseCqrsCommand<string, void> {
   private usersApi = inject(UsersApi);
 
   public override command(id: string): Observable<void> {

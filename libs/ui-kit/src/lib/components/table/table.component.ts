@@ -25,14 +25,14 @@ import { TableHeaderItemDirectiveDirective } from '../../../../../shared/directi
   styleUrls: ['./table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent {
-  @Input() data: any[] = [];
+export class TableComponent<T extends object> {
+  @Input() data: T[] = [];
   @Input() sort: ITableSortValue | undefined;
 
   @Output() sorted = new EventEmitter<ITableSortValue | null>();
 
-  @ContentChild(TableRowDirective)
-  row!: TableRowDirective;
+  @ContentChild(TableRowDirective<T>)
+  row!: TableRowDirective<T>;
 
   @ContentChildren(TableHeaderItemDirectiveDirective)
   headerItems!: QueryList<TableHeaderItemDirectiveDirective>;

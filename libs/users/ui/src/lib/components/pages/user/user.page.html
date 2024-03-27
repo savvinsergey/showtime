@@ -1,8 +1,10 @@
 <ng-container
   *ngIf="{
-     user: (user$ | async) || {},
+     user: user$ | async,
      config: config$ | async
   } as async"
 >
-  <st-user-edit-form [user]="async.user" [config]="async.config" (saved)="onSave($event)"> </st-user-edit-form>
+  <ng-container *ngIf="async.user && async.config">
+    <st-user-edit-form [user]="async.user" [config]="async.config" (saved)="onSave($event)"> </st-user-edit-form>
+  </ng-container>
 </ng-container>

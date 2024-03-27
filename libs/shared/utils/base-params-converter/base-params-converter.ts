@@ -1,5 +1,5 @@
-export abstract class BaseParamsConverter {
-  public abstract fromDataToParams(data: Record<string, any>): Record<string, any>;
-  public abstract fromParamsToData(params: Record<string, any>): Record<string, any>;
-  public abstract fromDataToPayload(params: Record<string, any>): Record<string, any>;
+export abstract class BaseParamsConverter<TData, TParams, TPayload> {
+  public abstract fromDataToParams(data: TData): TParams;
+  public abstract fromParamsToData(params: TParams): TData;
+  public abstract fromDataToPayload(params: TData): TPayload;
 }

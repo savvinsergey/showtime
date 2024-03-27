@@ -48,7 +48,7 @@ export class DatepickerComponent extends BaseControl<string> implements AfterVie
     this.initialize(el);
   }
 
-  private initialize(element: any): void {
+  private initialize(element: HTMLElement): void {
     const datepicker = new Datepicker(element, {
       autohide: true,
       format: 'yyyy-mm-dd',

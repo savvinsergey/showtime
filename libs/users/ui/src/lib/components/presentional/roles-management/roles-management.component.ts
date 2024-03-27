@@ -32,7 +32,7 @@ export class RolesManagementComponent implements OnChanges {
 
   @Input() allRoles: IRole[] = [];
   @Input() userRoles: IRole[] = [];
-  @Input() config!: IRolesManagementConfig | null;
+  @Input() config!: IRolesManagementConfig;
 
   @Output() assigned = new EventEmitter<IRole[]>();
   @Output() closed = new EventEmitter<void>();
@@ -43,7 +43,7 @@ export class RolesManagementComponent implements OnChanges {
   public readonly rolesControl = this.fb.nonNullable.control([]);
 
   public get userId() {
-    return this.modal.context;
+    return this.modal.context as string;
   }
 
   public get inProgress() {
@@ -58,7 +58,7 @@ export class RolesManagementComponent implements OnChanges {
   }
 
   public open(userId: string) {
-    this.modal.open(userId);
+    this.modal.open<string>(userId);
   }
 
   public close() {

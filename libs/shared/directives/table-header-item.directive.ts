@@ -3,11 +3,11 @@ import { ITableSortValue } from '../interfaces/table-sort-value.interface';
 import { EUsersTableSort } from '../../users/ui/src/lib/enums/users-table-sort.enum';
 
 @Directive({
-  selector: '[tableHeaderItem]',
+  selector: 'ng-template[tableHeaderItem]',
   standalone: true,
 })
 export class TableHeaderItemDirectiveDirective {
-  public readonly templateRef = inject(TemplateRef<any>);
+  public readonly templateRef = inject(TemplateRef);
 
   // ----------------- //
 

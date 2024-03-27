@@ -1,4 +1,4 @@
-export interface IEventHandler<C = any> {
+export interface IEventHandler<C = unknown> {
   value: boolean;
   context?: C;
 }

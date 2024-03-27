@@ -6,6 +6,7 @@ import { Dismiss, DismissInterface } from 'flowbite';
 import { EAlertTypes } from '../../enums/alert-types.enum';
 import { asapScheduler } from 'rxjs';
 import { ALERT_DEFAULT_DURATION } from '../../constants/alert-default-duration.const';
+import { ALERT_CLOSE_TIMEOUT } from '../../constants/alert-close-timeout.const';
 
 @Component({
   selector: 'st-alert-toast',
@@ -34,7 +35,7 @@ export class AlertToastComponent implements AfterViewInit {
 
     asapScheduler.schedule(() => {
       this.close();
-    }, 3000);
+    }, ALERT_CLOSE_TIMEOUT);
   }
 
   public onClose() {

@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ModalsService } from './modals.service';
 import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
 import { takeUntil } from 'rxjs';
+import { IModalData } from '../interfaces/modal-data.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,10 @@ export class ConfirmModalService {
 
   // --------------------- //
 
-  public open<C>(context: C, content: string, confirmHandler: (param: C) => void) {
-    const data = { content };
-    const confirmModalComponent = this.modalService.open<ConfirmModalComponent, C>(
-      ConfirmModalComponent,
+  public open<C>(context: C, content: string, confirmHandler: (param: C | undefined) => void) {
+    const data: IModalData = { content };
+    const confirmModalComponent = this.modalService.open<ConfirmModalComponent<C>, C>(
+      ConfirmModalComponent<C>,
       context,
       data,
     );

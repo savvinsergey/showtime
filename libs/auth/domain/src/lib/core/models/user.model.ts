@@ -20,4 +20,5 @@ export interface UserModel extends User {
   created_at: Date;
   user_id: string;
   user_metadata: Partial<UserModelMetadata> | undefined;
+  sub: string;
 }

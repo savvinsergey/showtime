@@ -14,7 +14,6 @@ import {
 import { Query } from '@showtime/shared/interfaces';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EAsyncStatusesCqrs } from '../../enums';
-import { PropertyToMeta } from '../../decorators/property-to-meta.decorator';
 
 export class BaseCqrsQuery<C, M> implements Query<C, M> {
   private initialized = false;
@@ -28,7 +27,7 @@ export class BaseCqrsQuery<C, M> implements Query<C, M> {
 
   private innerValue$ = this.valueSource.asObservable();
 
-  private set status(value: EAsyncStatusesCqrs | any) {
+  private set status(value: EAsyncStatusesCqrs) {
     this.statusSource.next(value);
   }
 

@@ -14,14 +14,14 @@ export class QueryParamsService {
 
   private queue = Promise.resolve(true);
 
-  set queryParams({ ...queryParams }: Record<string, any>) {
+  set queryParams({ ...queryParams }: Params) {
     Object.keys(queryParams).forEach(key => {
       if (Array.isArray(queryParams[key])) {
         queryParams[key] = queryParams[key].join(',');
       }
     });
 
-    this.navigate([], {
+    this.navigate({
       relativeTo: this.route,
       queryParams,
       queryParamsHandling: 'merge',
@@ -59,14 +59,14 @@ export class QueryParamsService {
   }
 
   // Modification of 'navigate' func for using with sequential queue
-  private navigate(commands: any[], extras: NavigationExtras) {
+  private navigate(extras: NavigationExtras) {
     const enqueue = async () => {
       try {
         await this.queue;
       } catch (error) {
         console.error(error);
       }
-      return await this.router.navigate(commands, extras);
+      return await this.router.navigate([], extras);
     };
 
     this.queue = enqueue();

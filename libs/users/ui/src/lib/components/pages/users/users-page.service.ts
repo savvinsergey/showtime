@@ -15,13 +15,13 @@ export class UsersPageService {
   // -------------------- //
 
   public readonly inProgress$ = combineLatest({
-    loading: this.usersFacade.state['allUsers'].status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
+    loading: this.usersFacade.state.allUsers.status$!.pipe(checkStatuses(EAsyncStatusesCqrs.PENDING)),
   });
 
   public readonly refresh$: Observable<IAllUsersPayload> = combineLatest([
     this.filtersService.filters$,
-    this.usersFacade.handlers['delete'].status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
-    this.usersFacade.handlers['update'].status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
+    this.usersFacade.handlers.delete.status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
+    this.usersFacade.handlers.update.status$.pipe(checkStatuses(EAsyncStatusesCqrs.SUCCESS)),
   ]).pipe(
     distinctUntilChanged((previous, current) => JSON.stringify(previous) === JSON.stringify(current)),
     filter(([filters, deleting, blocking]) => !!deleting || !!blocking || !!Object.keys(filters).length),

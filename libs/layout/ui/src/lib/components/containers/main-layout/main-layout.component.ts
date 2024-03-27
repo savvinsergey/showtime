@@ -16,5 +16,5 @@ export class MainLayoutComponent {
 
   // -------------------- //
 
-  public readonly user$ = this.layoutFacade.state['user'].value$;
+  public readonly user$ = this.layoutFacade.state.user$;
 }

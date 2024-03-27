@@ -16,7 +16,7 @@ export const CheckRolesGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
     return false;
   }
 
-  return authFacade.state['user'].value$.pipe(
+  return authFacade.state.user$!.pipe(
     checkRoles(allowedRoles),
     tap(isAllowed => {
       if (!isAllowed) {

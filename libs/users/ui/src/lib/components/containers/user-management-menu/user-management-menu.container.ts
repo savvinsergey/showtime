@@ -50,8 +50,9 @@ export class UserManagementMenuContainer {
 
   public readonly menuConfig$ = this.userManagementMenuService.menuConfig$;
 
-  public onClick(clickType: EUserManagementClick, user: UserModel): any {
-    this.clickHandlerMap[clickType]?.call<this, [UserModel], any>(this, user);
+  public onClick(clickType: EUserManagementClick, user: UserModel): void {
+    const method = this.clickHandlerMap[clickType];
+    method?.call<this, [UserModel], ReturnType<typeof method>>(this, user);
   }
 
   @Confirm('This user will be (un)blocked. Are you sure?')
@@ -68,11 +69,11 @@ export class UserManagementMenuContainer {
     success: 'User was deleted successfully',
     error: 'User was not deleted. Something went wrong',
   })
-  private deleteUser(user: UserModel) {
-    return this.usersFacade.delete(user.user_id);
+  private deleteUser({ user_id }: UserModel) {
+    return this.usersFacade.delete(user_id);
   }
 
-  private openRolesManagementModal(user: UserModel) {
-    this.modalsService.open<RolesManagementContainer, string>(RolesManagementContainer, user.user_id);
+  private openRolesManagementModal({ user_id }: UserModel) {
+    this.modalsService.open<RolesManagementContainer, string>(RolesManagementContainer, user_id);
   }
 }

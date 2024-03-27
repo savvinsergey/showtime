@@ -2,32 +2,29 @@ import { IAction } from '@showtime/shared/interfaces';
 import type { Observable, Subscription } from 'rxjs';
 import { BehaviorSubject, distinctUntilKeyChanged, pluck } from 'rxjs';
 
-// https://betterprogramming.pub/how-to-write-a-redux-like-state-management-store-using-rxjs-33b6095c5a7e
-export class BaseStore<T, A> {
-  private _state: BehaviorSubject<T>;
-  private readonly _reducer: (state: T, action: IAction<any, any>) => T;
+type ValueOf<T> = T[keyof T];
 
-  protected constructor(reducer: (state: T, action: IAction<any, any>) => T, initialState: T) {
+// https://betterprogramming.pub/how-to-write-a-redux-like-state-management-store-using-rxjs-33b6095c5a7e
+export class BaseStore<S, A> {
+  private _state: BehaviorSubject<S>;
+  private readonly _reducer: <P extends ValueOf<S>>(state: S, action: IAction<P, A>) => S;
+
+  protected constructor(reducer: <P extends ValueOf<S>>(state: S, action: IAction<P, A>) => S, initialState: S) {
     this._state = new BehaviorSubject(initialState);
     this._reducer = reducer;
   }
 
-  public select<K extends keyof T>(key: K): Observable<T[K]> {
+  public select<K extends keyof S>(key: K): Observable<S[K]> {
     return this._state.pipe(distinctUntilKeyChanged(key), pluck(key));
   }
 
-  public subscribe(callback: (state: T) => void): Subscription {
+  public subscribe(callback: (state: S) => void): Subscription {
     return this._state.subscribe(callback);
   }
 
-  public dispatch = (action: IAction<any, any>): void => {
+  public dispatch = <P extends ValueOf<S>>(action: IAction<P, A>): void => {
     const oldState = this._state.getValue();
-    const newState = this._reducer(oldState, action);
+    const newState = this._reducer<P>(oldState, action);
     this._state.next(newState);
-  };
-
-  public asyncDispatch = async <R>(type: A, runner: (state: T) => Promise<R>): Promise<void> => {
-    const payload = await runner(this._state.getValue());
-    this.dispatch({ type, payload });
   };
 }
