@@ -1,4 +1,4 @@
-import { EUserRoles } from '../../../../../auth/domain/src/lib/enums/user-roles.enum';
+import { EUserRoles } from '../../../../../auth/shared/enums/user-roles.enum';
 
 export interface ILayoutUiMenuItemConfig {
   text: string;

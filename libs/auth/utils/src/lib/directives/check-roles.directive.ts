@@ -8,10 +8,10 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { AuthFacade } from '@showtime/auth/abstract';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { EUserRoles } from '../../../../domain/src/lib/enums/user-roles.enum';
 import { checkRoles } from '../operators/check-roles.operator';
+import { EUserRoles } from '../../../../shared/enums/user-roles.enum';
+import { AuthFacade } from '../../../../ui/src/lib/facades/auth.facade';
 
 @Directive({
   selector: '[checkAccess]',

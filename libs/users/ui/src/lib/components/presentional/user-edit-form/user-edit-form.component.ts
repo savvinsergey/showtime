@@ -11,13 +11,13 @@ import {
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { UserModel } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
 import { IUserEditFormConfig } from '../../../interfaces/user-edit-form-config';
 import { IUserEditFormValue } from '../../../interfaces/user-edit-form-value';
 import { DatepickerComponent } from '../../../../../../../ui-kit/src/lib/components/datepicker/datepicker.component';
 import { urlValidator } from '../../../../../../../shared/validators/url.validator';
 import { IUserEditForm } from '../../../interfaces/user-edit-form';
 import { FormControls } from '../../../../../../../shared/types/form-controls.type';
+import { UserModel } from '../../../../../../data/domain/models/user.model';
 
 @Component({
   selector: 'st-user-edit-form',

@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 
-import { UsersFacade } from '@showtime/users/abstract';
 import { combineLatest, first, map, Observable, of, tap } from 'rxjs';
 import { IUserEditFormConfig } from '../../../interfaces/user-edit-form-config';
 import { SUPPORTED_LANGUAGES } from '../../../../../../../shared/constants/supported-languages.const';
 import { checkStatuses } from '../../../../../../../shared/operators/check-statuses.operator';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
+import { UsersFacade } from '../../../facades/users.facade';
 
 @Injectable()
 export class UserPageService {

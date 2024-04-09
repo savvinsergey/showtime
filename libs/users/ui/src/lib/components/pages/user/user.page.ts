@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
+import { UsersAbstractModule } from '@showtime/users/abstract';
 import { UserPageService } from './user-page.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
@@ -10,6 +10,7 @@ import { UserEditFormComponent } from '../../presentional/user-edit-form/user-ed
 import { IUserEditFormValue } from '../../../interfaces/user-edit-form-value';
 import { Alert } from '../../../../../../../shared/decorators/alert.decorator';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
+import { UsersFacade } from '../../../facades/users.facade';
 
 @Component({
   selector: 'st-user-page',

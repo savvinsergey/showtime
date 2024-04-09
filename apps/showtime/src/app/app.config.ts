@@ -9,7 +9,7 @@ import { ENVIRONMENT } from '@showtime/shared/const';
 import { environment } from '../environments/environment';
 import { usersAuthTokenInterceptor } from '../../../../libs/users/utils/src/lib/interceptors/users-token.interceptor';
 import { UsersUtilsModule } from '../../../../libs/users/utils/src';
-import { EUserRoles } from '../../../../libs/auth/domain/src/lib/enums/user-roles.enum';
+import { EUserRoles } from '../../../../libs/auth/shared/enums/user-roles.enum';
 
 export const appConfig: ApplicationConfig = {
   providers: [

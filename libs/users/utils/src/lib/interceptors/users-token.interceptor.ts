@@ -1,8 +1,8 @@
 import { HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { first, switchMap } from 'rxjs';
-import { UsersFacade } from '@showtime/users/abstract';
 import { ENVIRONMENT } from '@showtime/shared/const';
+import { UsersFacade } from '../../../../ui/src/lib/facades/users.facade';
 
 export const usersAuthTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const usersFacade = inject(UsersFacade);

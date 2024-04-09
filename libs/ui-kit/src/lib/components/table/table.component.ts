@@ -13,7 +13,6 @@ import { SortDirectionIconPipe } from '../../../../../shared/pipes/sort-directio
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ITableSortValue } from '../../../../../shared/interfaces/table-sort-value.interface';
 import { ETableSortDirection } from '../../../../../shared/enums/table-sort-direction.enum';
-import { EUsersTableSort } from '../../../../../users/ui/src/lib/enums/users-table-sort.enum';
 import { TableRowDirective } from '../../../../../shared/directives/table-row.directive';
 import { TableHeaderItemDirectiveDirective } from '../../../../../shared/directives/table-header-item.directive';
 
@@ -37,7 +36,7 @@ export class TableComponent<T extends object> {
   @ContentChildren(TableHeaderItemDirectiveDirective)
   headerItems!: QueryList<TableHeaderItemDirectiveDirective>;
 
-  public onSort(field: EUsersTableSort | null, direction: ETableSortDirection = ETableSortDirection.ASC): void {
+  public onSort(field: string | null, direction: ETableSortDirection = ETableSortDirection.ASC): void {
     const sortValue =
       (field && {
         field,

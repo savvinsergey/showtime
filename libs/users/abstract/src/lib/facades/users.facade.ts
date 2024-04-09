@@ -1,31 +1,32 @@
 import { inject, Injectable } from '@angular/core';
-import { User } from '@auth0/auth0-angular';
 
 import { injectQuery } from '@showtime/shared/utils';
-import { AllUsersQuery, GetRolesAllQuery, GetRolesByUserQuery, UsersTokenQuery } from '@showtime/users/domain/queries';
-import { DeleteCommand, UpdateCommand } from '@showtime/users/domain/commands';
-import { UserModel } from '../../../../../auth/domain/src/lib/core/models/user.model';
-import { UpdateRolesCommand } from '@showtime/users/domain/commands';
-import { filter, first } from 'rxjs';
-import { IRole } from '../../../../ui/src/lib/interfaces/role';
-import { IUserRole } from '../../../../domain/src/lib/interfaces/user-roles.interface';
-import { IAllUsersPayload } from '../../../../domain/src/lib/interfaces/users-all-payload.interface';
-import { UserQuery } from '@showtime/auth/domain/queries';
+import {
+  AllUsersQuery,
+  GetRolesAllQuery,
+  GetRolesByUserQuery,
+  UsersTokenQuery,
+} from '@showtime/users/application/queries';
+import { DeleteCommand, UpdateCommand } from '@showtime/users/application/commands';
+import { UpdateRolesCommand } from '@showtime/users/application/commands';
+import { UserRoleModel } from '../../../../data/domain/models/user-role.model';
+import { IAllUsersPayload } from '../../../../data/domain/interfaces/users-all-payload.interface';
+import { UserQuery } from '@showtime/auth/application/queries';
 import { IUsersQueries } from '../interfaces/users-queries.interface';
 import { IUsersCommands } from '../interfaces/users-commands.interface';
-import { IUsersHandlers } from '../interfaces/users-handlers.interface';
-import { IUsersState } from '../interfaces/users-state.interface';
+import { IUsersHandlers } from '../../../../ui/src/lib/interfaces/users-handlers.interface';
+import { IUsersState } from '../../../../ui/src/lib/interfaces/users-state.interface';
 import { SetDefaultStateProperty } from '../../../../../shared/decorators/set-default-state-property.decorator';
+import { UserModel } from '../../../../data/domain/models/user.model';
+import { UsersFacade } from '../../../../ui/src/lib/facades/users.facade';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UsersFacade {
+@Injectable()
+export class UsersFacadeImplementation implements UsersFacade {
   private readonly queries: IUsersQueries = {
     user: injectQuery<void, UserModel>(UserQuery)(false),
     allUsers: injectQuery<IAllUsersPayload, UserModel[]>(AllUsersQuery)(true),
-    allRoles: injectQuery<void, IRole[]>(GetRolesAllQuery)(true),
-    userRoles: injectQuery<string, IUserRole[]>(GetRolesByUserQuery)(false),
+    allRoles: injectQuery<void, UserRoleModel[]>(GetRolesAllQuery)(true),
+    userRoles: injectQuery<string, UserRoleModel[]>(GetRolesByUserQuery)(false),
     usersToken: injectQuery<void, string>(UsersTokenQuery)(true),
   };
 
@@ -95,7 +96,7 @@ export class UsersFacade {
     return this.handlers.update.status$;
   }
 
-  public updateRoles(id: string, checkedRoles: IRole[]) {
+  public updateRoles(id: string, checkedRoles: UserRoleModel[]) {
     const roles = checkedRoles.map(role => role.id);
     const payload = { id, roles };
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormArray, FormBuilder, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { BaseControl } from '../../../../../shared/utils/base-control/base-control';
-import { IRole } from '../../../../../users/ui/src/lib/interfaces/role';
+import { UserRoleModel } from '../../../../../users/data/domain/models/user-role.model';
 
 type TInnerControl = { list: boolean[] };
 type TExternalValue = Record<string, any> & {
@@ -56,7 +56,7 @@ export class CheckboxGroupComponent extends BaseControl<TExternalValue[], TInner
     return (list || []).map((value: boolean, i: number) => value && this.list[i]).filter(Boolean) as TExternalValue[];
   }
 
-  private initializeForm(list: IRole[]) {
+  private initializeForm(list: UserRoleModel[]) {
     list.forEach(() => {
       const control = this.fb.nonNullable.control<boolean>(false);
       this.listControl.push(control);

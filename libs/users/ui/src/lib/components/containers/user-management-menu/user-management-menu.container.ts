@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { UserModel } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
 import { DropdownComponent } from '@showtime/ui-kit';
 import { UserManagementMenuService } from './user-management-menu.service';
 import { SearchFieldComponent } from '../../../../../../../shared/components/search-field/search-field.component';
-import { UsersFacade } from '@showtime/users/abstract';
 import { UserManagementMenuComponent } from '../../presentional/user-management-menu/user-management-menu.component';
 import { RolesManagementContainer } from '../roles-management/roles-management.container';
 import { EventHandlerPipe } from '../../../../../../../shared/pipes/event-handler/event-handler.pipe';
@@ -14,6 +12,8 @@ import { Confirm } from '../../../../../../../shared/decorators/confirm.decorato
 import { AlertToastComponent } from '../../../../../../../shared/components/alert-toast/alert-toast.component';
 import { Alert } from '../../../../../../../shared/decorators/alert.decorator';
 import { EUserManagementClick } from '../../../enums/user-management-click.enum';
+import { UserModel } from '../../../../../../data/domain/models/user.model';
+import { UsersFacade } from '../../../facades/users.facade';
 
 @Component({
   selector: 'st-user-management-menu_c',

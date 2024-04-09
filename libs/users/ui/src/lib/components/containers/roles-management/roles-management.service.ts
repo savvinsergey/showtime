@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 
-import { UsersFacade } from '@showtime/users/abstract';
 import { combineLatest, filter, Observable } from 'rxjs';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { IRolesManagementConfig } from '../../../interfaces/roles-management-config';
 import { checkStatuses } from '../../../../../../../shared/operators/check-statuses.operator';
+import { UsersFacade } from '../../../facades/users.facade';
 
 @Injectable()
 export class RolesManagementService {

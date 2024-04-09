@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '@showtime/ui-kit';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { UserModel } from '../../../../../../../auth/domain/src/lib/core/models/user.model';
 import { UsersTableRowComponent } from '../users-table-row/users-table-row.component';
 import { EUsersTableSort } from '../../../enums/users-table-sort.enum';
 import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
@@ -11,6 +10,7 @@ import { USERS_TABLE_DEFAULT_SORT } from '../../../constants/users-table-default
 import { TableComponent } from '../../../../../../../ui-kit/src/lib/components/table/table.component';
 import { TableHeaderItemDirectiveDirective } from '../../../../../../../shared/directives/table-header-item.directive';
 import { TableRowDirective } from '../../../../../../../shared/directives/table-row.directive';
+import { UserModel } from '../../../../../../data/domain/models/user.model';
 
 @Component({
   selector: 'st-users-table',

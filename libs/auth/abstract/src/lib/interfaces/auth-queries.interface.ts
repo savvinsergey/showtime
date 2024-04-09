@@ -1,5 +1,5 @@
 import { BaseCqrsQuery } from '@showtime/shared/utils';
-import { UserModel } from '../../../../../auth/domain/src/lib/core/models/user.model';
+import { UserModel } from '../../../../data/domain/models/user.model';
 
 export interface IAuthQueries {
   isAuth: BaseCqrsQuery<null, boolean>;

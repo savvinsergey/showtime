@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthAbstractModule, AuthFacade } from '@showtime/auth/abstract';
+import { AuthAbstractModule } from '@showtime/auth/abstract';
 
 import { DropdownUserComponent } from '../../presentational/dropdown-user/dropdown-user.component';
 import { DropdownUserService } from './dropdown-user.service';
+import { AuthFacade } from '../../../facades/auth.facade';
 
 @Component({
   standalone: true,

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, forwardRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
+import { UsersAbstractModule } from '@showtime/users/abstract';
 import { UsersPageService } from './users-page.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
@@ -9,7 +9,7 @@ import { UsersTableComponent } from '../../presentional/users-table/users-table.
 import { SearchFieldComponent } from '../../../../../../../shared/components/search-field/search-field.component';
 import { USER_SEARCH_TYPE } from '../../../constants/search-types.const';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IAllUsersPayload } from '../../../../../../domain/src/lib/interfaces/users-all-payload.interface';
+import { IAllUsersPayload } from '../../../../../../data/domain/interfaces/users-all-payload.interface';
 import { FiltersService } from '../../../../../../../shared/services/filters.service';
 import { QUERY_PARAMS_USERS_PAGE } from '../../../constants/filters-users-page.const';
 import { UsersPageParamsConverterService } from './users-page.params-converter';
@@ -18,6 +18,7 @@ import { BaseParamsConverter } from '../../../../../../../shared/utils/base-para
 import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
 import { TSearchValue } from '../../../../../../../shared/types/search-value.type';
 import { IUserPageData } from '../../../interfaces/user-page-params-converter';
+import { UsersFacade } from '../../../facades/users.facade';
 
 @Component({
   selector: 'st-users-page',

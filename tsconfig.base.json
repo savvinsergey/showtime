@@ -19,8 +19,8 @@
       "@auth/utils": ["libs/auth/utils/src/index.ts"],
       "@showtime/auth/abstract": ["libs/auth/abstract/src/index.ts"],
       "@showtime/auth/domain": ["libs/auth/domain/src/index.ts"],
-      "@showtime/auth/domain/commands": ["libs/auth/domain/src/lib/cqrs/commands/index.ts"],
-      "@showtime/auth/domain/queries": ["libs/auth/domain/src/lib/cqrs/queries/index.ts"],
+      "@showtime/auth/application/commands": ["libs/auth/data/application/src/lib/commands/index.ts"],
+      "@showtime/auth/application/queries": ["libs/auth/data/application/src/lib/queries/index.ts"],
       "@showtime/auth/ui": ["libs/auth/ui/src/index.ts"],
       "@showtime/auth/utils": ["libs/auth/utils/src/index.ts"],
       "@showtime/initializer": ["libs/initializer/src/index.ts"],
@@ -34,9 +34,10 @@
       "@showtime/ui-kit": ["libs/ui-kit/src/index.ts"],
       "@showtime/users/abstract": ["libs/users/abstract/src/index.ts"],
       "@showtime/users/domain": ["libs/users/domain/src/index.ts"],
-      "@showtime/users/domain/commands": ["libs/users/domain/src/lib/cqrs/commands/index.ts"],
-      "@showtime/users/domain/queries": ["libs/users/domain/src/lib/cqrs/queries/index.ts"],
-      "@showtime/users/ui": ["libs/users/ui/src/index.ts"]
+      "@showtime/users/application/commands": ["libs/users/data/application/src/lib/commands/index.ts"],
+      "@showtime/users/application/queries": ["libs/users/data/application/src/lib/queries/index.ts"],
+      "@showtime/users/ui": ["libs/users/ui/src/index.ts"],
+      "@users/data": ["libs/users/users-data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

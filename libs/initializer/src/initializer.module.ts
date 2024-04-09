@@ -1,9 +1,9 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { AuthDomainModule } from '@showtime/auth/domain';
 import { authInitializer } from './utils/auth.initializer';
+import { AuthApplicationModule } from '../../auth/data/application/src';
 
 @NgModule({
-  imports: [AuthDomainModule],
+  imports: [AuthApplicationModule],
   providers: [
     {
       provide: APP_INITIALIZER,

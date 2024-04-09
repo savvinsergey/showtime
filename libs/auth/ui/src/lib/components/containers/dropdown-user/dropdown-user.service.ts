@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { combineLatest, map, startWith } from 'rxjs';
-import { AuthFacade } from '@showtime/auth/abstract';
 import { IDropdownUserConfig } from '../../../interfaces';
 import { DROPDOWN_USER_DEFAULT_CONFIG } from '../../../constants';
+import { AuthFacade } from '../../../facades/auth.facade';
 
 @Injectable()
 export class DropdownUserService {

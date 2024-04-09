@@ -1,4 +1,4 @@
-import { UserModel } from '../../../../../auth/domain/src/lib/core/models/user.model';
+import { UserModel } from '../../../../data/domain/models/user.model';
 
 export interface IUserEditFormValue {
   id: string;

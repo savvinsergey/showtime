@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LAYOUT_UI_CONFIG_TOKEN } from '../../../constants';
 import { ILayoutUiModuleConfig } from '@showtime/layout/ui';
-import { AuthFacade } from '@showtime/auth/abstract';
-import { DropdownUserService } from '../../../../../../../auth/ui/src/lib/components/containers/dropdown-user/dropdown-user.service';
-import { LayoutFacade } from '@showtime/layout/abstract';
+import { LayoutFacade } from '../../../facades/layout.facade';
 
 @Component({
   selector: 'st-main-layout',

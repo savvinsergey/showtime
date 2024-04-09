@@ -28,7 +28,7 @@ export class UsersPageParamsConverterService
           search: {
             type: search.split(':')[0],
             searchString: search.split(':')[1]?.replace(/"/g, ''),
-          } as TSearchValue,
+          } satisfies TSearchValue,
         }
       : {};
     const sortParam = sort
@@ -36,7 +36,7 @@ export class UsersPageParamsConverterService
           sort: {
             field: sort.split(':')[0],
             direction: Number(sort.split(':')[1]),
-          } as ITableSortValue,
+          } satisfies ITableSortValue,
         }
       : {};
 

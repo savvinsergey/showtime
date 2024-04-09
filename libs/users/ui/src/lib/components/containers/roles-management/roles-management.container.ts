@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersAbstractModule, UsersFacade } from '@showtime/users/abstract';
+import { UsersAbstractModule } from '@showtime/users/abstract';
 import { RolesManagementService } from './roles-management.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../../../../../ui-kit/src/lib/components/modal/modal.component';
 import { RolesManagementComponent } from '../../presentional/roles-management/roles-management.component';
-import { IRole } from '../../../interfaces/role';
 import { EventHandlerPipe } from '../../../../../../../shared/pipes/event-handler/event-handler.pipe';
 import { IModal } from '../../../../../../../shared/interfaces/modal.interface';
 import { Alert } from '../../../../../../../shared/decorators/alert.decorator';
+import { UsersFacade } from '../../../facades/users.facade';
+import { UserRoleModel } from '../../../../../../data/domain/models/user-role.model';
 
 @Component({
   selector: 'st-roles-management_c',
@@ -48,7 +49,7 @@ export class RolesManagementContainer implements IModal<string> {
     success: 'User roles were changed successfully',
     error: 'User roles were not changed. Something went wrong',
   })
-  public onAssign(userId: string, roles: IRole[]) {
+  public onAssign(userId: string, roles: UserRoleModel[]) {
     return this.usersFacade.updateRoles(userId, roles);
   }
 

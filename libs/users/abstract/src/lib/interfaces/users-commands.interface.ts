@@ -1,5 +1,4 @@
-import { DeleteCommand, UpdateCommand } from '@showtime/users/domain/commands';
-import { UpdateRolesCommand } from '../../../../domain/src/lib/cqrs/commands/update-roles.command';
+import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from '@showtime/users/application/commands';
 
 export interface IUsersCommands {
   update: UpdateCommand;
