@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthDataModule } from '../../../infrastructure/src';
-import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
-import { LoginCommand, LogoutCommand } from '@showtime/auth/application/commands';
+import { IsAuthQuery, UserQuery } from './queries';
+import { LoginCommand, LogoutCommand } from './commands';
+
+import { AuthDataModule } from '@showtime/auth/infra';
 
 // TODO check using queries and commands without domain module
 const queries = [IsAuthQuery, UserQuery];

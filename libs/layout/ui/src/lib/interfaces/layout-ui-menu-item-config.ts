@@ -1,4 +1,4 @@
-import { EUserRoles } from '../../../../../auth/shared/enums/user-roles.enum';
+import { EUserRoles } from '@showtime/auth/shared';
 
 export interface ILayoutUiMenuItemConfig {
   text: string;

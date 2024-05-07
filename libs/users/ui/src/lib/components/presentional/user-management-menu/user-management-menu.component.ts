@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { DropdownComponent } from '@showtime/ui-kit';
-import { EUserManagementClick } from '../../../enums/user-management-click.enum';
-import { IUserManagementMenuConfig } from '../../../interfaces/user-management-menu-config';
-import { UserModel } from '../../../../../../data/domain/models/user.model';
 
+import { EUserManagementClick } from '../../../enums';
+
+import { DropdownComponent } from '@showtime/ui-kit';
+import { UserModel } from '@showtime/users/domain';
+import { IUserManagementMenuConfig } from '@showtime/users/ui';
 @Component({
   selector: 'st-user-management-menu',
   standalone: true,
@@ -24,5 +25,13 @@ export class UserManagementMenuComponent {
 
   get id() {
     return this.user?.user_id;
+  }
+
+  get dropdownId() {
+    return `dropdown-${this.id}`;
+  }
+
+  get dropdownIdButton() {
+    return `dropdown-${this.id}-button`;
   }
 }

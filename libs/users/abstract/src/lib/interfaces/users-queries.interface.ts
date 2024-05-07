@@ -1,7 +1,5 @@
 import { BaseCqrsQuery } from '@showtime/shared/utils';
-import { IAllUsersPayload } from '../../../../data/domain/interfaces/users-all-payload.interface';
-import { UserRoleModel } from '../../../../data/domain/models/user-role.model';
-import { UserModel } from '../../../../data/domain/models/user.model';
+import { IAllUsersPayload, UserModel, UserRoleModel } from '@showtime/users/domain';
 
 export interface IUsersQueries {
   user: BaseCqrsQuery<void, UserModel>;

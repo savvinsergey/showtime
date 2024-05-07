@@ -1,8 +1,9 @@
-import { ApplicationRef, ComponentRef, inject, Injectable, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, inject, Injectable, ViewContainerRef } from '@angular/core';
 import { asapScheduler } from 'rxjs';
-import { EAlertTypes } from '../enums/alert-types.enum';
-import { AlertToastComponent } from '../components/alert-toast/alert-toast.component';
-import { ALERT_DEFAULT_DURATION } from '../constants/alert-default-duration.const';
+
+import { EAlertTypes } from '../enums';
+import { AlertToastComponent } from '../components';
+import { ALERT_DEFAULT_DURATION } from '../constants';
 
 @Injectable({
   providedIn: 'root',

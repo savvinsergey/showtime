@@ -9,12 +9,12 @@ import {
   QueryList,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SortDirectionIconPipe } from '../../../../../shared/pipes/sort-direction-icon/sort-direction-icon.pipe';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { ITableSortValue } from '../../../../../shared/interfaces/table-sort-value.interface';
-import { ETableSortDirection } from '../../../../../shared/enums/table-sort-direction.enum';
-import { TableRowDirective } from '../../../../../shared/directives/table-row.directive';
-import { TableHeaderItemDirectiveDirective } from '../../../../../shared/directives/table-header-item.directive';
+
+import { ITableSortValue } from '@showtime/shared/interfaces';
+import { SortDirectionIconPipe } from '@showtime/shared/pipes';
+import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/shared/directives';
+import { ETableSortDirection } from '@showtime/shared/enums';
 
 @Component({
   selector: 'uik-table',

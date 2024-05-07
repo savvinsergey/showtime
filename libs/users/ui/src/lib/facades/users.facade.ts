@@ -1,10 +1,9 @@
-import { UserModel } from '../../../../data/domain/models/user.model';
-import { UserRoleModel } from '../../../../data/domain/models/user-role.model';
-import { IAllUsersPayload } from '../../../../data/domain/interfaces/users-all-payload.interface';
-import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
 import { Observable } from 'rxjs';
-import { IUsersState } from '../interfaces/users-state.interface';
-import { IUsersHandlers } from '../interfaces/users-handlers.interface';
+
+import { IUsersHandlers, IUsersState } from '../interfaces';
+
+import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
+import { IAllUsersPayload, UserModel, UserRoleModel } from '@showtime/users/domain';
 
 export abstract class UsersFacade {
   public abstract readonly state: IUsersState;

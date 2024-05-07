@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { Dismiss, DismissInterface } from 'flowbite';
-import { EAlertTypes } from '../../enums/alert-types.enum';
 import { asapScheduler } from 'rxjs';
-import { ALERT_DEFAULT_DURATION } from '../../constants/alert-default-duration.const';
-import { ALERT_CLOSE_TIMEOUT } from '../../constants/alert-close-timeout.const';
+
+import { EAlertTypes } from '../../enums';
+import { ALERT_DEFAULT_DURATION } from '../../constants';
+import { ALERT_CLOSE_TIMEOUT } from '../../constants';
 
 @Component({
   selector: 'st-alert-toast',
+  styleUrls: ['./alert-toast.component.scss'],
   templateUrl: 'alert-toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

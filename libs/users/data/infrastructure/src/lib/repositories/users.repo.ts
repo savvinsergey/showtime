@@ -1,16 +1,19 @@
-import { UsersRepository } from '../../../../domain/repositories/users.repo';
 import { inject } from '@angular/core';
-import { UsersApi } from '../core/api/users.api';
-import { UsersStore } from '../core/store/users.store';
 import { Observable } from 'rxjs';
-import { IUserUpdatePayload } from '../../../../domain/interfaces/user-update-payload.interface';
-import { IUsersUpdateRolesPayload } from '../../../../domain/interfaces/users-update-roles-payload.interface';
-import { IAllUsersPayload } from '../../../../domain/interfaces/users-all-payload.interface';
-import { UserRoleModel } from '../../../../domain/models/user-role.model';
-import { EUsersStoreKeys } from '../enums/users-store-keys.enum';
-import { IUsersStoreState } from '../interfaces/users-store-state.interface';
-import { EUsersStoreActions } from '../enums/users-store-actions.enum';
-import { UserModel } from '../../../../domain/models/user.model';
+
+import { UsersStore } from '../core/store';
+import { UsersApi } from '../core/api';
+import { IUsersStoreState } from '../interfaces';
+import { EUsersStoreActions, EUsersStoreKeys } from '../enums';
+
+import {
+  IAllUsersPayload,
+  IUsersUpdateRolesPayload,
+  IUserUpdatePayload,
+  UserModel,
+  UserRoleModel,
+  UsersRepository,
+} from '@showtime/users/domain';
 
 export class UsersData implements UsersRepository {
   public readonly api = inject(UsersApi);

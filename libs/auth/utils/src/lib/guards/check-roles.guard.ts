@@ -1,9 +1,11 @@
 import 'reflect-metadata';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { checkRoles } from '../operators/check-roles.operator';
 import { tap } from 'rxjs';
-import { AuthFacade } from '../../../../ui/src/lib/facades/auth.facade';
+
+import { checkRoles } from '../operators/check-roles.operator';
+
+import { AuthFacade } from '@showtime/auth/ui/facade';
 
 export const CheckRolesGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const authFacade = inject(AuthFacade);

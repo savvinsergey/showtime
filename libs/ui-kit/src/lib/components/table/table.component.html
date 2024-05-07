@@ -1,7 +1,7 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<table class="table">
+  <thead class="table__header">
     <tr>
-      <th scope="col" class="pl-6 py-3" *ngFor="let item of headerItems">
+      <th scope="col" class="table__th" *ngFor="let item of headerItems">
         <ng-container *ngIf="!item.sortValue; else sortInHeaderWithContext">
           <ng-container *ngTemplateOutlet="item.templateRef"></ng-container>
         </ng-container>
@@ -33,20 +33,21 @@
   </tbody>
 </table>
 
-<div class="absolute -right-2 -top-2" *ngIf="sort?.field">
+<div class="table__clear-sort" *ngIf="sort?.field">
   <button (click)="onSort(null)">
-    <i class="w-6 h-6 text-gray-400" inlineSVG="assets/svg/close-circle.svg"></i>
+    <i inlineSVG="assets/svg/close-circle.svg"></i>
   </button>
 </div>
 
 <ng-template #sortInHeaderTmpl let-sortValue let-template="template">
-  <a class="flex cursor-pointer" (click)="onSort(sortValue, sort?.direction)">
+  <a class="table__sort-link sort-link" (click)="onSort(sortValue, sort?.direction)">
     <ng-container *ngTemplateOutlet="template"></ng-container>
     <i
-      class="self-center ml-1.5"
+      class="sort-link__icon-direction"
       [inlineSVG]="sort?.direction | sortDirectionIcon"
       *ngIf="sort?.field === sortValue"
-    ></i>
-    <i *ngIf="!sort" inlineSVG="assets/svg/sort.svg" class="w-4 h-4 self-center ml-1.5 mt-0.5"></i>
+    >
+    </i>
+    <i class="sort-link__icon-sort" inlineSVG="assets/svg/sort.svg" *ngIf="!sort"></i>
   </a>
 </ng-template>

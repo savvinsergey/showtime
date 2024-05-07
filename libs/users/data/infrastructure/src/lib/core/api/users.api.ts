@@ -1,12 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ENVIRONMENT } from 'libs/shared/constants';
-import { UserRoleModel } from '../../../../../domain/models/user-role.model';
-import { IAllUsersPayload } from '../../../../../domain/interfaces/users-all-payload.interface';
-import { IUsersUpdateRolesPayload } from '../../../../../domain/interfaces/users-update-roles-payload.interface';
-import { IUserUpdatePayload } from '../../../../../domain/interfaces/user-update-payload.interface';
-import { UserModel } from '../../../../../domain/models/user.model';
+
+import {
+  IAllUsersPayload,
+  IUsersUpdateRolesPayload,
+  IUserUpdatePayload,
+  UserModel,
+  UserRoleModel,
+} from '@showtime/users/domain';
+import { ENVIRONMENT } from '@showtime/shared/const';
 
 @Injectable()
 export class UsersApi {

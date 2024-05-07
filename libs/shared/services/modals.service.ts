@@ -1,7 +1,7 @@
 import { ApplicationRef, ComponentRef, inject, Injectable, OnDestroy, Type, ViewContainerRef } from '@angular/core';
-import { asapScheduler, first, Subject, timeout, timer } from 'rxjs';
-import { IModalData } from '../interfaces/modal-data.interface';
-import { IModal } from '../interfaces/modal.interface';
+import { asapScheduler, Subject, timer } from 'rxjs';
+
+import { IModal, IModalData } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',

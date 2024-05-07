@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
-import { IFacadeState } from '../../../../../shared/interfaces/facade-state.interface';
-import { UserModel } from '../../../../data/domain/models/user.model';
+
+import { IFacadeState } from '@showtime/shared/interfaces';
+import { UserModel } from '@showtime/auth/domain';
 
 export interface IAuthState {
   isAuth: IFacadeState<boolean>;

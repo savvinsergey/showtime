@@ -1,6 +1,8 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+
 import { authInitializer } from './utils/auth.initializer';
-import { AuthApplicationModule } from '../../auth/data/application/src';
+
+import { AuthApplicationModule } from '@showtime/auth/application';
 
 @NgModule({
   imports: [AuthApplicationModule],

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { UserModel } from '../models/user.model';
+import { UserModel } from '../models';
 
 export abstract class AuthRepository {
   public abstract readonly isAuthenticated$: Observable<boolean>;

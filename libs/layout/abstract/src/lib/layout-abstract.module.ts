@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LayoutFacadeImplementation } from './facades/layout.facade';
-import { AuthApplicationModule } from '../../../../auth/data/application/src';
-import { LayoutFacade } from '../../../ui/src/lib/facades/layout.facade';
+
+import { LayoutFacade } from '@showtime/layout/ui/facade';
+import { AuthApplicationModule } from '@showtime/auth/application';
 
 @NgModule({
   imports: [CommonModule, AuthApplicationModule],

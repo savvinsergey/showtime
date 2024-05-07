@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsQuery } from 'libs/shared/utils';
 import { Observable, tap } from 'rxjs';
-import { TokenUsersRepository } from '../../../../domain/repositories/token.repo';
+
+import { TokenUsersRepository } from '@showtime/users/domain';
+import { BaseCqrsQuery } from '@showtime/shared/utils';
 
 @Injectable()
 export class UsersTokenQuery extends BaseCqrsQuery<void, string> {

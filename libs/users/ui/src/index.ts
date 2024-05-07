@@ -1,1 +1,1 @@
-export * from './lib/components/pages/users/users.page';
+export * from './lib/interfaces';

@@ -1,28 +1,19 @@
-<div
-  tabindex="-1"
-  aria-hidden="true"
-  #modalEl
-  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
->
-  <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-    <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-      <div class="flex items-start justify-between rounded-t dark:border-gray-600">
-        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+<div tabindex="-1" aria-hidden="true" #modalEl class="modal">
+  <div class="modal__backdrop">
+    <div class="modal__inner">
+      <div class="modal__header header">
+        <h3 class="header__title">
           <ng-content select="[title]"></ng-content>
         </h3>
-        <button
-          type="button"
-          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-          (click)="onClose()"
-        >
-          <i class="w-3 h-3" inlineSVG="assets/svg/close.svg"></i>
+        <button type="button" class="header__close-button" (click)="onClose()">
+          <i class="header__button-icon" inlineSVG="assets/svg/close.svg"></i>
           <span class="sr-only">Close modal</span>
         </button>
       </div>
-      <p class="mb-4 text-gray-500 dark:text-gray-300">
+      <p class="modal__content">
         <ng-content select="[content]"></ng-content>
       </p>
-      <div class="flex justify-end items-center space-x-4">
+      <div class="modal__footer">
         <ng-content select="[buttons]"></ng-content>
       </div>
     </div>

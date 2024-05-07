@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsCommand } from '@showtime/shared/utils';
 import { Observable } from 'rxjs';
-import { AuthRepository } from '../../../../domain/repositories/auth.repo';
+
+import { AuthRepository } from '@showtime/auth/domain';
+import { BaseCqrsCommand } from '@showtime/shared/utils';
 
 @Injectable()
 export class LogoutCommand extends BaseCqrsCommand<null, void> {

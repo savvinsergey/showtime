@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ENVIRONMENT } from 'libs/shared/constants';
-import { UserRoleModel } from '../../../../../domain/models/user-role.model';
+
+import { UserRoleModel } from '@showtime/users/domain';
+import { ENVIRONMENT } from '@showtime/shared/const';
 
 @Injectable()
 export class RolesUsersApi {

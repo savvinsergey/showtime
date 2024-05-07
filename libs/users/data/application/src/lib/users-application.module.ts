@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from './commands';
 import { AllUsersQuery, GetRolesAllQuery, GetRolesByUserQuery, UsersTokenQuery } from './queries';
-import { UsersDataModule } from '../../../infrastructure/src';
+
+import { UsersDataModule } from '@showtime/users/infra';
 
 // TODO check using queries and commands without domain module
 const queries = [UsersTokenQuery, AllUsersQuery, GetRolesByUserQuery, GetRolesAllQuery];

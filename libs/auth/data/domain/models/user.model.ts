@@ -1,5 +1,5 @@
 import { User } from '@auth0/auth0-angular';
-import { UserRoleModel } from '../../../../users/data/domain/models/user-role.model';
+import { UserRoleModel } from './user-role.model';
 
 export interface UserModelMetadata {
   nickname: string;

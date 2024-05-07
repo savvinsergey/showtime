@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsQuery } from '@showtime/shared/utils';
 import { filter } from 'rxjs';
-import { AuthRepository } from '../../../../domain/repositories/auth.repo';
+
+import { BaseCqrsQuery } from '@showtime/shared/utils';
+import { AuthRepository } from '@showtime/auth/domain';
 
 @Injectable()
 export class IsAuthQuery extends BaseCqrsQuery<null, boolean> {

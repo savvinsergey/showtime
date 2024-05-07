@@ -1,0 +1,17 @@
+:host {
+  @apply relative;
+
+  .datepicker {
+    &-icon {
+      @apply absolute inset-y-0 start-0 flex items-center ps-2 pointer-events-none;
+
+      i {
+        @apply w-5 h-5 text-gray-500;
+      }
+    }
+
+    &-input {
+      @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-8 p-2.5;
+    }
+  }
+}

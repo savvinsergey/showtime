@@ -1,12 +1,12 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
-
-import { BehaviorSubject, debounceTime, distinctUntilChanged, skip, startWith, tap } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
 import { Params } from '@angular/router';
-import { QueryParamsService } from './query-params.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BaseParamsConverter } from '../utils/base-params-converter/base-params-converter';
-import { QUERY_PARAMS_LIST } from '../constants/query-params-list-token.const';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, skip } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { QueryParamsService } from './query-params.service';
+import { BaseParamsConverter } from '../utils';
+import { QUERY_PARAMS_LIST } from '../constants';
 
 @Injectable()
 export class FiltersService<TValue> {

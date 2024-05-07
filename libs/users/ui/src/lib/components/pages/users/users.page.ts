@@ -1,24 +1,25 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersAbstractModule } from '@showtime/users/abstract';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { UsersPageService } from './users-page.service';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { EventHandlerPipe } from '../../../../../../../shared/pipes/event-handler/event-handler.pipe';
-import { UsersTableComponent } from '../../presentional/users-table/users-table.component';
-import { SearchFieldComponent } from '../../../../../../../shared/components/search-field/search-field.component';
-import { USER_SEARCH_TYPE } from '../../../constants/search-types.const';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IAllUsersPayload } from '../../../../../../data/domain/interfaces/users-all-payload.interface';
-import { FiltersService } from '../../../../../../../shared/services/filters.service';
-import { QUERY_PARAMS_USERS_PAGE } from '../../../constants/filters-users-page.const';
+import { UsersTableComponent } from '../../presentional';
+import { USER_SEARCH_TYPE, QUERY_PARAMS_USERS_PAGE } from '../../../constants';
+import { IUserPageData } from '../../../interfaces';
+import { UsersFacade } from '../../../facades';
 import { UsersPageParamsConverterService } from './users-page.params-converter';
-import { QUERY_PARAMS_LIST } from '../../../../../../../shared/constants/query-params-list-token.const';
-import { BaseParamsConverter } from '../../../../../../../shared/utils/base-params-converter/base-params-converter';
-import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
-import { TSearchValue } from '../../../../../../../shared/types/search-value.type';
-import { IUserPageData } from '../../../interfaces/user-page-params-converter';
-import { UsersFacade } from '../../../facades/users.facade';
+
+import { IAllUsersPayload } from '@showtime/users/domain';
+import { FiltersService } from '@showtime/shared/services';
+import { QUERY_PARAMS_LIST } from '@showtime/shared/const';
+import { BaseParamsConverter } from '@showtime/shared/utils';
+import { TSearchValue } from '@showtime/shared/types';
+import { ITableSortValue } from '@showtime/shared/interfaces';
+import { EventHandlerPipe } from '@showtime/shared/pipes';
+import { SearchFieldComponent } from '@showtime/shared/components';
+import { UsersAbstractModule } from '@showtime/users/abstract';
 
 @Component({
   selector: 'st-users-page',

@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { ModalsService } from './modals.service';
-import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
 import { takeUntil } from 'rxjs';
-import { IModalData } from '../interfaces/modal-data.interface';
+
+import { IModalData } from '../interfaces';
+import { ConfirmModalComponent } from '../components';
+import { ModalsService } from './modals.service';
 
 @Injectable({
   providedIn: 'root',

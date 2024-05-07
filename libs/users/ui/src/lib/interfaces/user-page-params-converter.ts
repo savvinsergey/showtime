@@ -1,5 +1,5 @@
-import { TSearchValue } from '../../../../../shared/types/search-value.type';
-import { ITableSortValue } from '../../../../../shared/interfaces/table-sort-value.interface';
+import { TSearchValue } from '@showtime/shared/types';
+import { ITableSortValue } from '@showtime/shared/interfaces';
 
 export interface IUserPageData {
   search?: TSearchValue;

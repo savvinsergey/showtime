@@ -1,12 +1,11 @@
-<aside
-  class="fixed top-0 left-0 z-30 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-  aria-label="Sidebar"
->
-  <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-    <ul class="space-y-2 font-medium">
-      <li *ngFor="let item of moduleConfig.menu">
-        <st-sidebar-menu-item *checkAccess="item.roles" [item]="item"></st-sidebar-menu-item>
-      </li>
+<aside aria-label="Sidebar">
+  <div class="inner">
+    <ul class="menu-list">
+      <ng-container *ngFor="let item of moduleConfig.menu">
+        <li *checkAccess="item.roles">
+          <st-sidebar-menu-item [item]="item"></st-sidebar-menu-item>
+        </li>
+      </ng-container>
     </ul>
   </div>
 </aside>

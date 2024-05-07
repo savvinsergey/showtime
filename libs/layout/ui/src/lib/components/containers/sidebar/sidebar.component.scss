@@ -1,0 +1,15 @@
+:host {
+  aside {
+    @apply fixed top-0 left-0 z-30 w-64 h-screen pt-20 bg-white
+    transition-transform -translate-x-full sm:translate-x-0
+    border-r border-gray-200;
+  }
+
+  .inner {
+    @apply h-full px-3 pb-4 overflow-y-auto bg-white;
+  }
+
+  .menu-list {
+    @apply space-y-2 font-medium;
+  }
+}

@@ -1,24 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 
-import { injectQuery } from '@showtime/shared/utils';
+import { IUsersQueries, IUsersCommands } from '../interfaces';
+
 import {
   AllUsersQuery,
   GetRolesAllQuery,
   GetRolesByUserQuery,
   UsersTokenQuery,
 } from '@showtime/users/application/queries';
-import { DeleteCommand, UpdateCommand } from '@showtime/users/application/commands';
-import { UpdateRolesCommand } from '@showtime/users/application/commands';
-import { UserRoleModel } from '../../../../data/domain/models/user-role.model';
-import { IAllUsersPayload } from '../../../../data/domain/interfaces/users-all-payload.interface';
+import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from '@showtime/users/application/commands';
 import { UserQuery } from '@showtime/auth/application/queries';
-import { IUsersQueries } from '../interfaces/users-queries.interface';
-import { IUsersCommands } from '../interfaces/users-commands.interface';
-import { IUsersHandlers } from '../../../../ui/src/lib/interfaces/users-handlers.interface';
-import { IUsersState } from '../../../../ui/src/lib/interfaces/users-state.interface';
-import { SetDefaultStateProperty } from '../../../../../shared/decorators/set-default-state-property.decorator';
-import { UserModel } from '../../../../data/domain/models/user.model';
-import { UsersFacade } from '../../../../ui/src/lib/facades/users.facade';
+import { IAllUsersPayload, UserModel, UserRoleModel } from '@showtime/users/domain';
+import { IUsersHandlers, IUsersState } from '@showtime/users/ui';
+import { UsersFacade } from '@showtime/users/ui/facade';
+import { SetDefaultStateProperty } from '@showtime/shared/decorators';
+import { injectQuery } from '@showtime/shared/utils';
 
 @Injectable()
 export class UsersFacadeImplementation implements UsersFacade {

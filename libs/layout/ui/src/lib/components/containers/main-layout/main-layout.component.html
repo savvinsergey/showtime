@@ -3,46 +3,36 @@
     user: user$ | async
   } as async"
 >
-  <nav class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-    <div class="px-3 py-3 lg:px-5 lg:pl-3">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center justify-start">
-          <a href="https://showtime.com" class="flex ml-2 md:mr-24">
-            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-              {{ moduleConfig.title }}
-            </span>
-          </a>
-        </div>
-        <div class="flex items-center">
-          <div class="flex items-center ml-3">
-            <button
-              type="button"
-              class="flex text-sm rounded-full"
-              aria-expanded="false"
-              data-dropdown-toggle="dropdown-user"
-              data-dropdown-offset-skidding="-20"
-            >
-              <span class="sr-only">Open user menu</span>
+  <nav class="header">
+    <div class="header__logo">
+      <a class="header__logo-link" href="https://showtime.com">
+        {{ moduleConfig.title }}
+      </a>
+    </div>
+    <div class="header__user-menu">
+      <button
+        type="button"
+        aria-expanded="false"
+        data-dropdown-toggle="dropdown-user"
+        data-dropdown-offset-distance="5"
+        data-dropdown-offset-skidding="-20"
+      >
+        <ng-container *ngIf="async.user; else defaultUserPhotoTmpl">
+          <img class="header__user-img" alt="User photo" [src]="async.user.picture" />
+        </ng-container>
+      </button>
 
-              <ng-container *ngIf="async.user; else defaultUserPhotoTmpl">
-                <img class="w-8 h-8 rounded-full" alt="User photo" [src]="async.user.picture" />
-              </ng-container>
-            </button>
-
-            <st-dropdown-user_c></st-dropdown-user_c>
-          </div>
-        </div>
-      </div>
+      <st-dropdown-user_c></st-dropdown-user_c>
     </div>
   </nav>
 
   <st-sidebar></st-sidebar>
 
-  <div class="flex min-h-screen p-4 sm:ml-64 bg-gray-50">
+  <section class="content">
     <router-outlet></router-outlet>
-  </div>
+  </section>
 </ng-container>
 
 <ng-template #defaultUserPhotoTmpl>
-  <i class="w-8 h-8" inlineSVG="assets/svg/user-circle.svg"></i>
+  <i class="default-user-img" inlineSVG="assets/svg/user-circle.svg"></i>
 </ng-template>

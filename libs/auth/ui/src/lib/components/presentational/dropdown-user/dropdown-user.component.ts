@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '@auth0/auth0-angular';
-import { DROPDOWN_USER_DEFAULT_CONFIG } from '../../../constants';
-import { initDropdowns } from 'flowbite';
 import { RouterLink } from '@angular/router';
+import { User } from '@auth0/auth0-angular';
+import { initDropdowns } from 'flowbite';
+
+import { DROPDOWN_USER_DEFAULT_CONFIG } from '../../../constants';
 
 @Component({
   selector: 'st-dropdown-user',

@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ENVIRONMENT } from 'libs/shared/constants';
-import { IGetTokenResponse } from '../../../../../domain/interfaces/get-token-response.interface';
+
+import { ENVIRONMENT } from '@showtime/shared/const';
+import { IGetTokenResponse } from '@showtime/users/domain';
 
 @Injectable()
 export class TokenUsersApi {

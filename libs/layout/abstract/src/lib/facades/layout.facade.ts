@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { injectQuery } from '@showtime/shared/utils';
+
+import { ILayoutState } from '@showtime/layout/ui';
+import { LayoutFacade } from '@showtime/layout/ui/facade';
 import { UserQuery } from '@showtime/auth/application/queries';
-import { SetDefaultStateProperty } from '../../../../../shared/decorators/set-default-state-property.decorator';
-import { ILayoutState } from '../../../../ui/src/lib/interfaces/layout-state.interface';
-import { UserModel } from '../../../../../auth/data/domain/models/user.model';
-import { LayoutFacade } from '../../../../ui/src/lib/facades/layout.facade';
+import { UserModel } from '@showtime/auth/domain';
+import { SetDefaultStateProperty } from '@showtime/shared/decorators';
+import { injectQuery } from '@showtime/shared/utils';
 
 @Injectable()
 export class LayoutFacadeImplementation implements LayoutFacade {

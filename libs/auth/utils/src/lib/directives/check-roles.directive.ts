@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   DestroyRef,
   Directive,
   inject,
@@ -9,19 +10,21 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { checkRoles } from '../operators/check-roles.operator';
-import { EUserRoles } from '../../../../shared/enums/user-roles.enum';
-import { AuthFacade } from '../../../../ui/src/lib/facades/auth.facade';
+
+import { EUserRoles } from '@showtime/auth/shared';
+import { AuthFacade } from '@showtime/auth/ui/facade';
 
 @Directive({
   selector: '[checkAccess]',
-  standalone: true,
 })
 export class CheckAccessDirective implements OnChanges {
   private readonly authFacade = inject(AuthFacade);
   private readonly destroyRef = inject(DestroyRef);
   private readonly template = inject(TemplateRef);
   private readonly vcr = inject(ViewContainerRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   // ------------------- //
 
@@ -35,12 +38,14 @@ export class CheckAccessDirective implements OnChanges {
       this.user$!.pipe(checkRoles(roles), takeUntilDestroyed(this.destroyRef)).subscribe((accessAllowed: boolean) => {
         if (accessAllowed) {
           this.vcr.createEmbeddedView(this.template);
+          this.cdr.markForCheck();
         } else {
           this.vcr.clear();
         }
       });
     } else {
       this.vcr.createEmbeddedView(this.template);
+      this.cdr.markForCheck();
     }
   }
 }

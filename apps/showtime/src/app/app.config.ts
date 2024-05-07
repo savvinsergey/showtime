@@ -8,8 +8,8 @@ import { InitializerModule } from '@showtime/initializer';
 import { ENVIRONMENT } from '@showtime/shared/const';
 import { environment } from '../environments/environment';
 import { usersAuthTokenInterceptor } from '../../../../libs/users/utils/src/lib/interceptors/users-token.interceptor';
-import { UsersUtilsModule } from '../../../../libs/users/utils/src';
-import { EUserRoles } from '../../../../libs/auth/shared/enums/user-roles.enum';
+import { UsersUtilsModule } from '@showtime/users/utils';
+import { EUserRoles } from '@showtime/auth/shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { UserRoleModel } from '../models/user-role.model';
+import { UserRoleModel } from '@showtime/users/domain';
 
 export abstract class RolesUsersRepository {
   public abstract allRoles$: Observable<UserRoleModel[]>;

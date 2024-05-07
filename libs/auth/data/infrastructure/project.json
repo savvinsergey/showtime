@@ -1,7 +1,7 @@
 {
   "name": "auth-infrastructure",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/auth/infrastructure/src",
+  "sourceRoot": "libs/auth/data/infrastructure/src",
   "prefix": "lib",
   "tags": [],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/auth/infrastructure/**/*.ts"]
+        "lintFilePatterns": ["libs/auth/data/infrastructure/**/*.ts"]
       }
     }
   }

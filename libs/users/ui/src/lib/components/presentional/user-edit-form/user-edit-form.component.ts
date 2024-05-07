@@ -9,15 +9,14 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { IUserEditFormConfig } from '../../../interfaces/user-edit-form-config';
-import { IUserEditFormValue } from '../../../interfaces/user-edit-form-value';
-import { DatepickerComponent } from '../../../../../../../ui-kit/src/lib/components/datepicker/datepicker.component';
-import { urlValidator } from '../../../../../../../shared/validators/url.validator';
-import { IUserEditForm } from '../../../interfaces/user-edit-form';
-import { FormControls } from '../../../../../../../shared/types/form-controls.type';
-import { UserModel } from '../../../../../../data/domain/models/user.model';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+
+import { UserModel } from '@showtime/users/domain';
+import { IUserEditForm, IUserEditFormConfig, IUserEditFormValue } from '@showtime/users/ui';
+import { DatepickerComponent } from '@showtime/ui-kit';
+import { FormControls } from '@showtime/shared/types';
+import { urlValidator } from '@showtime/shared/validators';
 
 @Component({
   selector: 'st-user-edit-form',

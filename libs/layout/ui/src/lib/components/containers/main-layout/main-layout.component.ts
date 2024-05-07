@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { LAYOUT_UI_CONFIG_TOKEN } from '../../../constants';
-import { ILayoutUiModuleConfig } from '@showtime/layout/ui';
-import { LayoutFacade } from '../../../facades/layout.facade';
+import { LayoutFacade } from '../../../facades';
+import { ILayoutUiModuleConfig } from '../../../interfaces';
 
 @Component({
   selector: 'st-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainLayoutComponent {
   public readonly moduleConfig: ILayoutUiModuleConfig = inject(LAYOUT_UI_CONFIG_TOKEN);

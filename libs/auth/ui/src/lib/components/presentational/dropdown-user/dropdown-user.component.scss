@@ -1,0 +1,28 @@
+:host {
+  .dropdown-user {
+    @apply z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow;
+
+    &__info {
+      @apply px-4 py-3;
+
+      & .info {
+        &__email {
+          @apply text-sm font-medium text-gray-900 truncate;
+        }
+        &__name {
+          @apply text-sm text-gray-900;
+        }
+      }
+    }
+
+    &__list {
+      @apply py-1;
+
+      & .dropdown-list {
+        &__item {
+          @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100;
+        }
+      }
+    }
+  }
+}

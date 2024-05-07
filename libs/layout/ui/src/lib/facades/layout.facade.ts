@@ -1,4 +1,4 @@
-import { ILayoutState } from '../interfaces/layout-state.interface';
+import { ILayoutState } from '../interfaces';
 
 export abstract class LayoutFacade {
   public abstract readonly state: ILayoutState;

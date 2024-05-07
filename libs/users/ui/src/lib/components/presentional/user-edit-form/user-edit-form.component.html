@@ -1,41 +1,35 @@
 <form [formGroup]="form">
-  <div
-    class="grid grid-cols-4 grid-rows-1 gap-4 border-2 bg-white border-gray-200 border-dashed rounded-lg shadow-gray-200"
-  >
-    <div class="col-span-1 py-8 flex justify-center">
-      <div class="flex flex-col items-center">
-        <img class="h-36 w-36 rounded-full p-1 border-2 border-dashed" [src]="user.picture" alt="user photo" />
-        <div class="flex items-center justify-center mt-4" *ngIf="isAuth0Provider">
-          <small class="w-64 px-4 text-center text-gray-300"> * you can use Gravatar.com to manage your avatar </small>
+  <div class="user-edit-form">
+    <div class="user-edit-form__avatar avatar">
+      <div class="avatar__inner">
+        <img [src]="user.picture" alt="user photo" />
+        <div class="avatar__text" *ngIf="isAuth0Provider">
+          <small> * you can use Gravatar.com to manage your avatar </small>
         </div>
       </div>
     </div>
-    <div class="col-span-3 py-4 pr-4">
-      <h2 class="text-xl font-semibold mb-4">User profile</h2>
+    <div class="user-edit-form__form-block form-block">
+      <h2 class="form-block__title">User profile</h2>
 
-      <h3 class="text-md text-gray-500 font-semibold mb-2">General information</h3>
-      <div class="grid grid-cols-2 gap-4 mb-10">
-        <div class="col-span-1">
-          <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900"> Nickname </label>
+      <h3 class="form-block__group-label">General information</h3>
+      <div class="form-block__form-group form-group">
+        <div class="form-group__field form-field">
+          <label for="nickname" class="form-field__label"> Nickname </label>
           <input
             type="text"
             id="nickname"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            class="form-field__control"
             placeholder="Your nickname"
             formControlName="nickname"
           />
         </div>
-        <div class="col-span-1">
-          <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900"> Birthday </label>
+        <div class="form-group__field form-field">
+          <label for="birthday" class="form-field__label"> Birthday </label>
           <uik-datepicker placeholder="Your birthday" id="birthday" formControlName="birthday"> </uik-datepicker>
         </div>
-        <div class="col-span-1">
-          <label for="language" class="block mb-2 text-sm font-medium text-gray-900"> Language </label>
-          <select
-            id="language"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            formControlName="language"
-          >
+        <div class="form-group__field form-field">
+          <label for="language" class="form-field__label"> Language </label>
+          <select id="language" class="form-field__control" formControlName="language">
             <option *ngFor="let lang of languages" [value]="lang.value">
               {{ lang.label }}
             </option>
@@ -43,68 +37,60 @@
         </div>
       </div>
 
-      <h3 class="text-md text-gray-500 font-semibold mb-2">Address</h3>
-      <div class="grid grid-cols-2 gap-4 mb-10">
-        <div class="col-span-1">
-          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Country </label>
+      <h3 class="form-block__group-label">Address</h3>
+      <div class="form-block__form-group form-group">
+        <div class="form-group__field form-field">
+          <label for="country" class="form-field__label"> Country </label>
           <input
             type="text"
             id="country"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            class="form-field__control"
             placeholder="Your country"
             formControlName="country"
           />
         </div>
-        <div class="col-span-1">
-          <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> City </label>
-          <input
-            type="text"
-            id="city"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Your city"
-            formControlName="city"
-          />
+        <div class="form-group__field form-field">
+          <label for="city" class="form-field__label"> City </label>
+          <input type="text" id="city" class="form-field__control" placeholder="Your city" formControlName="city" />
         </div>
-        <div class="col-span-1">
-          <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Address </label>
+        <div class="form-group__field form-field">
+          <label for="address" class="form-field__label"> Address </label>
           <input
             type="text"
             id="address"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            class="form-field__control"
             placeholder="Your address"
             formControlName="address"
           />
         </div>
       </div>
 
-      <h3 class="text-md text-gray-500 font-semibold mb-2">Social networks</h3>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="col-span-1">
-          <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Instagram
-          </label>
+      <h3 class="form-block__group-label">Social networks</h3>
+      <div class="form-block__form-group form-group">
+        <div class="form-group__field form-field">
+          <label for="instagram" class="form-field__label"> Instagram </label>
           <input
             type="text"
             id="instagram"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            class="form-field__control"
             placeholder="Your instagram"
             formControlName="instagramLink"
           />
         </div>
-        <div class="col-span-1">
-          <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Facebook </label>
+        <div class="form-group__field form-field">
+          <label for="instagram" class="form-field__label"> Facebook </label>
           <input
             type="text"
             id="facebook"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            class="form-field__control"
             placeholder="Your facebook"
             formControlName="facebookLink"
           />
         </div>
       </div>
-      <div class="min-w-full flex justify-end">
+      <div class="user-edit-form__buttons-block">
         <button
-          class="flex px-5 py-2.5 mt-4 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
+          class="btn-save"
           [ngClass]="{ 'cursor-not-allowed opacity-60': form.invalid || inProgress?.saving }"
           [disabled]="form.invalid || inProgress?.saving"
           (click)="saved.emit({ id: user.sub, body: form.value })"
@@ -120,5 +106,5 @@
 </form>
 
 <ng-template #buttonLoaderTmp>
-  <i class="w-4 h-4 mt-0.5 mr-2 loader-blue" inlineSVG="assets/svg/loader.svg"></i>
+  <i class="button-loader loader-blue" inlineSVG="assets/svg/loader.svg"></i>
 </ng-template>

@@ -1,31 +1,20 @@
-<div
-  class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-  id="dropdown-user"
->
-  <div class="px-4 py-3" role="none" *ngIf="user">
-    <p class="text-sm text-gray-900 dark:text-white" role="none">
+<div class="dropdown-user hidden" id="dropdown-user">
+  <div class="dropdown-user__info info" role="none" *ngIf="user">
+    <p class="info__name" role="none">
       {{ user.name }}
     </p>
-    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+    <p class="info__email" role="none">
       {{ user.email }}
     </p>
   </div>
-  <ul class="py-1" role="none">
+  <ul class="dropdown-user__list dropdown-list" role="none">
     <li>
-      <a
-        href="#"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-        role="menuitem"
-        routerLink="/user"
-        *ngIf="user"
-      >
-        Settings
-      </a>
+      <a href="#" class="dropdown-list__item" role="menuitem" routerLink="/user" *ngIf="user"> Settings </a>
     </li>
     <li>
       <a
         href="#"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+        class="dropdown-list__item"
         role="menuitem"
         *ngIf="config.showSignOutLink; else signInLinkTmpl"
         (click)="signedOut.emit()"
@@ -37,12 +26,5 @@
 </div>
 
 <ng-template #signInLinkTmpl>
-  <a
-    href="#"
-    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-    role="menuitem"
-    (click)="signedIn.emit()"
-  >
-    Sign in
-  </a>
+  <a href="#" class="dropdown-list__item" role="menuitem" (click)="signedIn.emit()"> Sign in </a>
 </ng-template>

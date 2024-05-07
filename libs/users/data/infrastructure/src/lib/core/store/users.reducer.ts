@@ -1,10 +1,9 @@
-import { IAction } from 'libs/shared/interfaces';
-import { EUsersStoreActions } from '../../enums/users-store-actions.enum';
-import { EUsersStoreKeys } from '../../enums/users-store-keys.enum';
-import { IUsersStoreState } from '../../interfaces/users-store-state.interface';
-import { ValueOf } from '../../../../../../../shared/types/value-of.type';
-import { UserModel } from '../../../../../domain/models/user.model';
-import { UserRoleModel } from '../../../../../domain/models/user-role.model';
+import { IUsersStoreState } from '../../interfaces';
+import { EUsersStoreActions, EUsersStoreKeys } from '../../enums';
+
+import { UserModel, UserRoleModel } from '@showtime/users/domain';
+import { IAction } from '@showtime/shared/interfaces';
+import { ValueOf } from '@showtime/shared/types';
 
 export const UsersReducer = <TPayload extends ValueOf<IUsersStoreState>>(
   state: IUsersStoreState,

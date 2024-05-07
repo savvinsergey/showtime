@@ -1,9 +1,11 @@
-import { IAllUsersPayload } from '../interfaces/users-all-payload.interface';
 import { Observable } from 'rxjs';
-import { UserModel } from '../models/user.model';
-import { UserRoleModel } from '../models/user-role.model';
-import { IUserUpdatePayload } from '../interfaces/user-update-payload.interface';
-import { IUsersUpdateRolesPayload } from '../interfaces/users-update-roles-payload.interface';
+import {
+  UserModel,
+  UserRoleModel,
+  IUserUpdatePayload,
+  IUsersUpdateRolesPayload,
+  IAllUsersPayload,
+} from '@showtime/users/domain';
 
 export abstract class UsersRepository {
   public abstract allUsers$: Observable<UserModel[]>;

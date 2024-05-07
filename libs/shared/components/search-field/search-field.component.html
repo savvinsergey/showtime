@@ -1,32 +1,22 @@
-<form class="flex items-center" [formGroup]="form">
-  <div class="flex w-full">
-    <select
-      class="bg-gray-50 text-gray-500 text-sm rounded-l-lg border border-gray-300 border-l-gray-300 border-l-1 block p-2.5"
-      formControlName="type"
-    >
+<form class="search-field" [formGroup]="form">
+  <div class="search-field__form form">
+    <select class="form__field-type" formControlName="type">
       <option *ngFor="let type of types" [value]="type.value">
         {{ type.label }}
       </option>
     </select>
-    <div class="relative w-full">
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+    <div class="form__field-text search-text">
+      <div class="search-text__icon">
         <i inlineSVG="assets/svg/search.svg"></i>
       </div>
       <input
         type="search"
-        class="w-full pl-8 p-3 text-gray-900 text-sm bg-gray-50 border border-gray-300"
+        class="search-text__input"
         formControlName="searchString"
         [placeholder]="placeholder"
         [ngClass]="types.length ? 'rounded-r-lg border-s-gray-50 border-s-1' : 'rounded-lg'"
       />
     </div>
   </div>
-  <button
-    type="submit"
-    class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    *ngIf="!dynamic"
-    [disabled]="!form.valid"
-  >
-    Search
-  </button>
+  <button type="submit" class="search-field__submit-button" *ngIf="!dynamic" [disabled]="!form.valid">Search</button>
 </form>

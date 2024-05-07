@@ -4,14 +4,14 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { DropdownUserContainer } from '@showtime/auth/ui';
-import { LayoutAbstractModule } from '@showtime/layout/abstract';
-
 import { SidebarMenuItemComponent } from './components/presentational';
 import { SidebarComponent, MainLayoutComponent } from './components/containers';
 import { LAYOUT_UI_CONFIG_TOKEN } from './constants';
 import { ILayoutUiModuleConfig } from './interfaces';
-import { CheckAccessDirective } from '../../../../auth/utils/src/lib/directives/check-roles.directive';
+
+import { DropdownUserContainer } from '@showtime/auth/ui';
+import { AuthUtilsModule } from '@showtime/auth/utils';
+import { LayoutAbstractModule } from '@showtime/layout/abstract';
 
 @NgModule({
   declarations: [MainLayoutComponent, SidebarComponent, SidebarMenuItemComponent],
@@ -21,9 +21,9 @@ import { CheckAccessDirective } from '../../../../auth/utils/src/lib/directives/
     RouterOutlet,
     InlineSVGModule.forRoot(),
 
-    DropdownUserContainer,
     LayoutAbstractModule,
-    CheckAccessDirective,
+    AuthUtilsModule,
+    DropdownUserContainer,
   ],
   exports: [MainLayoutComponent],
 })

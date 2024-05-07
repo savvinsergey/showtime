@@ -1,11 +1,12 @@
 import { Route } from '@angular/router';
-import { AuthGuard, authHttpInterceptorFn } from '@auth0/auth0-angular';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 import { MainLayoutComponent } from '../../../../libs/layout/ui/src/lib/components/containers';
-import { CheckRolesGuard } from '../../../../libs/auth/utils/src/lib/guards/check-roles.guard';
-import { EUserRoles } from '../../../../libs/auth/shared/enums/user-roles.enum';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+
+import { EUserRoles } from '@showtime/auth/shared';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { usersAuthTokenInterceptor } from '../../../../libs/users/utils/src/lib/interceptors/users-token.interceptor';
+import { CheckRolesGuard } from '@showtime/auth/utils';
 
 export const appRoutes: Route[] = [
   {

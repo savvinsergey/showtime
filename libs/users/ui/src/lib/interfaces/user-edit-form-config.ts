@@ -1,4 +1,4 @@
-import { ILanguage } from '../../../../../shared/interfaces/language.interface';
+import { ILanguage } from '@showtime/shared/interfaces';
 
 export interface IUserEditFormConfig {
   languages: ILanguage[];

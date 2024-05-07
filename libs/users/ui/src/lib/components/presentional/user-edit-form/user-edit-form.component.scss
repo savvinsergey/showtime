@@ -1,3 +1,75 @@
 :host {
   display: block;
+
+  .user-edit-form {
+    @apply grid grid-cols-4 grid-rows-1 gap-4 border-2 bg-white border-gray-200 border-dashed rounded-lg shadow-gray-200;
+
+    &__avatar {
+      @apply col-span-1 py-8 flex justify-center;
+
+      & .avatar {
+        &__inner {
+          @apply flex flex-col items-center;
+
+          > img {
+            @apply h-36 w-36 rounded-full p-1 border-2 border-dashed;
+          }
+        }
+
+        &__text {
+          @apply flex items-center justify-center mt-4;
+
+          small {
+            @apply w-64 px-4 text-center text-gray-300;
+          }
+        }
+      }
+    }
+
+    &__form-block {
+      @apply col-span-3 py-4 pr-4;
+
+      & .form-block {
+        &__title {
+          @apply text-xl font-semibold mb-4;
+        }
+
+        &__group-label {
+          @apply text-base text-gray-500 font-semibold mb-2;
+        }
+
+        &__form-group {
+          @apply grid grid-cols-2 gap-4 mb-8;
+
+          & .form-group {
+            &__field {
+              @apply col-span-1;
+
+              & .form-field {
+                &__label {
+                  @apply block mb-2 text-sm font-medium text-gray-900;
+                }
+
+                &__control {
+                  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__buttons-block {
+      @apply min-w-full flex justify-end;
+
+      button.btn-save {
+        @apply flex px-5 py-2.5 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center;
+      }
+    }
+  }
+
+  .button-loader {
+    @apply w-4 h-4 mt-0.5 mr-2;
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "auth-application",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/auth/application/src",
+  "sourceRoot": "libs/auth/data/application/src",
   "prefix": "st",
   "tags": [],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/auth/application/**/*.ts"]
+        "lintFilePatterns": ["libs/auth/data/application/**/*.ts"]
       }
     }
   }

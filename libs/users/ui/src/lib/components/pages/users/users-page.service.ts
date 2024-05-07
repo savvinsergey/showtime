@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-
 import { combineLatest, distinctUntilChanged, filter, map, Observable } from 'rxjs';
+
+import { UsersFacade } from '@showtime/users/ui/facade';
+import { IAllUsersPayload } from '@showtime/users/domain';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
-import { checkStatuses } from '../../../../../../../shared/operators/check-statuses.operator';
-import { FiltersService } from '../../../../../../../shared/services/filters.service';
-import { IAllUsersPayload } from '../../../../../../data/domain/interfaces/users-all-payload.interface';
-import { UsersFacade } from '../../../facades/users.facade';
+import { checkStatuses } from '@showtime/shared/operators';
+import { FiltersService } from '@showtime/shared/services';
 
 @Injectable()
 export class UsersPageService {

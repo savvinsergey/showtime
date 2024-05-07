@@ -1,4 +1,4 @@
-import { UserModel } from '../../../../data/domain/models/user.model';
+import { UserModel } from '@showtime/users/domain';
 
 export interface IUserEditFormValue {
   id: string;

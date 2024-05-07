@@ -1,6 +1,6 @@
 import { map, OperatorFunction, pipe, take } from 'rxjs';
-import { UserRoleModel } from '../../../../../users/data/domain/models/user-role.model';
-import { UserModel } from '../../../../data/domain/models/user.model';
+
+import { UserModel, UserRoleModel } from '@showtime/auth/domain';
 
 export const checkRoles = (allowedRoles: string[]): OperatorFunction<UserModel, boolean> => {
   return pipe(

@@ -1,4 +1,4 @@
-import { ETableSortDirection } from '../enums/table-sort-direction.enum';
+import { ETableSortDirection } from '../enums';
 
 export interface ITableSortValue {
   field: string | null;

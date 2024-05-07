@@ -1,16 +1,14 @@
-import { inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 
-import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
-import { LoginCommand, LogoutCommand } from '@showtime/auth/application/commands';
+import { IAuthQueries, IAuthCommands } from '../interfaces';
 
 import { injectQuery } from '@showtime/shared/utils';
-import { IAuthHandlers } from '../../../../ui/src/lib/interfaces/auth-handlers.interface';
-import { IAuthQueries } from '../interfaces/auth-queries.interface';
-import { IAuthCommands } from '../interfaces/auth-commands.interface';
-import { IAuthState } from '../../../../ui/src/lib/interfaces/auth-state.interface';
-import { SetDefaultStateProperty } from '../../../../../shared/decorators/set-default-state-property.decorator';
-import { UserModel } from '../../../../data/domain/models/user.model';
-import { AuthFacade } from '../../../../ui/src/lib/facades/auth.facade';
+import { SetDefaultStateProperty } from '@showtime/shared/decorators';
+import { UserModel } from '@showtime/auth/domain';
+import { IAuthState, IAuthHandlers } from '@showtime/auth/ui';
+import { AuthFacade } from '@showtime/auth/ui/facade';
+import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
+import { LoginCommand, LogoutCommand } from '@showtime/auth/application/commands';
 
 export class AuthFacadeImplementation implements AuthFacade {
   private readonly queries: IAuthQueries = {

@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsCommand } from 'libs/shared/utils';
 import { Observable } from 'rxjs';
-import { UsersRepository } from '../../../../domain/repositories/users.repo';
+
+import { UsersRepository } from '@showtime/users/domain';
+import { BaseCqrsCommand } from '@showtime/shared/utils';
 
 @Injectable()
 export class DeleteCommand extends BaseCqrsCommand<string, void> {

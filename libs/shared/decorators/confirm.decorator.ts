@@ -1,6 +1,7 @@
 import 'reflect-metadata';
-import { ConfirmModalService } from '../services/confirm-modals.service';
+
 import { AppComponent } from '../../../apps/showtime/src/app/app.component';
+import { ConfirmModalService } from '../services';
 
 export const Confirm = (message: string): MethodDecorator => {
   return function (target: Object, key: string | symbol, descriptor: PropertyDescriptor) {

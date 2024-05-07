@@ -1,8 +1,9 @@
-import { BaseParamsConverter } from '../../../../../../../shared/utils/base-params-converter/base-params-converter';
 import { Injectable } from '@angular/core';
-import { IUserPageData, IUserPageParams, IUserPagePayload } from '../../../interfaces/user-page-params-converter';
-import { TSearchValue } from '../../../../../../../shared/types/search-value.type';
-import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
+
+import { IUserPageData, IUserPageParams, IUserPagePayload } from '@showtime/users/ui';
+import { BaseParamsConverter } from '@showtime/shared/utils';
+import { TSearchValue } from '@showtime/shared/types';
+import { ITableSortValue } from '@showtime/shared/interfaces';
 
 @Injectable()
 export class UsersPageParamsConverterService
@@ -28,7 +29,7 @@ export class UsersPageParamsConverterService
           search: {
             type: search.split(':')[0],
             searchString: search.split(':')[1]?.replace(/"/g, ''),
-          } satisfies TSearchValue,
+          } as TSearchValue,
         }
       : {};
     const sortParam = sort
@@ -36,7 +37,7 @@ export class UsersPageParamsConverterService
           sort: {
             field: sort.split(':')[0],
             direction: Number(sort.split(':')[1]),
-          } satisfies ITableSortValue,
+          } as ITableSortValue,
         }
       : {};
 

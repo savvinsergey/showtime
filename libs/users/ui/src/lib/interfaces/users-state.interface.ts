@@ -1,7 +1,6 @@
-import { IFacadeState } from '../../../../../shared/interfaces/facade-state.interface';
-import { UserRoleModel } from '../../../../data/domain/models/user-role.model';
 import { Observable } from 'rxjs';
-import { UserModel } from '../../../../data/domain/models/user.model';
+import { UserModel, UserRoleModel } from '@showtime/users/domain';
+import { IFacadeState } from '@showtime/shared/interfaces';
 
 export interface IUsersState {
   usersToken: IFacadeState<string>;

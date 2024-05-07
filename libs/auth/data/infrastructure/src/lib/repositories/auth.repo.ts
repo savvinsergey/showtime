@@ -1,8 +1,9 @@
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthRepository } from '../../../../domain/repositories/auth.repo';
-import { Auth0Api } from '../core/api/auth0.api';
-import { UserModel } from '../../../../domain/models/user.model';
+
+import { Auth0Api } from '../core/api';
+
+import { UserModel, AuthRepository } from '@showtime/auth/domain';
 
 export class AuthData implements AuthRepository {
   private auth0Api = inject(Auth0Api);

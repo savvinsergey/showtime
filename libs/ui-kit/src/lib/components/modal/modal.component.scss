@@ -1,0 +1,39 @@
+:host {
+  .modal {
+    @apply hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full;
+
+    &__backdrop {
+      @apply relative p-4 w-full max-w-md h-full md:h-auto;
+    }
+
+    &__inner {
+      @appy relative p-4 text-center bg-white rounded-lg shadow p-5;
+    }
+
+    &__header {
+      @apply flex items-start justify-between rounded-t;
+
+      & .header {
+        &__title {
+          @apply text-xl font-semibold text-gray-900;
+        }
+
+        &__close-button {
+          @apply text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center;
+        }
+
+        &__button-icon {
+          @apply w-3 h-3;
+        }
+      }
+    }
+
+    &__content {
+      @apply mb-4 text-gray-500;
+    }
+
+    &__footer {
+      @apply flex justify-end items-center space-x-4;
+    }
+  }
+}

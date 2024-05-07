@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsCommand } from 'libs/shared/utils';
 import { Observable } from 'rxjs';
-import { IUserUpdatePayload } from '../../../../domain/interfaces/user-update-payload.interface';
-import { UsersRepository } from '../../../../domain/repositories/users.repo';
-import { UserModel } from '../../../../domain/models/user.model';
+
+import { IUserUpdatePayload, UserModel, UsersRepository } from '@showtime/users/domain';
+import { BaseCqrsCommand } from '@showtime/shared/utils';
 
 @Injectable()
 export class UpdateCommand extends BaseCqrsCommand<IUserUpdatePayload, UserModel> {

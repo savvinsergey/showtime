@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-
 import { combineLatest, map, Observable, of, startWith } from 'rxjs';
+
+import { IUserManagementMenuConfig } from '@showtime/users/ui';
+import { UserModel } from '@showtime/users/domain';
+import { UsersFacade } from '@showtime/users/ui/facade';
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
-import { IUserManagementMenuConfig } from '../../../interfaces/user-management-menu-config';
-import { UserModel } from '../../../../../../data/domain/models/user.model';
-import { UsersFacade } from '../../../facades/users.facade';
 
 @Injectable()
 export class UserManagementMenuService {

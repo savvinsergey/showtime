@@ -2,15 +2,16 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '@showtime/ui-kit';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+
 import { UsersTableRowComponent } from '../users-table-row/users-table-row.component';
-import { EUsersTableSort } from '../../../enums/users-table-sort.enum';
-import { ITableSortValue } from '../../../../../../../shared/interfaces/table-sort-value.interface';
-import { SortDirectionIconPipe } from '../../../../../../../shared/pipes/sort-direction-icon/sort-direction-icon.pipe';
-import { USERS_TABLE_DEFAULT_SORT } from '../../../constants/users-table-default-sort.const';
-import { TableComponent } from '../../../../../../../ui-kit/src/lib/components/table/table.component';
-import { TableHeaderItemDirectiveDirective } from '../../../../../../../shared/directives/table-header-item.directive';
-import { TableRowDirective } from '../../../../../../../shared/directives/table-row.directive';
-import { UserModel } from '../../../../../../data/domain/models/user.model';
+import { EUsersTableSort } from '../../../enums';
+import { USERS_TABLE_DEFAULT_SORT } from '../../../constants';
+
+import { UserModel } from '@showtime/users/domain';
+import { TableComponent } from '@showtime/ui-kit';
+import { SortDirectionIconPipe } from '@showtime/shared/pipes';
+import { ITableSortValue } from '@showtime/shared/interfaces';
+import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/shared/directives';
 
 @Component({
   selector: 'st-users-table',

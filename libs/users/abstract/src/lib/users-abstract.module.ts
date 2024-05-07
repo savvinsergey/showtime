@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersApplicationModule } from '../../../data/application/src';
-import { UsersFacade } from '../../../ui/src/lib/facades/users.facade';
-import { UsersFacadeImplementation } from './facades/users.facade';
+
+import { UsersFacadeImplementation } from './facades';
+
+import { UsersApplicationModule } from '@showtime/users/application';
+import { UsersFacade } from '@showtime/users/ui/facade';
 
 @NgModule({
   imports: [CommonModule, UsersApplicationModule],

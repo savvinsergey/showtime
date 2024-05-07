@@ -1,0 +1,29 @@
+:host {
+  .header {
+    @apply fixed top-0 z-40 w-full bg-white border-b border-gray-200 px-3 py-3 flex items-center justify-between;
+
+    &__logo {
+      @apply flex items-center justify-start;
+    }
+
+    &__logo-link {
+      @apply flex ml-2 md:mr-24 self-center text-xl font-semibold whitespace-nowrap;
+    }
+
+    &__user-menu {
+      @apply flex items-center mr-1;
+    }
+
+    &__user-img {
+      @apply w-8 h-8 rounded-full;
+    }
+  }
+
+  .content {
+    @apply flex min-h-screen p-4 bg-gray-50 sm:ml-64;
+  }
+
+  .default-user-img {
+    @apply w-8 h-8;
+  }
+}

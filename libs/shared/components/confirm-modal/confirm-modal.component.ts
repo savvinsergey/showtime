@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { CheckboxGroupComponent } from '../../../ui-kit/src/lib/components/checkbox-group/checkbox-group.component';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from '../../../ui-kit/src/lib/components/modal/modal.component';
-import { IModalData } from '../../interfaces/modal-data.interface';
+
+import { IModalData } from '../../interfaces';
+
+// @ts-ignore
+import { ModalComponent, CheckboxGroupComponent } from '@showtime/ui-kit';
 
 @Component({
   selector: 'st-confirm-modal',
+  styleUrls: ['./confirm-modal.component.scss'],
   templateUrl: 'confirm-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

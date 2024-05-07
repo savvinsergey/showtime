@@ -1,10 +1,9 @@
 import { first, map, of, switchMap, tap } from 'rxjs';
 
-import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
+import { UserRoleModel, UserModel } from '@showtime/users/domain';
 import { injectQuery } from '@showtime/shared/utils';
+import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
 import { GetRolesByUserQuery } from '@showtime/users/application/queries';
-import { UserRoleModel } from '../../../users/data/domain/models/user-role.model';
-import { UserModel } from '../../../auth/data/domain/models/user.model';
 
 export const authInitializer = () => {
   const queries = {

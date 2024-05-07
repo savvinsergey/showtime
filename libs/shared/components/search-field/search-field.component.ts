@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, forwardRef, inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, NG_VALUE_ACCESSOR, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { BaseControl } from '../../utils/base-control/base-control';
-import { ISearchType } from '../../interfaces/search-type';
-import { TSearchValue } from '../../types/search-value.type';
+
+import { ISearchType } from '../../interfaces';
+import { BaseControl } from '../../utils';
+import { TSearchValue } from '../../types';
 
 @Component({
   selector: 'st-search-field',
+  styleUrls: ['./search-field.component.scss'],
   templateUrl: 'search-field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -29,7 +31,7 @@ export class SearchFieldComponent extends BaseControl<TSearchValue> implements O
   @Input() dynamic = false;
   @Input() placeholder = 'Search...';
 
-  public override form!: FormGroup;
+  public override form: FormGroup = this.fb.group({});
 
   override ngOnInit() {
     const updateOn = this.dynamic ? 'change' : 'submit';

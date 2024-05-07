@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { IFacadeState } from '../interfaces/facade-state.interface';
+import { IFacadeState } from '../interfaces';
 
 export const SetDefaultStateProperty = (field: keyof IFacadeState): PropertyDecorator => {
   return function (target: Object, propertyKey) {

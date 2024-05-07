@@ -1,4 +1,4 @@
-import { IFacadeHandler } from '../../../../../shared/interfaces/facade-handler.interface';
+import { IFacadeHandler } from '@showtime/shared/interfaces';
 
 export interface IAuthHandlers {
   login: IFacadeHandler<null>;

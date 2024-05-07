@@ -1,10 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BaseCqrsQuery } from 'libs/shared/utils';
 import { Observable, tap } from 'rxjs';
-import { IAllUsersPayload } from '../../../../domain/interfaces/users-all-payload.interface';
-import { UsersRepository } from '../../../../domain/repositories/users.repo';
-import { UserModel } from '../../../../domain/models/user.model';
 
+import { IAllUsersPayload, UserModel, UsersRepository } from '@showtime/users/domain';
+import { BaseCqrsQuery } from '@showtime/shared/utils';
 @Injectable()
 export class AllUsersQuery extends BaseCqrsQuery<IAllUsersPayload, UserModel[]> {
   private readonly usersRepository = inject(UsersRepository);

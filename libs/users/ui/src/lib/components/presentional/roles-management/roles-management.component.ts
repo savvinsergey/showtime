@@ -12,10 +12,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ModalComponent } from '../../../../../../../ui-kit/src/lib/components/modal/modal.component';
-import { IRolesManagementConfig } from '../../../interfaces/roles-management-config';
-import { CheckboxGroupComponent } from '../../../../../../../ui-kit/src/lib/components/checkbox-group/checkbox-group.component';
-import { UserRoleModel } from '../../../../../../data/domain/models/user-role.model';
+
+import { CheckboxGroupComponent, ModalComponent } from '@showtime/ui-kit';
+import { UserRoleModel } from '@showtime/users/domain';
+import { IRolesManagementConfig } from '@showtime/users/ui';
 
 @Component({
   selector: 'st-roles-management',
