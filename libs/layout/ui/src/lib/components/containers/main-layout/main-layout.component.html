@@ -1,8 +1,7 @@
 <ng-container
   *ngIf="{
     user: user$ | async
-  } as async"
->
+  } as async">
   <nav class="header">
     <div class="header__logo">
       <a class="header__logo-link" href="https://showtime.com">
@@ -15,8 +14,7 @@
         aria-expanded="false"
         data-dropdown-toggle="dropdown-user"
         data-dropdown-offset-distance="5"
-        data-dropdown-offset-skidding="-20"
-      >
+        data-dropdown-offset-skidding="-20">
         <ng-container *ngIf="async.user; else defaultUserPhotoTmpl">
           <img class="header__user-img" alt="User photo" [src]="async.user.picture" />
         </ng-container>

@@ -2,7 +2,8 @@
   <ng-container title>Roles</ng-container>
   <ng-container content>
     <ng-container *ngIf="!inProgress?.loading; else loaderTmp">
-      <uik-checkbox-group required [formControl]="rolesControl" [list]="allRoles"> </uik-checkbox-group>
+      <uik-checkbox-group required [formControl]="rolesControl" [list]="allRoles">
+      </uik-checkbox-group>
     </ng-container>
   </ng-container>
   <ng-container buttons>
