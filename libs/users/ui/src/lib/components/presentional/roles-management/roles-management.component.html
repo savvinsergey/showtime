@@ -12,8 +12,7 @@
       class="assign-button"
       [ngClass]="{ 'assign-button--disabled': rolesControl.invalid }"
       [disabled]="rolesControl.invalid"
-      (click)="assigned.emit(rolesControl.value)"
-    >
+      (click)="assigned.emit(rolesControl.value)">
       <ng-container *ngIf="inProgress?.assigning">
         <ng-container *ngTemplateOutlet="buttonLoaderTmp"></ng-container>
       </ng-container>

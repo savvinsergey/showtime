@@ -1,7 +1,7 @@
 {
   "name": "users-application",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/users/application/src",
+  "sourceRoot": "libs/users/data/application/src",
   "prefix": "st",
   "tags": [],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/users/application/**/*.ts"]
+        "lintFilePatterns": ["libs/users/data/application/**/*.ts"]
       }
     }
   }

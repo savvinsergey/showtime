@@ -1,20 +1,20 @@
-import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { inject, Injectable } from '@angular/core';
 import { ENVIRONMENT } from '@showtime/shared/const';
-import { IGetTokenResponse } from '@showtime/users/domain';
+import type { IGetTokenResponse } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable()
 export class TokenUsersApi {
-  private readonly httpService = inject(HttpClient);
   private readonly environment = inject(ENVIRONMENT);
+  private readonly httpService = inject(HttpClient);
 
   // ------------------- //
 
   public getToken(): Observable<string> {
     const { url, clientId: client_id, clientSecret: client_secret } = this.environment.auth0Api;
-    const reqUrl = `${url}/oauth/token`;
+    const requestUrl = `${url}/oauth/token`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -26,7 +26,7 @@ export class TokenUsersApi {
     };
 
     return this.httpService
-      .post<IGetTokenResponse>(reqUrl, body, { headers })
+      .post<IGetTokenResponse>(requestUrl, body, { headers })
       .pipe(map(({ access_token }) => access_token));
   }
 }

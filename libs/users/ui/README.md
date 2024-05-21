@@ -1,3 +1,3 @@
-# users-users-ui
+# Users UI
 
-This library was generated with [Nx](https://nx.dev).
+Library for UI of users section

@@ -1,3 +1,3 @@
-# ui-kit
+# UI kit
 
-This library was generated with [Nx](https://nx.dev).
+Library for UI kit

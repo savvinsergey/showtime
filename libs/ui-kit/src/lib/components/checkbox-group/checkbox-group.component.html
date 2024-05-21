@@ -2,7 +2,7 @@
   <ul class="group-list" aria-labelledby="dropdownCheckboxButton" formArrayName="list">
     <li *ngFor="let control of form.controls['list'].controls; index as idx">
       <div class="group-item" [formGroupName]="idx">
-        <input class="group-item__input" type="checkbox" [formControl]="control" />
+        <input class="group-item__input bg-gray-100" type="checkbox" [formControl]="control" />
         <label class="group-item__label">
           {{ list[idx].name }}
         </label>

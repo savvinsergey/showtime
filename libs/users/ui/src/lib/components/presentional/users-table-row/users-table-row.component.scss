@@ -1,13 +1,13 @@
 :host {
   display: table-row;
 
-  @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
+  @apply border-b bg-white;
 
   .users-td {
     @apply px-6 py-4;
 
     &__nickname {
-      @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex gap-4 items-center;
+      @apply flex items-center gap-4 whitespace-nowrap px-6 py-4 font-medium text-gray-900;
     }
 
     &__email {

@@ -3,15 +3,15 @@
 
   .datepicker {
     &-icon {
-      @apply absolute inset-y-0 start-0 flex items-center ps-2 pointer-events-none;
+      @apply pointer-events-none absolute inset-y-0 start-0 flex items-center ps-2;
 
       i {
-        @apply w-5 h-5 text-gray-500;
+        @apply h-5 w-5 text-gray-500;
       }
     }
 
     &-input {
-      @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-8 p-2.5;
+      @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-8 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500;
     }
   }
 }

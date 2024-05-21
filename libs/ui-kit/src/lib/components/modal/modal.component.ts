@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Modal, ModalInterface, ModalOptions } from 'flowbite';
-import { InlineSVGModule } from 'ng-inline-svg-2';
+import type { AfterViewInit, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import type { ModalInterface, ModalOptions } from 'flowbite';
+import { Modal } from 'flowbite';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 import { asapScheduler } from 'rxjs';
 
 @Component({
@@ -36,11 +38,6 @@ export class ModalComponent implements AfterViewInit {
     this.close();
   }
 
-  public open<TContextValue = undefined>(context?: TContextValue) {
-    this.context = context;
-    this.modal?.show();
-  }
-
   public close() {
     asapScheduler.schedule(() => {
       this.context = null;
@@ -48,5 +45,10 @@ export class ModalComponent implements AfterViewInit {
 
       this.closed.emit();
     });
+  }
+
+  public open<TContextValue = undefined>(context?: TContextValue) {
+    this.context = context;
+    this.modal?.show();
   }
 }

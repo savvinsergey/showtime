@@ -1,17 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg-2';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Alert } from '@showtime/shared/decorators';
+import type { EAsyncStatusesCqrs } from '@showtime/shared/enums';
+import { UsersAbstractModule } from '@showtime/users/abstract';
+import type { IUserEditFormValue } from '@showtime/users/ui';
+import { UsersFacade } from '@showtime/users/ui/facade';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+import type { Observable } from 'rxjs';
 
 import { UserEditFormComponent } from '../../presentional';
 import { UserPageService } from './user-page.service';
-
-import { IUserEditFormValue } from '@showtime/users/ui';
-import { Alert } from '@showtime/shared/decorators';
-import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
-import { UsersFacade } from '@showtime/users/ui/facade';
-import { UsersAbstractModule } from '@showtime/users/abstract';
 
 @Component({
   selector: 'st-user-page',

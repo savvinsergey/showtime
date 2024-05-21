@@ -1,20 +1,20 @@
 import 'reflect-metadata';
 
-import { AppComponent } from '../../../apps/showtime/src/app/app.component';
 import { ConfirmModalService } from '../services';
+import { RootInjector } from '../utils/root-injector';
 
 export const Confirm = (message: string): MethodDecorator => {
-  return function (target: Object, key: string | symbol, descriptor: PropertyDescriptor) {
+  return function (target: object, key: string | symbol, descriptor: PropertyDescriptor) {
     const original = descriptor.value!;
 
-    descriptor.value = function (...args: unknown[]) {
-      const confirmModalService = AppComponent.appInjector.get(ConfirmModalService);
+    descriptor.value = function (...arguments_: unknown[]) {
+      const confirmModalService = RootInjector.get(ConfirmModalService);
       if (!confirmModalService) {
         return console.error('ConfirmationModalService was not found');
       }
 
-      confirmModalService.open(args, message, () => {
-        original.apply(this, args);
+      confirmModalService.open(arguments_, message, () => {
+        original.apply(this, arguments_);
       });
     };
 

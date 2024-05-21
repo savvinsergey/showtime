@@ -1,4 +1,4 @@
-import { EUserRoles } from '@showtime/auth/shared';
+import type { EUserRoles } from '@showtime/auth/shared';
 
 export interface ILayoutUiMenuItemConfig {
   text: string;

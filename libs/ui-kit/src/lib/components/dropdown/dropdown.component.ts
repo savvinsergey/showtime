@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import type { AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { initDropdowns } from 'flowbite';
 
 @Component({

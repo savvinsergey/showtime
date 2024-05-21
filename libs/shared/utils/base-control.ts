@@ -1,7 +1,8 @@
-import { OnInit, Directive, inject, DestroyRef } from '@angular/core';
-import { ControlValueAccessor, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { filter } from 'rxjs';
+import type { OnInit } from '@angular/core';
+import { DestroyRef, Directive, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import type { ControlValueAccessor, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Directive({})
 export abstract class BaseControl<T, V = T, R = T> implements OnInit, ControlValueAccessor {
@@ -32,12 +33,12 @@ export abstract class BaseControl<T, V = T, R = T> implements OnInit, ControlVal
       });
   }
 
-  public registerOnChange(fn: () => unknown) {
-    this.onChange = fn;
+  public registerOnChange(function_: () => unknown) {
+    this.onChange = function_;
   }
 
-  public registerOnTouched(fn: () => unknown): void {
-    this.onTouched = fn;
+  public registerOnTouched(function_: () => unknown): void {
+    this.onTouched = function_;
   }
 
   public writeValue(outsideValue: T): void {
@@ -54,7 +55,7 @@ export abstract class BaseControl<T, V = T, R = T> implements OnInit, ControlVal
     this.disabled = isDisabled;
   }
 
-  protected convertValue(value: V): R {
-    return this.form.value;
+  protected convertValue(value: V): V | R {
+    return value;
   }
 }

@@ -1,12 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { filter } from 'rxjs';
-
-import { BaseCqrsQuery } from '@showtime/shared/utils';
 import { AuthRepository } from '@showtime/auth/domain';
+import { BaseCqrsQuery } from '@showtime/shared/utils';
+import { filter } from 'rxjs';
 
 @Injectable()
 export class IsAuthQuery extends BaseCqrsQuery<null, boolean> {
-  private authRepository = inject(AuthRepository);
+  private readonly authRepository = inject(AuthRepository);
 
   constructor() {
     super();

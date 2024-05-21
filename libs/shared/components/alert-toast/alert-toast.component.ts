@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import type { AfterViewInit, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
+import type { DismissInterface } from 'flowbite';
+import { Dismiss } from 'flowbite';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { Dismiss, DismissInterface } from 'flowbite';
 import { asapScheduler } from 'rxjs';
 
+import { ALERT_CLOSE_TIMEOUT, ALERT_DEFAULT_DURATION } from '../../constants';
 import { EAlertTypes } from '../../enums';
-import { ALERT_DEFAULT_DURATION } from '../../constants';
-import { ALERT_CLOSE_TIMEOUT } from '../../constants';
 
 @Component({
   selector: 'st-alert-toast',

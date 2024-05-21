@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { IUsersUpdateRolesPayload, UsersRepository } from '@showtime/users/domain';
 import { BaseCqrsCommand } from '@showtime/shared/utils';
+import type { IUsersUpdateRolesPayload } from '@showtime/users/domain';
+import { UsersRepository } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class UpdateRolesCommand extends BaseCqrsCommand<IUsersUpdateRolesPayload, void> {

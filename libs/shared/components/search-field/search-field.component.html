@@ -14,9 +14,14 @@
         class="search-text__input"
         formControlName="searchString"
         [placeholder]="placeholder"
-        [ngClass]="types.length ? 'rounded-r-lg border-s-gray-50 border-s-1' : 'rounded-lg'"
-      />
+        [ngClass]="types.length ? 'border-s-1 rounded-r-lg border-s-gray-50' : 'rounded-lg'" />
     </div>
   </div>
-  <button type="submit" class="search-field__submit-button" *ngIf="!dynamic" [disabled]="!form.valid">Search</button>
+  <button
+    type="submit"
+    class="search-field__submit-button"
+    *ngIf="!dynamic"
+    [disabled]="!form.valid">
+    Search
+  </button>
 </form>

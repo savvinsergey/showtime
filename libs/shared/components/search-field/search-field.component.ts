@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, forwardRef, inject, Input, OnInit } from '@angular/core';
-import { FormGroup, FormsModule, NG_VALUE_ACCESSOR, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import type { OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, inject, Input } from '@angular/core';
+import type { FormGroup } from '@angular/forms';
+import {
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { ISearchType } from '../../interfaces';
+import type { ISearchType } from '../../interfaces';
+import type { TSearchValue } from '../../types';
 import { BaseControl } from '../../utils';
-import { TSearchValue } from '../../types';
 
 @Component({
   selector: 'st-search-field',

@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CheckboxGroupComponent, ModalComponent } from '@showtime/ui-kit';
 
-import { IModalData } from '../../interfaces';
-
-// @ts-ignore
-import { ModalComponent, CheckboxGroupComponent } from '@showtime/ui-kit';
+import type { IModalData } from '../../interfaces';
 
 @Component({
   selector: 'st-confirm-modal',
@@ -15,14 +20,13 @@ import { ModalComponent, CheckboxGroupComponent } from '@showtime/ui-kit';
   standalone: true,
   imports: [CommonModule, CheckboxGroupComponent, FormsModule, ModalComponent],
 })
-export class ConfirmModalComponent<C extends unknown> {
+export class ConfirmModalComponent<C> {
   @Input() data?: IModalData;
 
   @Output() confirmed = new EventEmitter<C | undefined>();
   @Output() canceled = new EventEmitter<void>();
 
-  @ViewChild(ModalComponent)
-  private modal!: ModalComponent;
+  @ViewChild(ModalComponent) private modal!: ModalComponent;
 
   public onConfirm() {
     this.confirmed.emit(this.modal?.context as C);

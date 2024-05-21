@@ -1,22 +1,21 @@
+import { CommonModule } from '@angular/common';
+import type { AfterViewInit, ElementRef } from '@angular/core';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   forwardRef,
   inject,
   Input,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NG_VALUE_ACCESSOR, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { BaseControl } from '@showtime/shared/utils';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { fromEvent } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { BaseControl } from '@showtime/shared/utils';
-
-declare var Datepicker: any;
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+declare let Datepicker: any;
 
 @Component({
   selector: 'uik-datepicker',
@@ -45,18 +44,19 @@ export class DatepickerComponent extends BaseControl<string> implements AfterVie
   public override form = this.fb.control<string>('');
 
   ngAfterViewInit() {
-    const el = this.datepickerEl.nativeElement as HTMLElement;
-    this.initialize(el);
+    const element = this.datepickerEl.nativeElement as HTMLElement;
+    this.initialize(element);
   }
 
-  private initialize(element: HTMLElement): void {
-    const datepicker = new Datepicker(element, {
-      autohide: true,
-      format: 'yyyy-mm-dd',
-    });
+  private initChangingDate(element: HTMLElement) {
+    fromEvent<Event>(element, 'changeDate')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event_: Event) => {
+        const value = (event_.target as HTMLInputElement).value;
 
-    this.initHideFunc(datepicker);
-    this.initChangingDate(element);
+        this.form.setValue(value);
+        this.form.markAsDirty();
+      });
   }
 
   private initHideFunc(datepicker: typeof Datepicker) {
@@ -69,14 +69,13 @@ export class DatepickerComponent extends BaseControl<string> implements AfterVie
     };
   }
 
-  private initChangingDate(element: HTMLElement) {
-    fromEvent<Event>(element, 'changeDate')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((ev: Event) => {
-        const value = (ev.target as HTMLInputElement).value;
+  private initialize(element: HTMLElement): void {
+    const datepicker = new Datepicker(element, {
+      autohide: true,
+      format: 'yyyy-mm-dd',
+    });
 
-        this.form.setValue(value);
-        this.form.markAsDirty();
-      });
+    this.initHideFunc(datepicker);
+    this.initChangingDate(element);
   }
 }

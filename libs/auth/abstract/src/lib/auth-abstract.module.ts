@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AuthFacadeImplementation } from './facades/auth.facade';
-
+import { NgModule } from '@angular/core';
 import { AuthApplicationModule } from '@showtime/auth/application';
 import { AuthFacade } from '@showtime/auth/ui/facade';
+
+import { AuthFacadeImplementation } from './facades/auth.facade';
 
 @NgModule({
   imports: [CommonModule, AuthApplicationModule],

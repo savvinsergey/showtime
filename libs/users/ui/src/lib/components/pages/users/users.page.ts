@@ -1,25 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { UsersPageService } from './users-page.service';
+import { SearchFieldComponent } from '@showtime/shared/components';
+import { QUERY_PARAMETERS_LIST } from '@showtime/shared/const';
+import type { ITableSortValue } from '@showtime/shared/interfaces';
+import { EventHandlerPipe } from '@showtime/shared/pipes';
+import { FiltersService } from '@showtime/shared/services';
+import type { TSearchValue } from '@showtime/shared/types';
+import { BaseParametersMapper } from '@showtime/shared/utils';
+import { UsersAbstractModule } from '@showtime/users/abstract';
+import type { IAllUsersPayload } from '@showtime/users/domain';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { UsersTableComponent } from '../../presentional';
-import { USER_SEARCH_TYPE, QUERY_PARAMS_USERS_PAGE } from '../../../constants';
-import { IUserPageData } from '../../../interfaces';
+import { QUERY_PARAMS_USERS_PAGE, USER_SEARCH_TYPE } from '../../../constants';
 import { UsersFacade } from '../../../facades';
-import { UsersPageParamsConverterService } from './users-page.params-converter';
-
-import { IAllUsersPayload } from '@showtime/users/domain';
-import { FiltersService } from '@showtime/shared/services';
-import { QUERY_PARAMS_LIST } from '@showtime/shared/const';
-import { BaseParamsConverter } from '@showtime/shared/utils';
-import { TSearchValue } from '@showtime/shared/types';
-import { ITableSortValue } from '@showtime/shared/interfaces';
-import { EventHandlerPipe } from '@showtime/shared/pipes';
-import { SearchFieldComponent } from '@showtime/shared/components';
-import { UsersAbstractModule } from '@showtime/users/abstract';
+import type { IUserPageData } from '../../../interfaces';
+import { UsersTableComponent } from '../../presentional';
+import { UsersPageParametersMapperService } from './users-page.parameters-mapper';
+import { UsersPageService } from './users-page.service';
 
 @Component({
   selector: 'st-users-page',
@@ -41,13 +39,13 @@ import { UsersAbstractModule } from '@showtime/users/abstract';
       useFactory: () => new FiltersService<IUserPageData>(),
     },
     {
-      // For using FilterService you have to specify QUERY_PARAMS_LIST and BaseParamsConverter
-      provide: QUERY_PARAMS_LIST,
+      // For using FilterService you have to specify QUERY_PARAMETERS_LIST and BaseParamsConverter
+      provide: QUERY_PARAMETERS_LIST,
       useValue: QUERY_PARAMS_USERS_PAGE,
     },
     {
-      provide: BaseParamsConverter,
-      useClass: UsersPageParamsConverterService,
+      provide: BaseParametersMapper,
+      useClass: UsersPageParametersMapperService,
     },
   ],
   templateUrl: './users.page.html',
@@ -66,9 +64,9 @@ export class UsersPage {
   private readonly state = this.usersFacade.state;
 
   public readonly allUsers$ = this.state.allUsers$;
+  public readonly filters$ = this.filtersService.filters$;
   public readonly inProgress$ = this.usersPageService.inProgress$;
   public readonly refresh$ = this.usersPageService.refresh$;
-  public readonly filters$ = this.filtersService.filters$;
 
   public onRefresh = (payload: IAllUsersPayload | undefined): void => {
     this.usersFacade.refresh(payload);

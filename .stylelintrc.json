@@ -1,6 +1,6 @@
 {
   "ignoreFiles": ["**/*"],
-  "plugins": ["stylelint-order", "stylelint-selector-bem-pattern", "stylelint-scss", "stylelint-use-nesting"],
+  "plugins": ["stylelint-order", "stylelint-scss", "stylelint-use-nesting"],
   "extends": ["stylelint-config-idiomatic-order", "stylelint-prettier/recommended", "stylelint-config-prettier"],
   "overrides": [
     {
@@ -15,14 +15,13 @@
         "csstools/use-nesting": "always",
         "at-rule-no-unknown": null,
         "scss/at-rule-no-unknown": true,
-        "plugin/selector-bem-pattern": {
-          "componentName": "[A-Z]+",
-          "componentSelectors": {
-            "initial": "^\\.{componentName}(?:-[a-z]+)?$",
-            "combined": "^\\.combined-{componentName}-[a-z]+$"
-          },
-          "utilitySelectors": "^\\.util-[a-z]+$"
-        }
+        "selector-class-pattern": [
+          "^[a-z]([-]?[a-z0-9]+)*(__[a-z0-9]([-]?[a-z0-9]+)*)?(--[a-z0-9]([-]?[a-z0-9]+)*)?$",
+          {
+            "resolveNestedSelectors": true,
+            "message": "Expected class selector to match BEM CSS pattern https://en.bem.info/methodology/css"
+          }
+        ]
       }
     }
   ],

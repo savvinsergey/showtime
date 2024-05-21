@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { LAYOUT_UI_CONFIG_TOKEN } from '../../../constants';
-import { ILayoutUiModuleConfig } from '../../../interfaces';
+import type { ILayoutUiModuleConfig } from '../../../interfaces';
 
 @Component({
   selector: 'st-sidebar',

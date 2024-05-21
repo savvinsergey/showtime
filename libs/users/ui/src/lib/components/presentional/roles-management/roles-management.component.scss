@@ -2,15 +2,15 @@
   display: block;
 
   .cancel-button {
-    @apply py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200
-           hover:text-gray-900 hover:bg-gray-100
-           focus:ring-4 focus:ring-gray-300 focus:outline-none;
+    @apply rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-500
+           hover:bg-gray-100 hover:text-gray-900
+           focus:outline-none focus:ring-4 focus:ring-gray-300;
   }
 
   .assign-button {
-    @apply flex py-2 px-3 text-sm font-medium text-center text-white bg-blue-600 rounded-lg
+    @apply flex rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white
            hover:bg-blue-700
-           focus:ring-4 focus:ring-blue-300 focus:outline-none;
+           focus:outline-none focus:ring-4 focus:ring-blue-300;
 
     &--disabled {
       @apply cursor-not-allowed opacity-60;
@@ -18,14 +18,14 @@
   }
 
   .loader {
-    @apply h-[96px] flex items-center justify-center;
+    @apply flex h-[96px] items-center justify-center;
 
     &__icon {
-      @apply w-10 h-10;
+      @apply h-10 w-10;
     }
   }
 
   .button-loader {
-    @apply w-4 h-4 mt-0.5 mr-2;
+    @apply mr-2 mt-0.5 h-4 w-4;
   }
 }

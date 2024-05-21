@@ -1,5 +1,5 @@
 {
-  "name": "users-data",
+  "name": "users-infrastructure",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/users/data/infrastructure/src",
   "prefix": "lib",
@@ -10,7 +10,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/users/infrastructure/**/*.ts"]
+        "lintFilePatterns": ["libs/users/data/infrastructure/**/*.ts"]
       }
     }
   }

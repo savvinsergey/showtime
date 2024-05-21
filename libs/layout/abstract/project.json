@@ -1,8 +1,8 @@
 {
   "name": "layout-abstract",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/auth/abstract/src",
-  "prefix": "showtime",
+  "sourceRoot": "libs/layout/abstract/src",
+  "prefix": "st",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/auth/abstract/**/*.ts", "libs/auth/abstract/**/*.html"]
+        "lintFilePatterns": ["libs/layout/abstract/**/*.ts"]
       }
     }
   }

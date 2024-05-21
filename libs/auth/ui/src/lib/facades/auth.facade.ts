@@ -1,8 +1,8 @@
-import { IAuthState, IAuthHandlers } from '../interfaces';
+import type { IAuthHandlers, IAuthState } from '../interfaces';
 
 export abstract class AuthFacade {
-  public abstract readonly state: IAuthState;
   public abstract readonly handlers: IAuthHandlers;
+  public abstract readonly state: IAuthState;
 
   // ------------------------- //
 

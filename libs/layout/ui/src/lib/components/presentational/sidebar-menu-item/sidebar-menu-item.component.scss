@@ -1,9 +1,9 @@
 :host {
   a {
-    @apply flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100;
+    @apply flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100;
   }
 
   .text {
-    @apply flex-1 ml-3 whitespace-nowrap;
+    @apply ml-3 flex-1 whitespace-nowrap;
   }
 }

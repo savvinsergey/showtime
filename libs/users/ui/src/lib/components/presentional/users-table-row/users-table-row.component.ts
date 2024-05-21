@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { LanguageNamePipe } from '@showtime/shared/pipes';
+import type { UserModel } from '@showtime/users/domain';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
 import { UserManagementMenuContainer } from '../../containers';
-
-import { LanguageNamePipe } from '@showtime/shared/pipes';
-import { UserModel } from '@showtime/users/domain';
 
 @Component({
   selector: 'st-users-table-row',

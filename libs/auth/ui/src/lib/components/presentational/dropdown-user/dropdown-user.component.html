@@ -9,7 +9,9 @@
   </div>
   <ul class="dropdown-user__list dropdown-list" role="none">
     <li>
-      <a href="#" class="dropdown-list__item" role="menuitem" routerLink="/user" *ngIf="user"> Settings </a>
+      <a href="#" class="dropdown-list__item" role="menuitem" routerLink="/user" *ngIf="user">
+        Settings
+      </a>
     </li>
     <li>
       <a
@@ -17,8 +19,7 @@
         class="dropdown-list__item"
         role="menuitem"
         *ngIf="config.showSignOutLink; else signInLinkTmpl"
-        (click)="signedOut.emit()"
-      >
+        (click)="signedOut.emit()">
         Sign out
       </a>
     </li>

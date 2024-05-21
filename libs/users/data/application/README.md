@@ -1,3 +1,3 @@
-# users-abstract
+# Users application
 
-This library was generated with [Nx](https://nx.dev).
+Library with application

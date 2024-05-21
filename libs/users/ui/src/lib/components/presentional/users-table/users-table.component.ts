@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DropdownComponent } from '@showtime/ui-kit';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/shared/directives';
+import type { ITableSortValue } from '@showtime/shared/interfaces';
+import { SortDirectionIconPipe } from '@showtime/shared/pipes';
+import { DropdownComponent, TableComponent } from '@showtime/ui-kit';
+import type { UserModel } from '@showtime/users/domain';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
-import { UsersTableRowComponent } from '../users-table-row/users-table-row.component';
-import { EUsersTableSort } from '../../../enums';
 import { USERS_TABLE_DEFAULT_SORT } from '../../../constants';
-
-import { UserModel } from '@showtime/users/domain';
-import { TableComponent } from '@showtime/ui-kit';
-import { SortDirectionIconPipe } from '@showtime/shared/pipes';
-import { ITableSortValue } from '@showtime/shared/interfaces';
-import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/shared/directives';
+import { EUsersTableSort } from '../../../enums';
+import { UsersTableRowComponent } from '../users-table-row/users-table-row.component';
 
 @Component({
   selector: 'st-users-table',
@@ -31,8 +29,8 @@ import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersTableComponent {
-  @Input() users: UserModel[] = [];
   @Input() sort: ITableSortValue = USERS_TABLE_DEFAULT_SORT;
+  @Input() users: UserModel[] = [];
 
   @Output() sorted = new EventEmitter<ITableSortValue | null>();
 

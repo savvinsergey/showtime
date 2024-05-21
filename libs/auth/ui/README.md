@@ -1,7 +1,5 @@
-# auth-ui-auth-ui
+# Auth UI
 
-This library was generated with [Nx](https://nx.dev).
+Library for UI of auth section
 
-## Running unit tests
 
-Run `nx test auth-ui` to execute the unit tests.

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-
-import { UsersReducer } from './users.reducer';
-import { IUsersStoreState } from '../../interfaces';
-import { EUsersStoreActions, EUsersStoreKeys } from '../../enums';
-
 import { BaseStore } from '@showtime/shared/utils';
+
+import type { EUsersStoreActions } from '../../enums';
+import { EUsersStoreKeys } from '../../enums';
+import type { IUsersStoreState } from '../../interfaces';
+import { UsersReducer } from './users.reducer';
 
 @Injectable({
   providedIn: 'root',

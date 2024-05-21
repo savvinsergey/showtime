@@ -1,15 +1,18 @@
-import { IAction } from '@showtime/shared/interfaces';
+import type { IAction } from '@showtime/shared/interfaces';
 import type { Observable, Subscription } from 'rxjs';
 import { BehaviorSubject, distinctUntilKeyChanged, pluck } from 'rxjs';
 
-import { ValueOf } from '../types';
+import type { ValueOf } from '../types';
 
 // https://betterprogramming.pub/how-to-write-a-redux-like-state-management-store-using-rxjs-33b6095c5a7e
 export class BaseStore<S, A> {
   private _state: BehaviorSubject<S>;
   private readonly _reducer: <P extends ValueOf<S>>(state: S, action: IAction<P, A>) => S;
 
-  protected constructor(reducer: <P extends ValueOf<S>>(state: S, action: IAction<P, A>) => S, initialState: S) {
+  protected constructor(
+    reducer: <P extends ValueOf<S>>(state: S, action: IAction<P, A>) => S,
+    initialState: S,
+  ) {
     this._state = new BehaviorSubject(initialState);
     this._reducer = reducer;
   }

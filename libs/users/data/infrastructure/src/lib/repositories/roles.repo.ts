@@ -1,16 +1,15 @@
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { RolesUsersRepository, UserRoleModel } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
 
-import { UsersStore } from '../core/store';
 import { RolesUsersApi } from '../core/api';
-import { IUsersStoreState } from '../interfaces';
+import { UsersStore } from '../core/store';
 import { EUsersStoreActions, EUsersStoreKeys } from '../enums';
-
-import { RolesUsersRepository, UserRoleModel } from '@showtime/users/domain';
+import type { IUsersStoreState } from '../interfaces';
 
 export class RolesUsersData implements RolesUsersRepository {
-  public readonly api = inject(RolesUsersApi);
   public readonly store = inject(UsersStore);
+  public readonly api = inject(RolesUsersApi);
 
   // ---------------------- //
 

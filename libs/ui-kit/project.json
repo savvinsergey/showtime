@@ -12,6 +12,14 @@
       "options": {
         "lintFilePatterns": ["libs/ui-kit/**/*.ts", "libs/ui-kit/**/*.html"]
       }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "configFile": "libs/ui-kit/.stylelintrc.json",
+        "lintFilePatterns": ["libs/ui-kit/**/*.scss"]
+      }
     }
   }
 }

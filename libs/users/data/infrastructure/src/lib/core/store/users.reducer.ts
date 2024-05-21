@@ -1,9 +1,9 @@
-import { IUsersStoreState } from '../../interfaces';
-import { EUsersStoreActions, EUsersStoreKeys } from '../../enums';
+import type { IAction } from '@showtime/shared/interfaces';
+import type { ValueOf } from '@showtime/shared/types';
+import type { UserModel, UserRoleModel } from '@showtime/users/domain';
 
-import { UserModel, UserRoleModel } from '@showtime/users/domain';
-import { IAction } from '@showtime/shared/interfaces';
-import { ValueOf } from '@showtime/shared/types';
+import { EUsersStoreActions, EUsersStoreKeys } from '../../enums';
+import type { IUsersStoreState } from '../../interfaces';
 
 export const UsersReducer = <TPayload extends ValueOf<IUsersStoreState>>(
   state: IUsersStoreState,
@@ -26,16 +26,19 @@ export const UsersReducer = <TPayload extends ValueOf<IUsersStoreState>>(
     case EUsersStoreActions.SET_ALL_USERS: {
       return { ...state, [EUsersStoreKeys.ALL_USERS]: payload as UserModel[] };
     }
-    default:
+    default: {
       return state;
+    }
   }
 };
 
 const typeGuards = {
   [EUsersStoreActions.SET_TOKEN]: (payload: ValueOf<IUsersStoreState>): payload is string =>
     typeof payload === 'string',
-  [EUsersStoreActions.SET_ALL_USERS]: (payload: ValueOf<IUsersStoreState>): payload is UserModel[] =>
-    Array.isArray(payload) && !!(payload[0] as UserModel)?.user_id,
-  [EUsersStoreActions.SET_ALL_ROLES]: (payload: ValueOf<IUsersStoreState>): payload is UserRoleModel[] =>
-    Array.isArray(payload) && !!(payload[0] as UserRoleModel)?.name,
+  [EUsersStoreActions.SET_ALL_USERS]: (
+    payload: ValueOf<IUsersStoreState>,
+  ): payload is UserModel[] => Array.isArray(payload) && !!(payload[0] as UserModel)?.user_id,
+  [EUsersStoreActions.SET_ALL_ROLES]: (
+    payload: ValueOf<IUsersStoreState>,
+  ): payload is UserRoleModel[] => Array.isArray(payload) && !!(payload[0] as UserRoleModel)?.name,
 };

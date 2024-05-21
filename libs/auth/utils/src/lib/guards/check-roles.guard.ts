@@ -1,17 +1,20 @@
 import 'reflect-metadata';
-import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
+
 import { inject } from '@angular/core';
+import type { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthFacade } from '@showtime/auth/ui/facade';
 import { tap } from 'rxjs';
 
 import { checkRoles } from '../operators/check-roles.operator';
-
-import { AuthFacade } from '@showtime/auth/ui/facade';
 
 export const CheckRolesGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const authFacade = inject(AuthFacade);
   const router = inject(Router);
 
-  const allowedRoles = route.data?.['roles'] as Array<string>;
+  // ------------------ //
+
+  const allowedRoles = route.data?.['roles'] as string[];
 
   if (!allowedRoles) {
     console.error('Please specify user roles to check on route');

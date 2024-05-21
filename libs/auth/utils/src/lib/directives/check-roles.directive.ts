@@ -1,30 +1,28 @@
+import type { OnChanges, SimpleChanges } from '@angular/core';
 import {
   ChangeDetectorRef,
   DestroyRef,
   Directive,
   inject,
   Input,
-  OnChanges,
-  SimpleChanges,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import type { EUserRoles } from '@showtime/auth/shared';
+import { AuthFacade } from '@showtime/auth/ui/facade';
 
 import { checkRoles } from '../operators/check-roles.operator';
-
-import { EUserRoles } from '@showtime/auth/shared';
-import { AuthFacade } from '@showtime/auth/ui/facade';
 
 @Directive({
   selector: '[checkAccess]',
 })
 export class CheckAccessDirective implements OnChanges {
   private readonly authFacade = inject(AuthFacade);
+  private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
   private readonly template = inject(TemplateRef);
   private readonly vcr = inject(ViewContainerRef);
-  private readonly cdr = inject(ChangeDetectorRef);
 
   // ------------------- //
 
@@ -35,7 +33,11 @@ export class CheckAccessDirective implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const roles = changes['roles']?.currentValue;
     if (roles?.length) {
-      this.user$!.pipe(checkRoles(roles), takeUntilDestroyed(this.destroyRef)).subscribe((accessAllowed: boolean) => {
+      // prettier-ignore
+      this.user$!.pipe(
+        checkRoles(roles),
+        takeUntilDestroyed(this.destroyRef)
+      ).subscribe((accessAllowed: boolean) => {
         if (accessAllowed) {
           this.vcr.createEmbeddedView(this.template);
           this.cdr.markForCheck();

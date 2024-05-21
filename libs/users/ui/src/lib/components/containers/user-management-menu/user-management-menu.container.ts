@@ -1,22 +1,21 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-import { DropdownComponent } from '@showtime/ui-kit';
-
-import { UserManagementMenuService } from './user-management-menu.service';
-import { RolesManagementContainer } from '../roles-management/roles-management.container';
-import { UserManagementMenuComponent } from '../../presentional';
-import { EUserManagementClick } from '../../../enums';
-
-import { ModalsService } from '@showtime/shared/services';
-import { Alert, Confirm } from '@showtime/shared/decorators';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { AlertToastComponent, SearchFieldComponent } from '@showtime/shared/components';
+import { Alert, Confirm } from '@showtime/shared/decorators';
 import { EventHandlerPipe } from '@showtime/shared/pipes';
+import { ModalsService } from '@showtime/shared/services';
+import { DropdownComponent } from '@showtime/ui-kit';
+import type { UserModel } from '@showtime/users/domain';
 import { UsersFacade } from '@showtime/users/ui/facade';
-import { UserModel } from '@showtime/users/domain';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+
+import { EUserManagementClick } from '../../../enums';
+import { UserManagementMenuComponent } from '../../presentional';
+import { RolesManagementContainer } from '../roles-management/roles-management.container';
+import { UserManagementMenuService } from './user-management-menu.service';
 
 @Component({
-  selector: 'st-user-management-menu_c',
+  selector: 'st-user-management-menu-c',
   standalone: true,
   imports: [
     CommonModule,
@@ -34,9 +33,9 @@ import { UserModel } from '@showtime/users/domain';
   providers: [UserManagementMenuService],
 })
 export class UserManagementMenuContainer {
-  private readonly usersFacade = inject(UsersFacade);
-  private readonly userManagementMenuService = inject(UserManagementMenuService);
   private readonly modalsService = inject(ModalsService);
+  private readonly userManagementMenuService = inject(UserManagementMenuService);
+  private readonly usersFacade = inject(UsersFacade);
 
   // ------------------- //
 

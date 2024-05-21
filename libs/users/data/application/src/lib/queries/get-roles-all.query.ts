@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-
-import { RolesUsersRepository, UserRoleModel } from '@showtime/users/domain';
 import { BaseCqrsQuery } from '@showtime/shared/utils';
+import type { UserRoleModel } from '@showtime/users/domain';
+import { RolesUsersRepository } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class GetRolesAllQuery extends BaseCqrsQuery<void, UserRoleModel[]> {

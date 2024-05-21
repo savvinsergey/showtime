@@ -2,7 +2,7 @@
   "name": "auth-abstract",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/auth/abstract/src",
-  "prefix": "showtime",
+  "prefix": "st",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/auth/abstract/**/*.ts", "libs/auth/abstract/**/*.html"]
+        "lintFilePatterns": ["libs/auth/abstract/**/*.ts"]
       }
     }
   }

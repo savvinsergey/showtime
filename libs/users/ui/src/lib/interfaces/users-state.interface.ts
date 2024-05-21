@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
-import { UserModel, UserRoleModel } from '@showtime/users/domain';
-import { IFacadeState } from '@showtime/shared/interfaces';
+import type { IFacadeState } from '@showtime/shared/interfaces';
+import type { UserModel, UserRoleModel } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
 
 export interface IUsersState {
   usersToken: IFacadeState<string>;

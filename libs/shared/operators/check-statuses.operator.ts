@@ -1,5 +1,7 @@
-import { map, OperatorFunction, pipe } from 'rxjs';
-import { EAsyncStatusesCqrs } from '../enums';
+import type { OperatorFunction } from 'rxjs';
+import { map, pipe } from 'rxjs';
+
+import type { EAsyncStatusesCqrs } from '../enums';
 
 export const checkStatuses = (
   statusForCheck: EAsyncStatusesCqrs,

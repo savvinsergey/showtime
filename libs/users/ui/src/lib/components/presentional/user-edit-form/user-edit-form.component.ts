@@ -1,22 +1,21 @@
+import { CommonModule } from '@angular/common';
+import type { OnChanges, SimpleChanges } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   inject,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-
-import { UserModel } from '@showtime/users/domain';
-import { IUserEditForm, IUserEditFormConfig, IUserEditFormValue } from '@showtime/users/ui';
-import { DatepickerComponent } from '@showtime/ui-kit';
-import { FormControls } from '@showtime/shared/types';
+import type { FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import type { FormControls } from '@showtime/shared/types';
 import { urlValidator } from '@showtime/shared/validators';
+import { DatepickerComponent } from '@showtime/ui-kit';
+import type { UserModel } from '@showtime/users/domain';
+import type { IUserEditForm, IUserEditFormConfig, IUserEditFormValue } from '@showtime/users/ui';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @Component({
   selector: 'st-user-edit-form',
@@ -31,28 +30,28 @@ export class UserEditFormComponent implements OnChanges {
 
   // ------------------------ //
 
-  @Input() user!: UserModel;
-  @Input() config!: IUserEditFormConfig;
+  @Input() public user!: UserModel;
+  @Input() public config!: IUserEditFormConfig;
 
-  @Output() saved = new EventEmitter<IUserEditFormValue>();
+  @Output() public readonly saved = new EventEmitter<IUserEditFormValue>();
 
   public readonly form = this.createForm();
 
-  public get inProgress() {
-    return this.config.inProgress;
+  public get defaultLanguage() {
+    const defaultLanguage = this.languages.find(lang => lang.default)?.value;
+    return defaultLanguage || this.languages[0]?.value;
   }
 
-  public get languages() {
-    return this.config.languages;
+  public get inProgress() {
+    return this.config.inProgress;
   }
 
   public get isAuth0Provider() {
     return this.config.isAuth0Provider;
   }
 
-  public get defaultLanguage() {
-    const defaultLanguage = this.languages.find(lang => lang.default)?.value;
-    return defaultLanguage || this.languages[0]?.value;
+  public get languages() {
+    return this.config.languages;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

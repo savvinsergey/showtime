@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { combineLatest, map, startWith } from 'rxjs';
 
-import { IDropdownUserConfig } from '../../../interfaces';
 import { DROPDOWN_USER_DEFAULT_CONFIG } from '../../../constants';
 import { AuthFacade } from '../../../facades';
+import type { IDropdownUserConfig } from '../../../interfaces';
 
 @Injectable()
 export class DropdownUserService {
@@ -16,7 +16,7 @@ export class DropdownUserService {
     this.authFacade.handlers.login.status$,
   ]).pipe(
     map(
-      ([isAuthenticated, loginStatus]) =>
+      ([isAuthenticated]) =>
         ({
           showSignOutLink: isAuthenticated,
         } as IDropdownUserConfig),

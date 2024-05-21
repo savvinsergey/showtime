@@ -1,27 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { InlineSVGModule } from 'ng-inline-svg-2';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Alert } from '@showtime/shared/decorators';
+import type { IModal } from '@showtime/shared/interfaces';
+import { EventHandlerPipe } from '@showtime/shared/pipes';
+import { ModalComponent } from '@showtime/ui-kit';
+import type { UserRoleModel } from '@showtime/users/domain';
+import { UsersFacade } from '@showtime/users/ui/facade';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 import { RolesManagementComponent } from '../../presentional';
 import { RolesManagementService } from './roles-management.service';
 
-import { ModalComponent } from '@showtime/ui-kit';
-import { IModal } from '@showtime/shared/interfaces';
-import { EventHandlerPipe } from '@showtime/shared/pipes';
-import { UsersFacade } from '@showtime/users/ui/facade';
-import { Alert } from '@showtime/shared/decorators';
-import { UserRoleModel } from '@showtime/users/domain';
-import { UsersAbstractModule } from '@showtime/users/abstract';
-
 @Component({
-  selector: 'st-roles-management_c',
+  selector: 'st-roles-management-c',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    UsersAbstractModule,
     InlineSVGModule,
     ModalComponent,
     RolesManagementComponent,
@@ -33,18 +29,18 @@ import { UsersAbstractModule } from '@showtime/users/abstract';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RolesManagementContainer implements IModal<string> {
-  private readonly usersFacade = inject(UsersFacade);
   private readonly rolesManagementService = inject(RolesManagementService);
+  private readonly usersFacade = inject(UsersFacade);
 
   // -------------------- //
 
   @ViewChild(RolesManagementComponent)
-  public rolesManagementModal!: RolesManagementComponent;
+  public readonly rolesManagementModal!: RolesManagementComponent;
 
   public readonly allRoles$ = this.usersFacade.state.allRoles$;
   public readonly userRoles$ = this.usersFacade.state.userRoles$;
-  public readonly config$ = this.rolesManagementService.config$;
   public readonly close$ = this.rolesManagementService.close$;
+  public readonly config$ = this.rolesManagementService.config$;
 
   public onClose = () => this.close();
 
@@ -59,7 +55,7 @@ export class RolesManagementContainer implements IModal<string> {
   public open(userId: string): void {
     this.usersFacade.getRoles(userId);
 
-    this.rolesManagementModal.open(userId);
+    this.rolesManagementModal?.open(userId);
   }
 
   public close() {

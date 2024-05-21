@@ -1,9 +1,10 @@
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import type { Observable } from 'rxjs';
 import {
   BehaviorSubject,
   catchError,
   delay,
   filter,
-  Observable,
   of,
   ReplaySubject,
   shareReplay,
@@ -11,10 +12,9 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { Query } from '../interfaces';
 import { EAsyncStatusesCqrs } from '../enums';
+import type { Query } from '../interfaces';
 
 export class BaseCqrsQuery<C, M> implements Query<C, M> {
   private initialized = false;
@@ -41,7 +41,7 @@ export class BaseCqrsQuery<C, M> implements Query<C, M> {
           this.requestChangedSource.next(this.defaultCriteria);
         }
       }),
-      filter(value => (this.needInitializeData && this.initialized) || true),
+      filter(() => (this.needInitializeData && this.initialized) || true),
     );
   }
 
@@ -73,10 +73,10 @@ export class BaseCqrsQuery<C, M> implements Query<C, M> {
         }),
         switchMap(criteria =>
           this.query(criteria).pipe(
-            catchError(err => {
+            catchError(error => {
               this.status = EAsyncStatusesCqrs.ERROR;
 
-              return throwError(err);
+              return throwError(error);
             }),
             tap(() => (this.status = EAsyncStatusesCqrs.SUCCESS)),
           ),
@@ -99,6 +99,6 @@ export class BaseCqrsQuery<C, M> implements Query<C, M> {
   }
 
   protected query(criteria?: C): Observable<M> {
-    return of(null as M);
+    return of(criteria as M);
   }
 }

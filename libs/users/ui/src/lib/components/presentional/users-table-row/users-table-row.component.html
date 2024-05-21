@@ -1,6 +1,6 @@
 <td class="users-td__nickname">
   <ng-container *ngIf="user?.picture; else defaultUserPhotoTmpl">
-    <img class="w-8 h-8 rounded-full" alt="User photo" [src]="user.picture" />
+    <img class="h-8 w-8 rounded-full" alt="User photo" [src]="user.picture" />
   </ng-container>
   <div class="flex flex-col">
     {{ user.user_metadata?.nickname || user.nickname }}
@@ -25,18 +25,18 @@
 <td>
   <div class="users-td__locker">
     <ng-container *ngIf="user.blocked; else lockOpenIconTmpl">
-      <i class="w-4 h-4" [inlineSVG]="'assets/svg/lock.svg'"></i>
+      <i class="h-4 w-4" [inlineSVG]="'assets/svg/lock.svg'"></i>
     </ng-container>
   </div>
 </td>
 <td>
-  <st-user-management-menu_c [user]="user"> </st-user-management-menu_c>
+  <st-user-management-menu-c [user]="user"> </st-user-management-menu-c>
 </td>
 
 <ng-template #defaultUserPhotoTmpl>
-  <i class="w-8 h-8" inlineSVG="assets/svg/user-circle.svg"></i>
+  <i class="h-8 w-8" inlineSVG="assets/svg/user-circle.svg"></i>
 </ng-template>
 
 <ng-template #lockOpenIconTmpl>
-  <i class="w-5 h-4" inlineSVG="assets/svg/lock-open.svg"></i>
+  <i class="h-4 w-5" inlineSVG="assets/svg/lock-open.svg"></i>
 </ng-template>

@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import {
+  RolesUsersRepository,
+  TokenUsersRepository,
+  UsersRepository,
+} from '@showtime/users/domain';
 
-import { RolesUsersApi, UsersApi, TokenUsersApi } from './core/api';
-import { UsersTokenData, UsersData, RolesUsersData } from './repositories';
-
-import { RolesUsersRepository, TokenUsersRepository, UsersRepository } from '@showtime/users/domain';
+import { RolesUsersApi, TokenUsersApi, UsersApi } from './core/api';
+import { RolesUsersData, UsersData, UsersTokenData } from './repositories';
 
 @NgModule({
   imports: [CommonModule],

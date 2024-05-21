@@ -1,5 +1,6 @@
-import { EUsersTableSort } from '../enums';
 import { ETableSortDirection } from '@showtime/shared/enums';
+
+import { EUsersTableSort } from '../enums';
 
 export const USERS_TABLE_DEFAULT_SORT = {
   field: EUsersTableSort.EMAIL,

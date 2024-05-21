@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs';
-import { EAsyncStatusesCqrs } from '../enums';
+import type { Observable } from 'rxjs';
+
+import type { EAsyncStatusesCqrs } from '../enums';
 
 export interface IFacadeHandler<C> {
   status$: Observable<EAsyncStatusesCqrs>;

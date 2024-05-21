@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ILayoutUiMenuItemConfig } from '../../../interfaces';
+
+import type { ILayoutUiMenuItemConfig } from '../../../interfaces';
 
 @Component({
   selector: 'st-sidebar-menu-item',

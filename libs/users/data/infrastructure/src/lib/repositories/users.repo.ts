@@ -1,12 +1,5 @@
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { UsersStore } from '../core/store';
-import { UsersApi } from '../core/api';
-import { IUsersStoreState } from '../interfaces';
-import { EUsersStoreActions, EUsersStoreKeys } from '../enums';
-
-import {
+import type {
   IAllUsersPayload,
   IUsersUpdateRolesPayload,
   IUserUpdatePayload,
@@ -14,10 +7,16 @@ import {
   UserRoleModel,
   UsersRepository,
 } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
+
+import { UsersApi } from '../core/api';
+import { UsersStore } from '../core/store';
+import { EUsersStoreActions, EUsersStoreKeys } from '../enums';
+import type { IUsersStoreState } from '../interfaces';
 
 export class UsersData implements UsersRepository {
-  public readonly api = inject(UsersApi);
   public readonly store = inject(UsersStore);
+  public readonly api = inject(UsersApi);
 
   // -------  USER -------- //
 
@@ -34,12 +33,12 @@ export class UsersData implements UsersRepository {
     return this.api.getAll(payload);
   }
 
-  public update(payload: IUserUpdatePayload): Observable<UserModel> {
-    return this.api.update(payload);
-  }
-
   public delete(id: string): Observable<void> {
     return this.api.delete(id);
+  }
+
+  public update(payload: IUserUpdatePayload): Observable<UserModel> {
+    return this.api.update(payload);
   }
 
   // ------- USER ROLES ------- //

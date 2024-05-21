@@ -1,12 +1,11 @@
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { TokenUsersRepository } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
 
-import { UsersStore } from '../core/store';
 import { TokenUsersApi } from '../core/api';
-import { IUsersStoreState } from '../interfaces';
+import { UsersStore } from '../core/store';
 import { EUsersStoreActions, EUsersStoreKeys } from '../enums';
-
-import { TokenUsersRepository } from '@showtime/users/domain';
+import type { IUsersStoreState } from '../interfaces';
 
 export class UsersTokenData implements TokenUsersRepository {
   public readonly api = inject(TokenUsersApi);

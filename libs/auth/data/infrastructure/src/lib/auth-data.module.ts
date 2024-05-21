@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AuthData } from './repositories';
-import { Auth0Api } from './core/api';
-
+import { NgModule } from '@angular/core';
 import { AuthRepository } from '@showtime/auth/domain';
+
+import { Auth0Api } from './core/api';
+import { AuthData } from './repositories';
 
 @NgModule({
   imports: [CommonModule],

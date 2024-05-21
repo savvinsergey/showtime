@@ -1,18 +1,18 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
-import { Params } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import type { Params } from '@angular/router';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, skip } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { QueryParamsService } from './query-params.service';
-import { BaseParamsConverter } from '../utils';
-import { QUERY_PARAMS_LIST } from '../constants';
+import { QUERY_PARAMETERS_LIST } from '../constants';
+import { BaseParametersMapper } from '../utils';
+import { QueryParametersService } from './query-parameters.service';
 
 @Injectable()
 export class FiltersService<TValue> {
-  private readonly converter = inject(BaseParamsConverter, { host: true });
-  private readonly queryParamsList = inject(QUERY_PARAMS_LIST, { host: true });
-  private readonly queryParamsService = inject(QueryParamsService);
+  private readonly converter = inject(BaseParametersMapper, { host: true });
+  private readonly queryParamsList = inject(QUERY_PARAMETERS_LIST, { host: true });
+  private readonly queryParamsService = inject(QueryParametersService);
   private readonly destroyRef = inject(DestroyRef);
 
   // ---------------------- //
@@ -23,19 +23,19 @@ export class FiltersService<TValue> {
   public readonly filters$ = this.filtersSource.asObservable().pipe(skip(1));
 
   public set filter(value: TValue) {
-    const queryParams = { ...this.queryParams };
-    const params = this.converter?.fromDataToParams(value) || value;
+    const queryParameters = { ...this.queryParams };
+    const parameters = this.converter?.fromDataToParams(value) || value;
 
-    Object.keys(params).forEach(key => {
-      queryParams[key] = params[key];
-    });
+    for (const key of Object.keys(parameters)) {
+      queryParameters[key] = parameters[key];
+    }
 
-    if (JSON.stringify(queryParams) === JSON.stringify(this.queryParams)) {
+    if (JSON.stringify(queryParameters) === JSON.stringify(this.queryParams)) {
       return;
     }
 
-    this.queryParams = queryParams;
-    this.queryParamsService.queryParams = queryParams;
+    this.queryParams = queryParameters;
+    this.queryParamsService.queryParams = queryParameters;
   }
 
   constructor() {
@@ -51,16 +51,18 @@ export class FiltersService<TValue> {
     return this.converter?.fromDataToPayload(filter) as TPayload;
   }
 
-  private initialize(queryParamsList: string[] | null) {
-    if (!queryParamsList) {
+  private initialize(queryParametersList: string[] | null) {
+    if (!queryParametersList) {
       console.error('Please specify query params list');
       return;
     }
 
     this.queryParamsService.queryParams$
       .pipe(
-        map((queryParams: Params) => this.queryParamsService.convertQueryParams(queryParams, queryParamsList)),
-        map(params => this.converter?.fromParamsToData(params) || params),
+        map((queryParameters: Params) =>
+          this.queryParamsService.convertQueryParams(queryParameters, queryParametersList),
+        ),
+        map(parameters => this.converter?.fromParamsToData(parameters) || parameters),
         debounceTime(0),
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
         takeUntilDestroyed(this.destroyRef),

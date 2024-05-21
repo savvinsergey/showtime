@@ -1,4 +1,8 @@
-import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from '@showtime/users/application/commands';
+import type {
+  DeleteCommand,
+  UpdateCommand,
+  UpdateRolesCommand,
+} from '@showtime/users/application/commands';
 
 export interface IUsersCommands {
   update: UpdateCommand;

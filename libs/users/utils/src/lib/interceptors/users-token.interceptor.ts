@@ -1,22 +1,25 @@
-import { HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import type { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { first, switchMap } from 'rxjs';
-
 import { ENVIRONMENT } from '@showtime/shared/const';
 import { UsersFacade } from '@showtime/users/ui/facade';
+import { first, switchMap } from 'rxjs';
 
-export const usersAuthTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const usersAuthTokenInterceptor: HttpInterceptorFn = (
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn,
+) => {
   const usersFacade = inject(UsersFacade);
   const environment = inject(ENVIRONMENT);
 
   // ---------------- //
 
   if (
-    req.url.indexOf(environment.auth0Api.url) === -1 ||
-    req.url.indexOf('oauth/token') !== -1 ||
+    !request.url.includes(environment.auth0Api.url) ||
+    request.url.includes('oauth/token') ||
     !usersFacade.state.usersToken$
   ) {
-    return next(req);
+    return next(request);
   }
 
   return usersFacade.state.usersToken$.pipe(
@@ -26,9 +29,9 @@ export const usersAuthTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<un
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       });
-      const modifiedReq = req.clone({ headers });
+      const modifiedRequest = request.clone({ headers });
 
-      return next(modifiedReq);
+      return next(modifiedRequest);
     }),
   );
 };

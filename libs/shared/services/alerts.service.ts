@@ -1,9 +1,9 @@
 import { ApplicationRef, inject, Injectable, ViewContainerRef } from '@angular/core';
 import { asapScheduler } from 'rxjs';
 
-import { EAlertTypes } from '../enums';
 import { AlertToastComponent } from '../components';
 import { ALERT_DEFAULT_DURATION } from '../constants';
+import type { EAlertTypes } from '../enums';
 
 @Injectable({
   providedIn: 'root',
@@ -14,26 +14,26 @@ export class AlertsService {
   // ---------------- //
 
   public open(type: EAlertTypes, text: string): void {
-    const rootViewContainerRef = this.appRef.components[0].injector.get(ViewContainerRef);
+    const rootViewContainerReference = this.appRef.components[0].injector.get(ViewContainerRef);
 
     const node = document.createElement('span');
     const textNode = document.createTextNode(text);
 
-    node.appendChild(textNode);
+    node.append(textNode);
 
-    const componentRef = rootViewContainerRef.createComponent(AlertToastComponent, {
+    const componentReference = rootViewContainerReference.createComponent(AlertToastComponent, {
       projectableNodes: [[node]],
     });
 
-    componentRef.setInput('type', type);
+    componentReference.setInput('type', type);
 
-    const instance = componentRef?.instance;
+    const instance = componentReference?.instance;
     if (instance.close instanceof Function) {
       const originalClose = instance.close.bind(instance);
       instance.close = () => {
         originalClose();
         asapScheduler.schedule(() => {
-          componentRef?.destroy();
+          componentReference?.destroy();
         }, ALERT_DEFAULT_DURATION);
       };
     }

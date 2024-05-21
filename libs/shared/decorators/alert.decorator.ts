@@ -1,23 +1,21 @@
 import 'reflect-metadata';
+
 import { isObservable, Subject, takeUntil, tap } from 'rxjs';
 
-import { AppComponent } from '../../../apps/showtime/src/app/app.component';
 import { EAlertTypes, EAsyncStatusesCqrs } from '../enums';
 import { AlertsService } from '../services';
+import { RootInjector } from '../utils/root-injector';
 
 export const Alert = (message: { success?: string; error?: string }): MethodDecorator => {
-  return function (target: Object, key: string | symbol, descriptor: PropertyDescriptor) {
+  return function (target: object, key: string | symbol, descriptor: PropertyDescriptor) {
     const original = descriptor.value;
 
-    descriptor.value = function (...args: unknown[]) {
-      const alertsService = AppComponent.appInjector.get(AlertsService);
-      const destroyRefSource = new Subject<void>();
+    descriptor.value = function (...arguments_: unknown[]) {
+      const alertsService = RootInjector.get(AlertsService);
+      const destroyReferenceSource = new Subject<void>();
 
-      if (!alertsService) {
-        console.error('AlertsService was not found');
-        return original.apply(this, args);
-      } else {
-        const result$ = original.apply(this, args);
+      if (alertsService) {
+        const result$ = original.apply(this, arguments_);
 
         if (!isObservable(result$)) {
           console.error('Result of method is not Observable. Method must return his status$');
@@ -25,8 +23,8 @@ export const Alert = (message: { success?: string; error?: string }): MethodDeco
         }
 
         const complete = () => {
-          destroyRefSource.next();
-          destroyRefSource.complete();
+          destroyReferenceSource.next();
+          destroyReferenceSource.complete();
         };
 
         return result$
@@ -46,9 +44,12 @@ export const Alert = (message: { success?: string; error?: string }): MethodDeco
                 }
               }
             }),
-            takeUntil(destroyRefSource.asObservable()),
+            takeUntil(destroyReferenceSource.asObservable()),
           )
           .subscribe();
+      } else {
+        console.error('AlertsService was not found');
+        return original.apply(this, arguments_);
       }
     };
 

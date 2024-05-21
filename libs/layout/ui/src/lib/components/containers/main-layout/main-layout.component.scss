@@ -1,29 +1,29 @@
 :host {
   .header {
-    @apply fixed top-0 z-40 w-full bg-white border-b border-gray-200 px-3 py-3 flex items-center justify-between;
+    @apply fixed top-0 z-40 flex w-full items-center justify-between border-b border-gray-200 bg-white px-3 py-3;
 
     &__logo {
       @apply flex items-center justify-start;
     }
 
     &__logo-link {
-      @apply flex ml-2 md:mr-24 self-center text-xl font-semibold whitespace-nowrap;
+      @apply ml-2 flex self-center whitespace-nowrap text-xl font-semibold md:mr-24;
     }
 
     &__user-menu {
-      @apply flex items-center mr-1;
+      @apply mr-1 flex items-center;
     }
 
     &__user-img {
-      @apply w-8 h-8 rounded-full;
+      @apply h-8 w-8 rounded-full;
     }
   }
 
   .content {
-    @apply flex min-h-screen p-4 bg-gray-50 sm:ml-64;
+    @apply flex min-h-screen bg-gray-50 p-4 sm:ml-64;
   }
 
   .default-user-img {
-    @apply w-8 h-8;
+    @apply h-8 w-8;
   }
 }

@@ -1,5 +1,5 @@
-import { TSearchValue } from '@showtime/shared/types';
-import { ITableSortValue } from '@showtime/shared/interfaces';
+import type { ITableSortValue } from '@showtime/shared/interfaces';
+import type { TSearchValue } from '@showtime/shared/types';
 
 export interface IUserPageData {
   search?: TSearchValue;
@@ -11,7 +11,7 @@ export interface IUserPagePayload {
   sort?: string;
 }
 
-export interface IUserPageParams {
+export interface IUserPageParameters {
   search?: string | null;
   sort?: string | null;
 }

@@ -13,8 +13,7 @@
                 $implicit: item.sortValue,
                 template: item.templateRef
               }
-            "
-          ></ng-container>
+            "></ng-container>
         </ng-template>
       </th>
     </tr>
@@ -27,8 +26,7 @@
           context: {
             $implicit: item
           }
-        "
-      ></ng-container>
+        "></ng-container>
     </ng-container>
   </tbody>
 </table>
@@ -45,8 +43,7 @@
     <i
       class="sort-link__icon-direction"
       [inlineSVG]="sort?.direction | sortDirectionIcon"
-      *ngIf="sort?.field === sortValue"
-    >
+      *ngIf="sort?.field === sortValue">
     </i>
     <i class="sort-link__icon-sort" inlineSVG="assets/svg/sort.svg" *ngIf="!sort"></i>
   </a>

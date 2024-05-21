@@ -1,12 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
-
-import { UserModel } from '@showtime/auth/domain';
+import type { UserModel } from '@showtime/auth/domain';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class Auth0Api {
-  private auth0Service = inject(AuthService);
+  private readonly auth0Service = inject(AuthService);
 
   // ------------------------- //
 

@@ -1,22 +1,23 @@
 import 'reflect-metadata';
-import { IFacadeState } from '../interfaces';
+
+import type { IFacadeState } from '../interfaces';
 
 export const SetDefaultStateProperty = (field: keyof IFacadeState): PropertyDecorator => {
-  return function (target: Object, propertyKey) {
-    let value: Record<string, IFacadeState> = {};
+  return function (target: object, propertyKey) {
+    const privateKey = `_${String(propertyKey)}`;
     Reflect.defineProperty(target, propertyKey, {
-      get: () => {
-        return value;
+      get: function () {
+        return this[privateKey];
       },
-      set: (newVal: Record<string, IFacadeState>) => {
-        Object.keys(newVal).forEach((innerField: string) => {
-          Object.defineProperty(newVal, innerField + '$', {
-            value: newVal[innerField][field],
+      set: function (newValue: Record<string, IFacadeState>) {
+        for (const innerField of Object.keys(newValue)) {
+          Reflect.defineProperty(newValue, innerField + '$', {
+            value: newValue[innerField][field],
           });
-        });
-        value = newVal;
+        }
+        this[privateKey] = newValue;
       },
-      enumerable: true,
+      enumerable: false,
       configurable: true,
     });
   };

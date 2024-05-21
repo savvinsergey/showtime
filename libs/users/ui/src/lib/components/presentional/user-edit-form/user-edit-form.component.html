@@ -20,12 +20,12 @@
             id="nickname"
             class="form-field__control"
             placeholder="Your nickname"
-            formControlName="nickname"
-          />
+            formControlName="nickname" />
         </div>
         <div class="form-group__field form-field">
           <label for="birthday" class="form-field__label"> Birthday </label>
-          <uik-datepicker placeholder="Your birthday" id="birthday" formControlName="birthday"> </uik-datepicker>
+          <uik-datepicker placeholder="Your birthday" id="birthday" formControlName="birthday">
+          </uik-datepicker>
         </div>
         <div class="form-group__field form-field">
           <label for="language" class="form-field__label"> Language </label>
@@ -46,12 +46,16 @@
             id="country"
             class="form-field__control"
             placeholder="Your country"
-            formControlName="country"
-          />
+            formControlName="country" />
         </div>
         <div class="form-group__field form-field">
           <label for="city" class="form-field__label"> City </label>
-          <input type="text" id="city" class="form-field__control" placeholder="Your city" formControlName="city" />
+          <input
+            type="text"
+            id="city"
+            class="form-field__control"
+            placeholder="Your city"
+            formControlName="city" />
         </div>
         <div class="form-group__field form-field">
           <label for="address" class="form-field__label"> Address </label>
@@ -60,8 +64,7 @@
             id="address"
             class="form-field__control"
             placeholder="Your address"
-            formControlName="address"
-          />
+            formControlName="address" />
         </div>
       </div>
 
@@ -74,8 +77,7 @@
             id="instagram"
             class="form-field__control"
             placeholder="Your instagram"
-            formControlName="instagramLink"
-          />
+            formControlName="instagramLink" />
         </div>
         <div class="form-group__field form-field">
           <label for="instagram" class="form-field__label"> Facebook </label>
@@ -84,8 +86,7 @@
             id="facebook"
             class="form-field__control"
             placeholder="Your facebook"
-            formControlName="facebookLink"
-          />
+            formControlName="facebookLink" />
         </div>
       </div>
       <div class="user-edit-form__buttons-block">
@@ -93,8 +94,7 @@
           class="btn-save"
           [ngClass]="{ 'cursor-not-allowed opacity-60': form.invalid || inProgress?.saving }"
           [disabled]="form.invalid || inProgress?.saving"
-          (click)="saved.emit({ id: user.sub, body: form.value })"
-        >
+          (click)="saved.emit({ id: user.sub, body: form.value })">
           <ng-container *ngIf="inProgress?.saving">
             <ng-container *ngTemplateOutlet="buttonLoaderTmp"></ng-container>
           </ng-container>

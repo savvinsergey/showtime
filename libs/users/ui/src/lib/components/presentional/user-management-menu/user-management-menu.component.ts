@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { DropdownComponent } from '@showtime/ui-kit';
+import type { UserModel } from '@showtime/users/domain';
+import type { IUserManagementMenuConfig } from '@showtime/users/ui';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
 import { EUserManagementClick } from '../../../enums';
-
-import { DropdownComponent } from '@showtime/ui-kit';
-import { UserModel } from '@showtime/users/domain';
-import { IUserManagementMenuConfig } from '@showtime/users/ui';
 @Component({
   selector: 'st-user-management-menu',
   standalone: true,
@@ -16,10 +15,10 @@ import { IUserManagementMenuConfig } from '@showtime/users/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserManagementMenuComponent {
-  @Input({ required: true }) user!: UserModel;
-  @Input({ required: true }) config!: IUserManagementMenuConfig;
+  @Input({ required: true }) public config!: IUserManagementMenuConfig;
+  @Input({ required: true }) public user!: UserModel;
 
-  @Output() clicked = new EventEmitter<EUserManagementClick>();
+  @Output() public readonly clicked = new EventEmitter<EUserManagementClick>();
 
   public readonly userManagementClickEnum = EUserManagementClick;
 

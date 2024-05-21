@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import type { OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { User } from '@auth0/auth0-angular';
+import type { User } from '@auth0/auth0-angular';
 import { initDropdowns } from 'flowbite';
 
 import { DROPDOWN_USER_DEFAULT_CONFIG } from '../../../constants';

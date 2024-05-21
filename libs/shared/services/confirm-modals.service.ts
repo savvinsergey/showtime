@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { takeUntil } from 'rxjs';
 
-import { IModalData } from '../interfaces';
 import { ConfirmModalComponent } from '../components';
+import type { IModalData } from '../interfaces';
 import { ModalsService } from './modals.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class ConfirmModalService {
 
   // --------------------- //
 
-  public open<C>(context: C, content: string, confirmHandler: (param: C | undefined) => void) {
+  public open<C>(context: C, content: string, confirmHandler: (parameter: C | undefined) => void) {
     const data: IModalData = { content };
     const confirmModalComponent = this.modalService.open<ConfirmModalComponent<C>, C>(
       ConfirmModalComponent<C>,
@@ -21,9 +21,11 @@ export class ConfirmModalService {
       data,
     );
 
-    confirmModalComponent.confirmed.pipe(takeUntil(this.modalService.destroyed$)).subscribe(confirmHandler);
-    confirmModalComponent.canceled.pipe(takeUntil(this.modalService.destroyed$)).subscribe(() => {
-      confirmModalComponent.close();
-    });
+    confirmModalComponent.confirmed
+      .pipe(takeUntil(this.modalService.destroyed$))
+      .subscribe(confirmHandler);
+    confirmModalComponent.canceled
+      .pipe(takeUntil(this.modalService.destroyed$))
+      .subscribe(() => confirmModalComponent.close());
   }
 }

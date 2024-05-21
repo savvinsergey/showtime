@@ -1,3 +1,3 @@
-# layout-abstract
+# Layout abstract
 
-This library was generated with [Nx](https://nx.dev).
+Library for abstract layer with UI facade implementations

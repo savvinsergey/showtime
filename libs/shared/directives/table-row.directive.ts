@@ -9,7 +9,9 @@ interface TableRowContext<T extends object> {
   standalone: true,
 })
 export class TableRowDirective<T extends object> {
-  public readonly templateRef: TemplateRef<TableRowContext<T>> = inject(TemplateRef<TableRowContext<T>>);
+  public readonly templateRef: TemplateRef<TableRowContext<T>> = inject(
+    TemplateRef<TableRowContext<T>>,
+  );
 
   // -------------------- //
 

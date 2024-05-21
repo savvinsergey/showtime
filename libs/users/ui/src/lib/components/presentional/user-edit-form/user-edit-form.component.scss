@@ -2,22 +2,22 @@
   display: block;
 
   .user-edit-form {
-    @apply grid grid-cols-4 grid-rows-1 gap-4 border-2 bg-white border-gray-200 border-dashed rounded-lg shadow-gray-200;
+    @apply grid grid-cols-4 grid-rows-1 gap-4 rounded-lg border-2 border-dashed border-gray-200 bg-white shadow-gray-200;
 
     &__avatar {
-      @apply col-span-1 py-8 flex justify-center;
+      @apply col-span-1 flex justify-center py-8;
 
       & .avatar {
         &__inner {
           @apply flex flex-col items-center;
 
           > img {
-            @apply h-36 w-36 rounded-full p-1 border-2 border-dashed;
+            @apply h-36 w-36 rounded-full border-2 border-dashed p-1;
           }
         }
 
         &__text {
-          @apply flex items-center justify-center mt-4;
+          @apply mt-4 flex items-center justify-center;
 
           small {
             @apply w-64 px-4 text-center text-gray-300;
@@ -31,15 +31,15 @@
 
       & .form-block {
         &__title {
-          @apply text-xl font-semibold mb-4;
+          @apply mb-4 text-xl font-semibold;
         }
 
         &__group-label {
-          @apply text-base text-gray-500 font-semibold mb-2;
+          @apply mb-2 text-base font-semibold text-gray-500;
         }
 
         &__form-group {
-          @apply grid grid-cols-2 gap-4 mb-8;
+          @apply mb-8 grid grid-cols-2 gap-4;
 
           & .form-group {
             &__field {
@@ -47,11 +47,11 @@
 
               & .form-field {
                 &__label {
-                  @apply block mb-2 text-sm font-medium text-gray-900;
+                  @apply mb-2 block text-sm font-medium text-gray-900;
                 }
 
                 &__control {
-                  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+                  @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500;
                 }
               }
             }
@@ -61,15 +61,15 @@
     }
 
     &__buttons-block {
-      @apply min-w-full flex justify-end;
+      @apply flex min-w-full justify-end;
 
       button.btn-save {
-        @apply flex px-5 py-2.5 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center;
+        @apply flex rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300;
       }
     }
   }
 
   .button-loader {
-    @apply w-4 h-4 mt-0.5 mr-2;
+    @apply mr-2 mt-0.5 h-4 w-4;
   }
 }

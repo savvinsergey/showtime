@@ -1,11 +1,11 @@
 {
   "{libs,apps}/**/*.ts": [
-    "npx lint"
-  ],
-  "{libs,apps}/**/*.{ts,js,html,css,scss}": [
-     "nx format:write --uncommitted"
+    "npm run lint"
   ],
   "{libs,apps}/**/*.scss": [
-    "stylelint"
+    "npm run stylelint"
+  ],
+  "{libs,apps}/**/*.{ts,html,scss}": [
+    "npm run format"
   ]
 }

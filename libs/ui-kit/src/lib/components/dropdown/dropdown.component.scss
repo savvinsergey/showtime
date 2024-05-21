@@ -2,6 +2,6 @@
   position: relative;
 
   .dropdown-list {
-    @apply hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow;
+    @apply z-10 w-44 divide-y divide-gray-100 rounded bg-white shadow;
   }
 }

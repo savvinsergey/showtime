@@ -5,18 +5,19 @@
     filters: filters$ | async,
 
     refresh: refresh$ | event : onRefresh
-  } as async"
->
+  } as async">
   <ng-container *ngIf="!async.inProgress?.loading; else loaderTmp">
     <st-search-field
       placeholder="Search by nickname or email"
       [types]="searchTypes"
       [ngModel]="async.filters?.['search']"
-      (ngModelChange)="onSearch($event)"
-    >
+      (ngModelChange)="onSearch($event)">
     </st-search-field>
     <br />
-    <st-users-table [users]="async.allUsers" [sort]="async.filters?.['sort']" (sorted)="onSort($event)">
+    <st-users-table
+      [users]="async.allUsers"
+      [sort]="async.filters?.['sort']"
+      (sorted)="onSort($event)">
     </st-users-table>
   </ng-container>
 </ng-container>

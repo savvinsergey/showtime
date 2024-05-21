@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, inject, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable, tap } from 'rxjs';
+import type { OnDestroy, PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, inject, Pipe } from '@angular/core';
+import type { Observable } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Pipe({
   name: 'event',

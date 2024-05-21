@@ -1,12 +1,9 @@
-import { Route } from '@angular/router';
+import { provideHttpClient, withRequestsMadeViaParent } from '@angular/common/http';
+import type { Route } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-
-import { MainLayoutComponent } from '../../../../libs/layout/ui/src/lib/components/containers';
-
 import { EUserRoles } from '@showtime/auth/shared';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { usersAuthTokenInterceptor } from '../../../../libs/users/utils/src/lib/interceptors/users-token.interceptor';
 import { CheckRolesGuard } from '@showtime/auth/utils';
+import { MainLayoutComponent } from '@showtime/layout/ui';
 
 export const appRoutes: Route[] = [
   {
@@ -15,9 +12,8 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: 'users',
-        loadComponent: () =>
-          import('../../../../libs/users/ui/src/lib/components/pages/users/users.page').then(mod => mod.UsersPage),
-        providers: [provideHttpClient(withInterceptors([usersAuthTokenInterceptor]))],
+        loadComponent: () => import('@showtime/users/ui').then(module_ => module_.UsersPage),
+        providers: [provideHttpClient(withRequestsMadeViaParent())],
         canActivate: [AuthGuard, CheckRolesGuard],
         data: {
           roles: [EUserRoles.ADMIN],
@@ -25,9 +21,8 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'user',
-        loadComponent: () =>
-          import('../../../../libs/users/ui/src/lib/components/pages/user/user.page').then(mod => mod.UserPage),
-        providers: [provideHttpClient(withInterceptors([usersAuthTokenInterceptor]))],
+        loadComponent: () => import('@showtime/users/ui').then(module_ => module_.UserPage),
+        providers: [provideHttpClient(withRequestsMadeViaParent())],
         canActivate: [AuthGuard],
       },
     ],

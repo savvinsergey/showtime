@@ -2,21 +2,21 @@
   position: relative;
 
   .table {
-    @apply w-full text-sm text-left text-gray-500;
+    @apply w-full text-left text-sm text-gray-500;
 
     &__header {
-      @apply text-xs text-gray-700 bg-gray-50 uppercase;
+      @apply bg-gray-50 text-xs uppercase text-gray-700;
     }
 
     &__th {
-      @apply pl-6 py-3;
+      @apply py-3 pl-6;
     }
 
     &__clear-sort {
       @apply absolute -right-2 -top-2;
 
       i {
-        @apply w-6 h-6 text-gray-400;
+        @apply h-6 w-6 text-gray-400;
       }
     }
 
@@ -26,10 +26,11 @@
       & .sort-link {
         .icon {
           &-direction {
-            @apply self-center ml-1.5;
+            @apply ml-1.5 self-center;
           }
+
           &-sort {
-            @apply w-4 h-4 self-center ml-1.5 mt-0.5;
+            @apply ml-1.5 mt-0.5 h-4 w-4 self-center;
           }
         }
       }

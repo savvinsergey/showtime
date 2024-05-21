@@ -1,4 +1,4 @@
-import { ILayoutUiMenuItemConfig } from './layout-ui-menu-item-config';
+import type { ILayoutUiMenuItemConfig } from './layout-ui-menu-item-config';
 
 export interface ILayoutUiModuleConfig {
   title: string;

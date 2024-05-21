@@ -1,23 +1,32 @@
 import { inject, Injectable } from '@angular/core';
-
-import { IUsersQueries, IUsersCommands } from '../interfaces';
-
+import { UserQuery } from '@showtime/auth/application/queries';
+import { SetDefaultStateProperty } from '@showtime/shared/decorators';
+import { injectQuery } from '@showtime/shared/utils';
+import {
+  DeleteCommand,
+  UpdateCommand,
+  UpdateRolesCommand,
+} from '@showtime/users/application/commands';
 import {
   AllUsersQuery,
   GetRolesAllQuery,
   GetRolesByUserQuery,
   UsersTokenQuery,
 } from '@showtime/users/application/queries';
-import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from '@showtime/users/application/commands';
-import { UserQuery } from '@showtime/auth/application/queries';
-import { IAllUsersPayload, UserModel, UserRoleModel } from '@showtime/users/domain';
-import { IUsersHandlers, IUsersState } from '@showtime/users/ui';
-import { UsersFacade } from '@showtime/users/ui/facade';
-import { SetDefaultStateProperty } from '@showtime/shared/decorators';
-import { injectQuery } from '@showtime/shared/utils';
+import type { IAllUsersPayload, UserModel, UserRoleModel } from '@showtime/users/domain';
+import type { IUsersHandlers, IUsersState } from '@showtime/users/ui';
+import type { UsersFacade } from '@showtime/users/ui/facade';
+
+import type { IUsersCommands, IUsersQueries } from '../interfaces';
 
 @Injectable()
 export class UsersFacadeImplementation implements UsersFacade {
+  private readonly commands: IUsersCommands = {
+    update: inject(UpdateCommand),
+    delete: inject(DeleteCommand),
+    updateRoles: inject(UpdateRolesCommand),
+  };
+
   private readonly queries: IUsersQueries = {
     user: injectQuery<void, UserModel>(UserQuery)(false),
     allUsers: injectQuery<IAllUsersPayload, UserModel[]>(AllUsersQuery)(true),
@@ -26,13 +35,13 @@ export class UsersFacadeImplementation implements UsersFacade {
     usersToken: injectQuery<void, string>(UsersTokenQuery)(true),
   };
 
-  private readonly commands: IUsersCommands = {
-    update: inject(UpdateCommand),
-    delete: inject(DeleteCommand),
-    updateRoles: inject(UpdateRolesCommand),
-  };
-
   // ------------------------- //
+
+  public readonly handlers: IUsersHandlers = {
+    delete: this.commands.delete.metadata,
+    update: this.commands.update.metadata,
+    updateRoles: this.commands.updateRoles.metadata,
+  };
 
   @SetDefaultStateProperty('value$')
   public readonly state: IUsersState = {
@@ -56,20 +65,14 @@ export class UsersFacadeImplementation implements UsersFacade {
     },
   };
 
-  public readonly handlers: IUsersHandlers = {
-    delete: this.commands.delete.metadata,
-    update: this.commands.update.metadata,
-    updateRoles: this.commands.updateRoles.metadata,
-  };
-
   // ------------------------- //
 
-  public refresh(payload?: IAllUsersPayload) {
-    this.queries.allUsers.execute(payload);
-  }
+  public block({ user_id: id, blocked }: UserModel) {
+    const body = { blocked: !blocked };
+    const payload = { id, body };
 
-  public getRoles(id: string) {
-    this.queries.userRoles.execute(id);
+    this.commands.update.execute(payload);
+    return this.handlers.update.status$;
   }
 
   public delete(id: string) {
@@ -77,16 +80,16 @@ export class UsersFacadeImplementation implements UsersFacade {
     return this.handlers.delete.status$;
   }
 
-  public update(id: string, body: Partial<UserModel>) {
-    const payload = { id, body: { user_metadata: body } };
-
-    this.commands.update.execute(payload);
-    return this.handlers.update.status$;
+  public getRoles(id: string) {
+    this.queries.userRoles.execute(id);
   }
 
-  public block({ user_id: id, blocked }: UserModel) {
-    const body = { blocked: !blocked };
-    const payload = { id, body };
+  public refresh(payload?: IAllUsersPayload) {
+    this.queries.allUsers.execute(payload);
+  }
+
+  public update(id: string, body: Partial<UserModel>) {
+    const payload = { id, body: { user_metadata: body } };
 
     this.commands.update.execute(payload);
     return this.handlers.update.status$;

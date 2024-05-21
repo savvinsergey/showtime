@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-
+import type { UserModel } from '@showtime/auth/domain';
+import { AuthRepository } from '@showtime/auth/domain';
 import { BaseCqrsQuery } from '@showtime/shared/utils';
-import { AuthRepository, UserModel } from '@showtime/auth/domain';
 
 @Injectable()
 export class UserQuery extends BaseCqrsQuery<void, UserModel> {
-  private authRepository = inject(AuthRepository);
+  private readonly authRepository = inject(AuthRepository);
 
   constructor() {
     super();

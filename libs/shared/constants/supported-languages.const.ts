@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { ILanguage } from '../interfaces';
+
+import type { ILanguage } from '../interfaces';
 
 export const SUPPORTED_LANGUAGES = new InjectionToken<ILanguage[]>('SUPPORTED_LANGUAGES', {
   providedIn: 'root',

@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import type { QueryList } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,15 +8,12 @@ import {
   EventEmitter,
   Input,
   Output,
-  QueryList,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-
-import { ITableSortValue } from '@showtime/shared/interfaces';
-import { SortDirectionIconPipe } from '@showtime/shared/pipes';
 import { TableHeaderItemDirectiveDirective, TableRowDirective } from '@showtime/shared/directives';
 import { ETableSortDirection } from '@showtime/shared/enums';
+import type { ITableSortValue } from '@showtime/shared/interfaces';
+import { SortDirectionIconPipe } from '@showtime/shared/pipes';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @Component({
   selector: 'uik-table',
@@ -30,13 +29,16 @@ export class TableComponent<T extends object> {
 
   @Output() sorted = new EventEmitter<ITableSortValue | null>();
 
-  @ContentChild(TableRowDirective<T>)
-  row!: TableRowDirective<T>;
-
   @ContentChildren(TableHeaderItemDirectiveDirective)
   headerItems!: QueryList<TableHeaderItemDirectiveDirective>;
 
-  public onSort(field: string | null, direction: ETableSortDirection = ETableSortDirection.ASC): void {
+  @ContentChild(TableRowDirective<T>)
+  row!: TableRowDirective<T>;
+
+  public onSort(
+    field: string | null,
+    direction: ETableSortDirection = ETableSortDirection.ASC,
+  ): void {
     const sortValue =
       (field && {
         field,
@@ -47,6 +49,8 @@ export class TableComponent<T extends object> {
   }
 
   private toggleDirection(direction: ETableSortDirection): ETableSortDirection {
-    return direction === ETableSortDirection.ASC ? ETableSortDirection.DESC : ETableSortDirection.ASC;
+    return direction === ETableSortDirection.ASC
+      ? ETableSortDirection.DESC
+      : ETableSortDirection.ASC;
   }
 }

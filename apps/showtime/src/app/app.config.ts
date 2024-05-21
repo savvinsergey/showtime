@@ -1,15 +1,17 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { ILayoutUiModuleConfig, LayoutUiModule } from '@showtime/layout/ui';
-import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { InitializerModule } from '@showtime/initializer';
-import { ENVIRONMENT } from '@showtime/shared/const';
-import { environment } from '../environments/environment';
-import { usersAuthTokenInterceptor } from '../../../../libs/users/utils/src/lib/interceptors/users-token.interceptor';
-import { UsersUtilsModule } from '@showtime/users/utils';
+import type { ApplicationConfig } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 import { EUserRoles } from '@showtime/auth/shared';
+import { InitializerModule } from '@showtime/initializer';
+import type { ILayoutUiModuleConfig } from '@showtime/layout/ui';
+import { LayoutUiModule } from '@showtime/layout/ui';
+import { ENVIRONMENT } from '@showtime/shared/const';
+import { usersAuthTokenInterceptor, UsersUtilsModule } from '@showtime/users/utils';
+
+import { environment } from '../environments/environment';
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

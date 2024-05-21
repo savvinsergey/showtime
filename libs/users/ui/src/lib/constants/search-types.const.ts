@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ISearchType } from '@showtime/shared/interfaces';
+import type { ISearchType } from '@showtime/shared/interfaces';
 
 export const USER_SEARCH_TYPE = new InjectionToken<ISearchType[]>('USER_SEARCH_TYPE', {
   providedIn: 'root',

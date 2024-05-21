@@ -1,5 +1,6 @@
-import { EUsersStoreKeys } from '../enums';
-import { UserModel, UserRoleModel } from '@showtime/users/domain';
+import type { UserModel, UserRoleModel } from '@showtime/users/domain';
+
+import type { EUsersStoreKeys } from '../enums';
 
 export interface IUsersStoreState {
   [EUsersStoreKeys.TOKEN]: string;

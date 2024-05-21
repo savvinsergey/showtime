@@ -1,17 +1,16 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import type { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-
-import { InlineSVGModule } from 'ng-inline-svg-2';
-
-import { SidebarMenuItemComponent } from './components/presentational';
-import { SidebarComponent, MainLayoutComponent } from './components/containers';
-import { LAYOUT_UI_CONFIG_TOKEN } from './constants';
-import { ILayoutUiModuleConfig } from './interfaces';
-
 import { DropdownUserContainer } from '@showtime/auth/ui';
 import { AuthUtilsModule } from '@showtime/auth/utils';
 import { LayoutAbstractModule } from '@showtime/layout/abstract';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+
+import { MainLayoutComponent, SidebarComponent } from './components/containers';
+import { SidebarMenuItemComponent } from './components/presentational';
+import { LAYOUT_UI_CONFIG_TOKEN } from './constants';
+import type { ILayoutUiModuleConfig } from './interfaces';
 
 @NgModule({
   declarations: [MainLayoutComponent, SidebarComponent, SidebarMenuItemComponent],

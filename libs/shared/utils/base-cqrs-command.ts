@@ -1,9 +1,19 @@
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, catchError, concatMap, delay, Observable, ReplaySubject, tap, throwError } from 'rxjs';
 import 'reflect-metadata';
 
-import { Command, IFacadeHandler } from '../interfaces';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import type { Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  concatMap,
+  delay,
+  ReplaySubject,
+  tap,
+  throwError,
+} from 'rxjs';
+
 import { EAsyncStatusesCqrs } from '../enums';
+import type { Command, IFacadeHandler } from '../interfaces';
 
 export abstract class BaseCqrsCommand<M, R> implements Command<M> {
   private readonly requestSource = new ReplaySubject<M | undefined>(1);
@@ -25,22 +35,23 @@ export abstract class BaseCqrsCommand<M, R> implements Command<M> {
     };
   }
 
+  public isModel = (model: M | undefined): model is M => !!model;
+
   constructor() {
-    const isModel = (model: M | undefined): model is M => !!model;
     this.requestSource
       .pipe(
         tap((model: M | undefined) => {
-          if (isModel(model)) {
+          if (this.isModel(model)) {
             this.context = model;
           }
           this.status = EAsyncStatusesCqrs.PENDING;
         }),
         concatMap((model?: M | undefined) =>
           this.command(model).pipe(
-            catchError(err => {
+            catchError(error => {
               this.status = EAsyncStatusesCqrs.ERROR;
 
-              return throwError(err);
+              return throwError(error);
             }),
           ),
         ),

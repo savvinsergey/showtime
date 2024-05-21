@@ -1,3 +1,4 @@
-# users-utils
+# Users utils
 
-This library was generated with [Nx](https://nx.dev).
+Library with different utils like interceptor or guard
+

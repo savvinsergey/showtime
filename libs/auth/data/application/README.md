@@ -1,3 +1,3 @@
-# auth-application
+# Auth application
 
-This library was generated with [Nx](https://nx.dev).
+Library with application

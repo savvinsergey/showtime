@@ -1,9 +1,8 @@
-import { first, map, of, switchMap, tap } from 'rxjs';
-
-import { UserRoleModel, UserModel } from '@showtime/users/domain';
-import { injectQuery } from '@showtime/shared/utils';
 import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
+import { injectQuery } from '@showtime/shared/utils';
 import { GetRolesByUserQuery } from '@showtime/users/application/queries';
+import type { UserModel, UserRoleModel } from '@showtime/users/domain';
+import { first, map, of, switchMap, tap } from 'rxjs';
 
 export const authInitializer = () => {
   const queries = {
@@ -23,7 +22,14 @@ export const authInitializer = () => {
     ),
   );
 
-  const user$ = queries['isAuth'].value$.pipe(switchMap((isAuth: boolean) => (isAuth ? userData$ : of(null))));
+  const user$ = queries['isAuth'].value$.pipe(
+    switchMap((isAuth: boolean) =>
+      // prettier-ignore
+      isAuth
+        ? userData$
+        : of(null),
+    ),
+  );
 
   return () => user$.pipe(first());
 };

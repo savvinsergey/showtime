@@ -1,3 +1,3 @@
-# users-infrastructure
+# Users infrastructure
 
-This library was generated with [Nx](https://nx.dev).
+Library with infrastructure

@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { combineLatest, filter, Observable } from 'rxjs';
-
 import { EAsyncStatusesCqrs } from '@showtime/shared/enums';
-import { IRolesManagementConfig } from '@showtime/users/ui';
 import { checkStatuses } from '@showtime/shared/operators';
+import type { IRolesManagementConfig } from '@showtime/users/ui';
 import { UsersFacade } from '@showtime/users/ui/facade';
+import type { Observable } from 'rxjs';
+import { combineLatest, filter } from 'rxjs';
 
 @Injectable()
 export class RolesManagementService {
@@ -26,12 +26,12 @@ export class RolesManagementService {
 
   // -------------------- //
 
-  public readonly config$: Observable<IRolesManagementConfig> = combineLatest({
-    inProgress: this.inProgress$,
-  });
-
   public readonly close$: Observable<boolean> = this.updateRolesStatus$!.pipe(
     checkStatuses(EAsyncStatusesCqrs.SUCCESS),
     filter(Boolean),
   );
+
+  public readonly config$: Observable<IRolesManagementConfig> = combineLatest({
+    inProgress: this.inProgress$,
+  });
 }

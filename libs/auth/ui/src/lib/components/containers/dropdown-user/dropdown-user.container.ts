@@ -1,19 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DropdownUserService } from './dropdown-user.service';
-import { DropdownUserComponent } from '../../presentational';
-import { AuthFacade } from '../../../facades';
-
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthAbstractModule } from '@showtime/auth/abstract';
+
+import { AuthFacade } from '../../../facades';
+import { DropdownUserComponent } from '../../presentational';
+import { DropdownUserService } from './dropdown-user.service';
 
 @Component({
   standalone: true,
   imports: [CommonModule, AuthAbstractModule, DropdownUserComponent],
   providers: [DropdownUserService],
-  selector: 'st-dropdown-user_c',
+  selector: 'st-dropdown-user-c',
   templateUrl: './dropdown-user.container.html',
-  styleUrls: ['./dropdown-user.container.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownUserContainer {

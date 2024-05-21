@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-
-import { UserRoleModel, UsersRepository } from '@showtime/users/domain';
 import { BaseCqrsQuery } from '@showtime/shared/utils';
+import type { UserRoleModel } from '@showtime/users/domain';
+import { UsersRepository } from '@showtime/users/domain';
+import type { Observable } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class GetRolesByUserQuery extends BaseCqrsQuery<string, UserRoleModel[]> {
@@ -13,6 +14,8 @@ export class GetRolesByUserQuery extends BaseCqrsQuery<string, UserRoleModel[]> 
   }
 
   public override query(id: string): Observable<UserRoleModel[]> {
-    return this.usersRepository.getRoles(id).pipe(tap((result: UserRoleModel[]) => (this.value = result)));
+    return this.usersRepository
+      .getRoles(id)
+      .pipe(tap((result: UserRoleModel[]) => (this.value = result)));
   }
 }

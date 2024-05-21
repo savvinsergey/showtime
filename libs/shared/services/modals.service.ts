@@ -1,7 +1,8 @@
-import { ApplicationRef, ComponentRef, inject, Injectable, OnDestroy, Type, ViewContainerRef } from '@angular/core';
+import type { ComponentRef, OnDestroy, Type } from '@angular/core';
+import { ApplicationRef, inject, Injectable, ViewContainerRef } from '@angular/core';
 import { asapScheduler, Subject, timer } from 'rxjs';
 
-import { IModal, IModalData } from '../interfaces';
+import type { IModal, IModalData } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -20,14 +21,14 @@ export class ModalsService implements OnDestroy {
   }
 
   public open<M extends IModal<C>, C>(component: Type<M>, context: C, data?: IModalData): M {
-    const rootViewContainerRef = this.appRef.components[0].injector.get(ViewContainerRef);
+    const rootViewContainerReference = this.appRef.components[0].injector.get(ViewContainerRef);
 
-    const componentRef = rootViewContainerRef.createComponent<M>(component);
+    const componentReference = rootViewContainerReference.createComponent<M>(component);
     if (data) {
-      componentRef.setInput('data', data);
+      componentReference.setInput('data', data);
     }
 
-    const instance = componentRef?.instance;
+    const instance = componentReference?.instance;
     if (instance.open instanceof Function) {
       timer(0).subscribe(() => instance.open(context));
     } else {
@@ -39,7 +40,7 @@ export class ModalsService implements OnDestroy {
       instance.close = () => {
         originalClose();
         asapScheduler.schedule(() => {
-          this.destroy<M>(componentRef);
+          this.destroy<M>(componentReference);
         });
       };
     } else {
@@ -49,8 +50,8 @@ export class ModalsService implements OnDestroy {
     return instance;
   }
 
-  private destroy<M>(componentRef: ComponentRef<M>): void {
+  private destroy<M>(componentReference: ComponentRef<M>): void {
     this.destroyedSource.next();
-    componentRef?.destroy();
+    componentReference?.destroy();
   }
 }
