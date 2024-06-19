@@ -1,0 +1,8 @@
+<a
+  href="#"
+  routerLinkActive="active"
+  [routerLink]="item.link"
+  [routerLinkActiveOptions]="{ exact: true }">
+  <i class="h-6 w-6" [inlineSVG]="'assets/svg/' + item.icon"></i>
+  <span class="text"> {{ item.text }} </span>
+</a>

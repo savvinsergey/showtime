@@ -1,0 +1,39 @@
+<ng-container
+  *ngIf="{
+    user: user$ | async
+  } as async">
+  <nav class="header">
+    <div class="header__logo">
+      <a class="header__logo-link" href="https://showtime.com">
+        <i class="mr-3 h-6 w-6 fill-blue-600" inlineSVG="assets/svg/showtime.svg"></i>
+        {{ moduleConfig.title }}
+      </a>
+    </div>
+    <div class="header__user-menu">
+      <button
+        type="button"
+        aria-expanded="false"
+        data-dropdown-toggle="dropdown-user"
+        data-dropdown-offset-distance="5"
+        data-dropdown-offset-skidding="-20">
+        <ng-container *ngIf="async.user; else defaultUserPhotoTmpl">
+          <img class="header__user-img" alt="User photo" [src]="async.user.picture" />
+        </ng-container>
+      </button>
+
+      <st-dropdown-user-c></st-dropdown-user-c>
+    </div>
+  </nav>
+
+  <st-sidebar-c></st-sidebar-c>
+
+  <section class="content">
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #defaultUserPhotoTmpl>
+  <i class="default-user-img" inlineSVG="assets/svg/user-circle.svg"></i>
+</ng-template>

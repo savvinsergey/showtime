@@ -1,0 +1,11 @@
+:host {
+  @apply block w-full bg-white p-4;
+
+  .loader {
+    @apply flex min-h-full items-center justify-center;
+
+    &__icon {
+      @apply h-10 w-10;
+    }
+  }
+}

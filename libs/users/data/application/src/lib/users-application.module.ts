@@ -5,8 +5,6 @@ import { UsersDataModule } from '@showtime/users/infra';
 import { DeleteCommand, UpdateCommand, UpdateRolesCommand } from './commands';
 import { AllUsersQuery, GetRolesAllQuery, GetRolesByUserQuery, UsersTokenQuery } from './queries';
 
-// TODO check using queries and commands without domain module
-
 // prettier-ignore
 const queries = [
   UsersTokenQuery,

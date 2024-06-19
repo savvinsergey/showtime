@@ -1,0 +1,29 @@
+{
+  "name": "users-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/users/ui/default/src",
+  "prefix": "st",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/users/ui/abstract/**/*.ts",
+          "libs/users/ui/default/**/*.ts",
+          "libs/users/ui/default/**/*.html"
+        ]
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "configFile": "libs/users/ui/default/.stylelintrc.json",
+        "lintFilePatterns": ["libs/users/ui/default/**/*.scss"]
+      }
+    }
+  }
+}

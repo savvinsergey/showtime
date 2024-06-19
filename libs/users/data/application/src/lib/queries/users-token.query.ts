@@ -6,17 +6,17 @@ import { tap } from 'rxjs';
 
 @Injectable()
 export class UsersTokenQuery extends BaseCqrsQuery<void, string> {
-  private readonly tokenUsersRepo = inject(TokenUsersRepository);
+  private readonly tokenUsersRepository = inject(TokenUsersRepository);
 
   constructor() {
     super();
 
-    this.value$ = this.tokenUsersRepo.token$;
+    this.value$ = this.tokenUsersRepository.token$;
   }
 
   public override query(): Observable<string> {
-    return this.tokenUsersRepo
+    return this.tokenUsersRepository
       .getToken()
-      .pipe(tap((payload: string) => (this.tokenUsersRepo.token = payload)));
+      .pipe(tap((payload: string) => (this.tokenUsersRepository.token = payload)));
   }
 }

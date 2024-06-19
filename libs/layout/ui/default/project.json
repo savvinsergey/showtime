@@ -1,0 +1,29 @@
+{
+  "name": "layout-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/layout/ui/default/src",
+  "prefix": "st",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/layout/ui/abstract/**/*.ts",
+          "libs/layout/ui/default/**/*.ts",
+          "libs/layout/ui/default/**/*.html"
+        ]
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "configFile": "libs/layout/ui/default/.stylelintrc.json",
+        "lintFilePatterns": ["libs/layout/ui/default/**/*.scss"]
+      }
+    }
+  }
+}

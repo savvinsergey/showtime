@@ -1,0 +1,12 @@
+<ng-container
+  *ngIf="{
+  user: user$ | async,
+  dropdownUserConfig: dropdownUserService.dropdownUserConfig$ | async
+} as async">
+  <st-dropdown-user
+    [user]="async.user!"
+    [config]="async.dropdownUserConfig!"
+    (signedOut)="authUiFacade.logout()"
+    (signedIn)="authUiFacade.login()">
+  </st-dropdown-user>
+</ng-container>

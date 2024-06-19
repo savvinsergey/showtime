@@ -1,0 +1,15 @@
+{
+  "extends": ["../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "rules": {
+    "@nx/enforce-module-boundaries": [
+      "error",
+      {
+        "allowCircularSelfDependency": true,
+        "allow": [
+          "@showtime/shared/components"
+        ]
+      }
+    ]
+  }
+}

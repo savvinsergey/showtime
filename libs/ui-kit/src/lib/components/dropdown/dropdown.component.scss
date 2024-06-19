@@ -1,5 +1,6 @@
 :host {
   position: relative;
+  display: block;
 
   .dropdown-list {
     @apply z-10 w-44 divide-y divide-gray-100 rounded bg-white shadow;

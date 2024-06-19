@@ -25,7 +25,9 @@
           "error",
           {
             "allowCircularSelfDependency": true,
-            "allow": ["@showtime/shared"]
+            "allow": [
+              "@showtime/shared/directives"
+            ]
           }
         ]
       },

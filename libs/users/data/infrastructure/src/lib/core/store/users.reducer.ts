@@ -37,8 +37,10 @@ const typeGuards = {
     typeof payload === 'string',
   [EUsersStoreActions.SET_ALL_USERS]: (
     payload: ValueOf<IUsersStoreState>,
-  ): payload is UserModel[] => Array.isArray(payload) && !!(payload[0] as UserModel)?.user_id,
+  ): payload is UserModel[] =>
+    (Array.isArray(payload) && !!(payload[0] as UserModel)?.user_id) || payload.length === 0,
   [EUsersStoreActions.SET_ALL_ROLES]: (
     payload: ValueOf<IUsersStoreState>,
-  ): payload is UserRoleModel[] => Array.isArray(payload) && !!(payload[0] as UserRoleModel)?.name,
+  ): payload is UserRoleModel[] =>
+    (Array.isArray(payload) && !!(payload[0] as UserRoleModel)?.name) || payload.length === 0,
 };

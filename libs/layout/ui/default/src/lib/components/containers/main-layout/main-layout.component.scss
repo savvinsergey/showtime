@@ -1,0 +1,34 @@
+:host {
+  .header {
+    @apply fixed top-0 z-40 flex w-full items-center justify-between border-b border-gray-200 bg-white px-3 py-3;
+
+    &__logo {
+      @apply flex items-center justify-start;
+    }
+
+    &__logo-link {
+      @apply ml-2 flex self-center whitespace-nowrap text-xl font-semibold md:mr-24;
+    }
+
+    &__user-menu {
+      @apply mr-1 flex items-center;
+    }
+
+    &__user-img {
+      @apply h-8 w-8 rounded-full;
+    }
+  }
+
+  .content {
+    /* stylelint-disable-next-line scss/operator-no-unspaced -- Right tailwind syntax */
+    @apply mt-[3.3rem] flex min-h-[calc(100vh-3.3rem)] bg-white sm:ml-64;
+
+    &-wrapper {
+      @apply m-4 flex min-h-full w-full rounded-lg border-2 border-dashed border-gray-200;
+    }
+  }
+
+  .default-user-img {
+    @apply h-8 w-8;
+  }
+}

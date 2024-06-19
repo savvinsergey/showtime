@@ -1,0 +1,11 @@
+<aside aria-label="Sidebar">
+  <div class="inner">
+    <ul class="menu-list">
+      <ng-container *ngFor="let item of moduleConfig.menu">
+        <li *checkAccess="item.roles">
+          <st-sidebar-menu-item [item]="item" [preload]="item.preload"></st-sidebar-menu-item>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</aside>

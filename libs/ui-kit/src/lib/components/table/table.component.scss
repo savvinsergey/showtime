@@ -24,13 +24,13 @@
       @apply flex cursor-pointer;
 
       & .sort-link {
-        .icon {
+        &__icon {
           &-direction {
-            @apply ml-1.5 self-center;
+            @apply ml-1 mt-1 h-3 w-3 self-center;
           }
 
           &-sort {
-            @apply ml-1.5 mt-0.5 h-4 w-4 self-center;
+            @apply ml-1 h-4 w-4 self-center opacity-50;
           }
         }
       }

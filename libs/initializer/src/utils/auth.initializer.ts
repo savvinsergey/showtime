@@ -1,8 +1,8 @@
-import { IsAuthQuery, UserQuery } from '@showtime/auth/application/queries';
+import { IsAuthQuery, UserQuery } from '@showtime/auth/application';
 import { injectQuery } from '@showtime/shared/utils';
-import { GetRolesByUserQuery } from '@showtime/users/application/queries';
+import { GetRolesByUserQuery } from '@showtime/users/application';
 import type { UserModel, UserRoleModel } from '@showtime/users/domain';
-import { first, map, of, switchMap, tap } from 'rxjs';
+import { filter, first, map, of, switchMap, tap } from 'rxjs';
 
 export const authInitializer = () => {
   const queries = {
@@ -11,10 +11,11 @@ export const authInitializer = () => {
     roles: injectQuery<string, UserRoleModel[]>(GetRolesByUserQuery)(false),
   };
 
-  const userData$ = queries['user'].value$.pipe(
-    tap((user: UserModel) => queries['roles'].execute(user.sub)),
+  const userData$ = queries.user.value$.pipe(
+    filter(Boolean),
+    tap((user: UserModel) => queries.roles.execute(user.sub)),
     switchMap((user: UserModel) =>
-      queries['roles'].value$.pipe(
+      queries.roles.value$.pipe(
         first(Boolean),
         tap((roles: UserRoleModel[]) => (user.roles = roles)),
         map(() => user),
@@ -22,7 +23,7 @@ export const authInitializer = () => {
     ),
   );
 
-  const user$ = queries['isAuth'].value$.pipe(
+  const user$ = queries.isAuth.value$.pipe(
     switchMap((isAuth: boolean) =>
       // prettier-ignore
       isAuth

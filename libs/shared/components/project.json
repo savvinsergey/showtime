@@ -1,0 +1,25 @@
+{
+  "name": "shared-components",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/components/src",
+  "prefix": "st",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/components/src/**/*.ts"]
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "configFile": "libs/shared/components/.stylelintrc.json",
+        "lintFilePatterns": ["libs/shared/components/src/**/*.scss"]
+      }
+    }
+  }
+}

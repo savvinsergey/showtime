@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+
+.loader-blue {
+  svg {
+    @apply fill-blue-500;
+  }
+}
+
+.loader-red {
+  svg {
+    @apply fill-red-500;
+  }
+}
+
+.icon-red {
+  svg {
+    @apply text-red-500;
+  }
+}

@@ -1,0 +1,17 @@
+<ng-container
+  *ngIf="{
+  allRoles: (allRoles$ | async) || [],
+  userRoles: (userRoles$ | async) || [],
+  config: (config$ | async) || defaultConfig,
+
+  close: close$ | event : onClose
+} as async">
+  <st-roles-management
+    #modal
+    [allRoles]="async.allRoles"
+    [userRoles]="async.userRoles"
+    [config]="async.config"
+    (closed)="onClose()"
+    (assigned)="onAssign(modal.userId, $event)">
+  </st-roles-management>
+</ng-container>

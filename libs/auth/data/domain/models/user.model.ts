@@ -7,7 +7,7 @@ export interface UserModelMetadata {
   language: string;
   country: string;
   city: string;
-  address: string;
+  _address: string;
   instagramLink: string;
   facebookLink: string;
 }

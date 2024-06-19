@@ -1,0 +1,55 @@
+<ng-container
+  *ngIf="{
+    inProgress: config.inProgress$ | async
+  } as async">
+  <uik-dropdown [id]="dropdownId">
+    <ng-container button>
+      <button
+        #userDropdown
+        [id]="dropdownIdButton"
+        [attr.data-dropdown-toggle]="dropdownId"
+        data-dropdown-placement="bottom-start"
+        class="dropdown-button"
+        type="button">
+        <ng-container *ngIf="!async.inProgress; else loaderTmp">
+          <i inlineSVG="assets/svg/dots-horizontal.svg" class="mr-2 h-4 w-4"></i>
+        </ng-container>
+      </button>
+    </ng-container>
+    <ng-container dropdown-list>
+      <ul class="menu-list" [attr.aria-labelledby]="dropdownIdButton">
+        <li>
+          <button
+            class="menu-list__item-button item-button"
+            (click)="clicked.emit(userManagementClickEnum.ROLE_MANAGEMENT); userDropdown.click()">
+            <i class="item-button__icon" inlineSVG="assets/svg/user-settings.svg"></i>
+            Roles
+          </button>
+        </li>
+        <li>
+          <button
+            class="menu-list__item-button item-button"
+            (click)="clicked.emit(userManagementClickEnum.BLOCK_USER); userDropdown.click()">
+            <i
+              class="item-button__icon"
+              [inlineSVG]="'assets/svg/' + (!user.blocked ? 'lock' : 'lock-open') + '.svg'"></i>
+            {{ !user.blocked ? 'Block' : 'Unblock' }}
+          </button>
+        </li>
+        <hr class="opacity-70" />
+        <li>
+          <button
+            class="menu-list__item-button menu-list__item-button--orange item-button"
+            (click)="clicked.emit(userManagementClickEnum.DELETE_USER); userDropdown.click()">
+            <i inlineSVG="assets/svg/trash-bin.svg" class="item-button__icon icon-red"></i>
+            <span>Delete</span>
+          </button>
+        </li>
+      </ul>
+    </ng-container>
+  </uik-dropdown>
+</ng-container>
+
+<ng-template #loaderTmp>
+  <i class="loader loader-blue" inlineSVG="assets/svg/loader.svg"></i>
+</ng-template>

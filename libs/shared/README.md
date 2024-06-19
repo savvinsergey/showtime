@@ -1,3 +1,0 @@
-# Shared
-
-Shared lib

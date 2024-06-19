@@ -1,0 +1,29 @@
+{
+  "name": "auth-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/auth/ui/default/src",
+  "prefix": "st",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/auth/ui/abstract/**/*.ts",
+          "libs/auth/ui/default/**/*.ts",
+          "libs/auth/ui/default/**/*.html"
+        ]
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "configFile": "libs/auth/ui/default/.stylelintrc.json",
+        "lintFilePatterns": ["libs/auth/ui/default/**/*.scss"]
+      }
+    }
+  }
+}

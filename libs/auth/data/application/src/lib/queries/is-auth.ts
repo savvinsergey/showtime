@@ -10,6 +10,8 @@ export class IsAuthQuery extends BaseCqrsQuery<null, boolean> {
   constructor() {
     super();
 
-    this.value$ = this.authRepository.isAuthenticated$.pipe(filter(value => value !== undefined));
+    // prettier-ignore
+    this.value$ = this.authRepository.isAuthenticated$
+      .pipe(filter(value => value !== undefined));
   }
 }

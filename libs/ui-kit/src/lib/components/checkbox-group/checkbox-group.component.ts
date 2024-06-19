@@ -3,7 +3,6 @@ import type { OnChanges, SimpleChanges } from '@angular/core';
 import { ChangeDetectionStrategy, Component, forwardRef, inject, Input } from '@angular/core';
 import type { FormArray } from '@angular/forms';
 import { FormBuilder, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import type { UserRoleModel } from '@showtime/auth/domain';
 import { BaseControl } from '@showtime/shared/utils';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 
@@ -65,8 +64,7 @@ export class CheckboxGroupComponent
     this.setChecked(this.list, values);
   }
 
-  // TODO: Replace UserRoleModel
-  private initializeForm(list: UserRoleModel[]) {
+  private initializeForm(list: TExternalValue[]) {
     for (const _item of list) {
       const control = this.fb.nonNullable.control<boolean>(false);
       this.listControl.push(control);
